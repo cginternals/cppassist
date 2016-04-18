@@ -7,7 +7,7 @@
 #include <sstream>
 
 
-namespace stringzeug
+namespace cppassist
 {
 
 
@@ -28,4 +28,4 @@ std::string join(const Iterable & iterable, const std::string & separator)
 }
 
     
-} // namespace stringzeug
+} // namespace cppassist

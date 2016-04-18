@@ -5,7 +5,7 @@
 #include <sstream>
 #include <cassert>
 
-namespace loggingzeug
+namespace cppassist
 {
 
 template <typename T, typename... Args>
@@ -39,4 +39,4 @@ std::string formatString(const char* format, Args... args)
 	return ss.str();
 }
 
-} // namespace loggingzeug
+} // namespace cppassist

@@ -11,7 +11,7 @@
 #include <cppassist/logging/LogMessage.h>
 
 
-namespace loggingzeug
+namespace cppassist
 {
 
 class AbstractLogHandler;
@@ -93,6 +93,6 @@ protected:
     std::shared_ptr<std::stringstream> m_stream;
 };
 
-} // namespace loggingzeug
+} // namespace cppassist
 
 #include <cppassist/logging/LogMessageBuilder.hpp>

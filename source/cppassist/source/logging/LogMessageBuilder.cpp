@@ -7,7 +7,7 @@
 #include <cppassist/logging/AbstractLogHandler.h>
 
 
-namespace loggingzeug
+namespace cppassist
 {
 
 LogMessageBuilder::LogMessageBuilder(LogMessage::Level level, AbstractLogHandler * handler, const std::string & context)
@@ -154,4 +154,4 @@ LogMessageBuilder & LogMessageBuilder::operator<<(LogMessageBuilder::WidthManipu
 }
 #endif
 
-} // namespace loggingzeug
+} // namespace cppassist

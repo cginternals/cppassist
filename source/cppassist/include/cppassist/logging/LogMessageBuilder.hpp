@@ -2,7 +2,7 @@
 
 #include <cppassist/logging/LogMessageBuilder.h>
 
-namespace loggingzeug
+namespace cppassist
 {
 
 template <typename T>
@@ -41,4 +41,4 @@ LogMessageBuilder& LogMessageBuilder::operator<<(const std::array<T, Count> & ar
     return *this;
 }
 
-} // namespace loggingzeug
+} // namespace cppassist

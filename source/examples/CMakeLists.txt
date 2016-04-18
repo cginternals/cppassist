@@ -5,5 +5,6 @@ if(NOT OPTION_BUILD_EXAMPLES)
 endif()
 
 # Example applications
-# add_subdirectory(subdirectoryName)
+
+add_subdirectory(logging)
 

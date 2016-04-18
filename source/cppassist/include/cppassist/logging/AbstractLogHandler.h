@@ -2,7 +2,7 @@
 
 #include <cppassist/cppassist_api.h>
 
-namespace loggingzeug
+namespace cppassist
 {
 
 class LogMessage;
@@ -27,4 +27,4 @@ public:
 	virtual void handle(const LogMessage& message) = 0;
 };
 
-} // namespace loggingzeug
+} // namespace cppassist

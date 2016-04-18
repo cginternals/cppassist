@@ -7,7 +7,7 @@
 #include <cppassist/cppassist_api.h>
 
 
-namespace iozeug
+namespace cppassist
 {
 
 
@@ -126,4 +126,4 @@ protected:
 };
 
 
-} // namespace reflectionzeug
+} // namespace cppassist

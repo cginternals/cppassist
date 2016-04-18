@@ -14,7 +14,7 @@
 #endif
 
 
-namespace stringzeug
+namespace cppassist
 {
 
 
@@ -87,4 +87,4 @@ bool hasSuffix(const std::string & string, const std::string & suffix)
 }
 
 
-} // namespace stringzeug
+} // namespace cppassist

@@ -14,7 +14,7 @@
 #include <cppassist/io/filename.h>
 
 
-namespace iozeug
+namespace cppassist
 {
 
 
@@ -90,7 +90,7 @@ std::vector<std::string> getFiles(const std::vector<std::string> & directories, 
 
     for (const std::string & directory : directories)
     {
-        const std::vector<std::string> fs(iozeug::getFiles(directory, recursive));
+        const std::vector<std::string> fs(cppassist::getFiles(directory, recursive));
         files.insert(files.end(), fs.begin(), fs.end());
     }
 
@@ -138,4 +138,4 @@ void scanDirectory(const std::string & directory, const std::string & fileExtens
 }
 
 
-} // namespace iozeug
+} // namespace cppassist

@@ -5,7 +5,7 @@
 #include <cppassist/logging/LogMessage.h>
 #include <cppassist/logging/LogMessageBuilder.h>
 
-namespace loggingzeug
+namespace cppassist
 {
 
 class AbstractLogHandler;
@@ -70,6 +70,6 @@ void fCritical(const char* format, Arguments... arguments);
 template <typename... Arguments>
 void fFatal(const char* format, Arguments... arguments);
 
-} // namespace loggingzeug
+} // namespace cppassist
 
 #include <cppassist/logging/logging.hpp>

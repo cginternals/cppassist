@@ -2,7 +2,7 @@
 #include <cppassist/io/SystemInfo.h>
 
 
-namespace iozeug
+namespace cppassist
 {
 
 
@@ -40,4 +40,4 @@ std::string SystemInfo::libExtension()
 }
 
 
-} // namespace iozeug
+} // namespace cppassist

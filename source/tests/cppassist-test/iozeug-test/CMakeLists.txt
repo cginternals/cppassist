@@ -4,7 +4,7 @@
 # 
 
 # Target name
-set(target cppassist-test)
+set(target iozeug-test)
 message(STATUS "Test ${target}")
 
 
@@ -14,17 +14,8 @@ message(STATUS "Test ${target}")
 
 set(sources
     main.cpp
-    
-    # threading
-    parallel_for_test.cpp
-
-    # strings
-    SystemInfo_test.cpp
     FilePath_test.cpp
-
-    # io
-    manipulation_test.cpp
-    conversion_test.cpp
+    SystemInfo_test.cpp
 )
 
 
@@ -70,7 +61,7 @@ target_include_directories(${target}
 target_link_libraries(${target}
     PRIVATE
     ${DEFAULT_LIBRARIES}
-    ${META_PROJECT_NAME}::cppassist
+    ${META_PROJECT_NAME}::iozeug
     gmock-dev
 )
 

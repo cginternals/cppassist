@@ -7,7 +7,7 @@
 #include <cppassist/cppassist_api.h>
 
 
-namespace iozeug 
+namespace cppassist 
 {
 
 
@@ -38,4 +38,4 @@ CPPASSIST_API bool readFile(const std::string & filePath, std::string & content)
 CPPASSIST_API std::string readFile(const std::string & filePath);
 
 
-} // namespace iozeug
+} // namespace cppassist

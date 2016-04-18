@@ -4,7 +4,7 @@
 
 #include <cppassist/cppassist_api.h>
 
-namespace loggingzeug
+namespace cppassist
 {
 
 /** \brief Encapsulates a simple log message and its severity level.
@@ -39,4 +39,4 @@ protected:
 	std::string m_context;
 };
 
-} // namespace loggingzeug
+} // namespace cppassist

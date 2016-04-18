@@ -12,7 +12,7 @@
 #endif
 
 
-namespace stringzeug
+namespace cppassist
 {
 
 
@@ -38,4 +38,4 @@ std::vector<std::string> extract(const std::string & string, const std::string &
 }
 
 
-} // namespace stringzeug
+} // namespace cppassist

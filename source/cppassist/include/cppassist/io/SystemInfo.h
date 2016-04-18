@@ -7,7 +7,7 @@
 #include <cppassist/cppassist_api.h>
 
 
-namespace iozeug
+namespace cppassist
 {
 
 
@@ -39,4 +39,4 @@ public:
 };
 
 
-} // namespace reflectionzeug
+} // namespace cppassist

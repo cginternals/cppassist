@@ -4,7 +4,7 @@
 #include <fstream>
 
 
-namespace iozeug
+namespace cppassist
 {
 
 
@@ -30,4 +30,4 @@ std::string readFile(const std::string & filePath)
 }
 
 
-} // namespace iozeug
+} // namespace cppassist

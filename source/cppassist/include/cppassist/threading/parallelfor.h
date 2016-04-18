@@ -9,7 +9,7 @@
 #include <cppassist/cppassist_api.h>
 
 
-namespace threadingzeug
+namespace cppassist
 {
 
 
@@ -47,7 +47,7 @@ void sequentialFor(std::vector<T> & elements, typename identity<std::function<vo
 
 
 
-} // namespace threadingzeug
+} // namespace cppassist
 
 
 #include <cppassist/threading/parallelfor.hpp>

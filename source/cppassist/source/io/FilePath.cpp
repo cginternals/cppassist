@@ -4,7 +4,7 @@
 #include <algorithm>
 
 
-namespace iozeug
+namespace cppassist
 {
 
 
@@ -135,4 +135,4 @@ std::string FilePath::driveLetter() const
 }
 
 
-} // namespace iozeug
+} // namespace cppassist

@@ -1,6 +1,6 @@
 #include <cppassist/logging/LogMessage.h>
 
-namespace loggingzeug
+namespace cppassist
 {
 
 LogMessage::LogMessage(Level level, const std::string& message, const std::string& context)
@@ -25,4 +25,4 @@ const std::string& LogMessage::context() const
     return m_context;
 }
 
-} // namespace loggingzeug
+} // namespace cppassist

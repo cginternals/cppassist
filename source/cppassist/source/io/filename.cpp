@@ -21,7 +21,7 @@ bool endsWith(const std::string & str, const std::string & ending)
 } // namespace
 
 
-namespace iozeug
+namespace cppassist
 {
 
 
@@ -92,4 +92,4 @@ std::string ensurePathSeparatorEnding(const std::string & path)
 }
 
 
-} // namespace iozeug
+} // namespace cppassist

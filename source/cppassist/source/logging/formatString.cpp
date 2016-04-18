@@ -8,7 +8,7 @@
 
 #include <iostream>
 
-namespace loggingzeug
+namespace cppassist
 {
 
 int readInt(const char* str, int& number)
@@ -165,4 +165,4 @@ void streamprintf(std::ostream& stream, const char* format)
 	stream << format;
 }
 
-} // namespace loggingzeug
+} // namespace cppassist

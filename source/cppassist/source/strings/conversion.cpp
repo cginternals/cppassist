@@ -71,7 +71,7 @@ void encodeUTF8(const std::string & input, std::u32string & output)
 
 
 
-namespace stringzeug
+namespace cppassist
 {
 
 
@@ -172,4 +172,4 @@ std::u32string encode(const std::string & input, const Encoding encoding)
 //}
 
 
-} // namespace stringzeug
+} // namespace cppassist

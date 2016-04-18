@@ -9,7 +9,7 @@
 #include <algorithm>
 
 
-namespace threadingzeug
+namespace cppassist
 {
 
 
@@ -104,4 +104,4 @@ void sequentialFor(std::vector<T>& elements, typename identity<std::function<voi
 }
 
 
-} // namespace threadingzeug
+} // namespace cppassist

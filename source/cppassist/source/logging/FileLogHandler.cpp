@@ -2,7 +2,7 @@
 
 #include <fstream>
 
-namespace loggingzeug
+namespace cppassist
 {
 
 FileLogHandler::FileLogHandler(const std::string & logfile)
@@ -51,4 +51,4 @@ std::string FileLogHandler::levelString(LogMessage::Level level)
 	}
 }
 
-} // namespace loggingzeug
+} // namespace cppassist

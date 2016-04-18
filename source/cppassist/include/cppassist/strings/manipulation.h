@@ -9,7 +9,7 @@
 #include <cppassist/cppassist_api.h>
 
 
-namespace stringzeug
+namespace cppassist
 {
 
 
@@ -127,7 +127,7 @@ CPPASSIST_API bool hasPrefix(const std::string & string, const std::string & pre
 CPPASSIST_API bool hasSuffix(const std::string & string, const std::string & suffix);
 
 
-} // namespace stringzeug
+} // namespace cppassist
 
 
 #include <cppassist/strings/manipulation.hpp>

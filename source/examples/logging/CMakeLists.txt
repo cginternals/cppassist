@@ -1,11 +1,18 @@
 
 # 
+# External dependencies
+# 
+
+
+# 
 # Executable name and options
 # 
 
 # Target name
-set(target cppassist-test)
-message(STATUS "Test ${target}")
+set(target loggingexample)
+
+# Exit here if required dependencies are not met
+message(STATUS "Example ${target}")
 
 
 # 
@@ -14,17 +21,6 @@ message(STATUS "Test ${target}")
 
 set(sources
     main.cpp
-    
-    # threading
-    parallel_for_test.cpp
-
-    # strings
-    SystemInfo_test.cpp
-    FilePath_test.cpp
-
-    # io
-    manipulation_test.cpp
-    conversion_test.cpp
 )
 
 
@@ -34,6 +30,7 @@ set(sources
 
 # Build executable
 add_executable(${target}
+    MACOSX_BUNDLE
     ${sources}
 )
 
@@ -59,7 +56,7 @@ set_target_properties(${target}
 target_include_directories(${target}
     PRIVATE
     ${DEFAULT_INCLUDE_DIRECTORIES}
-    ${PROJECT_BINARY_DIR}/source/include
+    ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 
@@ -71,7 +68,6 @@ target_link_libraries(${target}
     PRIVATE
     ${DEFAULT_LIBRARIES}
     ${META_PROJECT_NAME}::cppassist
-    gmock-dev
 )
 
 
@@ -102,4 +98,15 @@ target_compile_options(${target}
 target_link_libraries(${target}
     PRIVATE
     ${DEFAULT_LINKER_OPTIONS}
+)
+
+
+# 
+# Deployment
+# 
+
+# Executable
+install(TARGETS ${target}
+    RUNTIME DESTINATION ${INSTALL_BIN} COMPONENT examples
+    BUNDLE  DESTINATION ${INSTALL_BIN} COMPONENT examples
 )

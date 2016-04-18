@@ -8,11 +8,11 @@
 
 namespace
 {
-    loggingzeug::LogMessage::Level l_verbosityLevel = loggingzeug::LogMessage::Info;
-    loggingzeug::AbstractLogHandler * l_logHandler = new loggingzeug::ConsoleLogHandler();
+    cppassist::LogMessage::Level l_verbosityLevel = cppassist::LogMessage::Info;
+    cppassist::AbstractLogHandler * l_logHandler = new cppassist::ConsoleLogHandler();
 }
 
-namespace loggingzeug
+namespace cppassist
 {
 
 LogMessageBuilder info(const std::string & context, LogMessage::Level level)
@@ -61,4 +61,4 @@ LogMessage::Level verbosityLevel()
     return l_verbosityLevel;
 }
 
-} // namespace loggingzeug
+} // namespace cppassist

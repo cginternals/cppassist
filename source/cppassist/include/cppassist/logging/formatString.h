@@ -5,7 +5,7 @@
 
 #include <cppassist/cppassist_api.h>
 
-namespace loggingzeug
+namespace cppassist
 {
 
 CPPASSIST_API int readInt(const char* str, int& number);
@@ -80,6 +80,6 @@ void streamprintf(std::ostream& stream, const char* format, const T& value, Args
 template <typename... Args>
 std::string formatString(const char* format, Args... args);
 
-} // namespace loggingzeug
+} // namespace cppassist
 
 #include <cppassist/logging/formatString.hpp>

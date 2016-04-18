@@ -6,7 +6,7 @@
 #include <cppassist/logging/formatString.h>
 
 
-namespace loggingzeug
+namespace cppassist
 {
 
 template <typename... Arguments> void fInfo(const char* format, Arguments... arguments)
@@ -44,4 +44,4 @@ template <typename... Arguments> void fFatal(const char* format, Arguments... ar
     fatal() << formatString(format, arguments...);
 }
 
-} // namespace loggingzeug
+} // namespace cppassist

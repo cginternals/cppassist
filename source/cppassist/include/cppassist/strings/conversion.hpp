@@ -7,7 +7,7 @@
 #include <sstream>
 
 
-namespace stringzeug
+namespace cppassist
 {
 
 
@@ -29,4 +29,4 @@ std::string toString(const Type & value)
 }
 
     
-} // namespace stringzeug
+} // namespace cppassist

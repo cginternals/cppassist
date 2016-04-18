@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-namespace loggingzeug
+namespace cppassist
 {
 
 void ConsoleLogHandler::handle(const LogMessage & message)
@@ -47,4 +47,4 @@ std::string ConsoleLogHandler::levelString(LogMessage::Level level)
 	}
 }
 
-} // namespace loggingzeug
+} // namespace cppassist

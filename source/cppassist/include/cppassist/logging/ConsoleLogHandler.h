@@ -4,7 +4,7 @@
 #include <cppassist/logging/AbstractLogHandler.h>
 #include <cppassist/logging/LogMessage.h>
 
-namespace loggingzeug
+namespace cppassist
 {
 
 /** \brief Writes LogMessages to stdout.
@@ -24,4 +24,4 @@ protected:
     static std::string levelString(LogMessage::Level level);
 };
 
-} // namespace loggingzeug
+} // namespace cppassist

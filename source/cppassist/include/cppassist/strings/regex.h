@@ -8,7 +8,7 @@
 #include <cppassist/cppassist_api.h>
 
 
-namespace stringzeug
+namespace cppassist
 {
 
 
@@ -41,4 +41,4 @@ CPPASSIST_API bool matchesRegex(const std::string & string, const std::string & 
 CPPASSIST_API std::vector<std::string> extract(const std::string & string, const std::string & regex);
 
 
-} // namespace stringzeug
+} // namespace cppassist

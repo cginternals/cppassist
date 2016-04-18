@@ -7,7 +7,7 @@
 #include <cppassist/cppassist_api.h>
 
 
-namespace iozeug
+namespace cppassist
 {
 
 /**
@@ -73,4 +73,4 @@ CPPASSIST_API std::string removeTrailingPathSeparator(const std::string & path);
 */
 CPPASSIST_API std::string ensurePathSeparatorEnding(const std::string & path);
 
-} // namespace iozeug
+} // namespace cppassist

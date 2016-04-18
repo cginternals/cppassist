@@ -2,7 +2,7 @@
 #include <cppassist/threading/parallelfor.h>
 
 
-namespace threadingzeug
+namespace cppassist
 {
 
 
@@ -12,4 +12,4 @@ size_t getNumberOfThreads()
 }
 
 
-} // namespace threadingzeug
+} // namespace cppassist

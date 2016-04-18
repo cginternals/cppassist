@@ -8,7 +8,7 @@
 #include <cppassist/cppassist_api.h>
 
 
-namespace stringzeug
+namespace cppassist
 {
 
 
@@ -79,16 +79,16 @@ CPPASSIST_API std::u32string encode(const std::string & input, Encoding encoding
 //CPPASSIST_API void decode(const std::u32string & input, const char * & output, std::size_t size, Encoding encoding);
 
 
-} // namespace stringzeug
+} // namespace cppassist
 
 
 namespace std
 {
 
 template<>
-struct hash<stringzeug::Encoding>
+struct hash<cppassist::Encoding>
 {
-    std::hash<unsigned int>::result_type operator()(const stringzeug::Encoding & arg) const
+    std::hash<unsigned int>::result_type operator()(const cppassist::Encoding & arg) const
     {
         std::hash<unsigned int> hasher;
         return hasher(static_cast<unsigned int>(arg));

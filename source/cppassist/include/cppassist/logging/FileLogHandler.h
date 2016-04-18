@@ -4,7 +4,7 @@
 #include <cppassist/logging/AbstractLogHandler.h>
 #include <cppassist/logging/LogMessage.h>
 
-namespace loggingzeug
+namespace cppassist
 {
 
 /** \brief Writes LogMessages to a file (default: logfile.log).
@@ -26,4 +26,4 @@ protected:
     std::string m_logfile;
 };
 
-} // namespace loggingzeug
+} // namespace cppassist
