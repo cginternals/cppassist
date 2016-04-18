@@ -108,7 +108,6 @@ if(UNIX AND SYSTEM_DIR_INSTALL)
     set(INSTALL_ROOT      "share/${project}")       # /usr/[local]/share/<project>
     set(INSTALL_CMAKE     "share/${project}/cmake") # /usr/[local]/share/<project>/cmake
     set(INSTALL_EXAMPLES  "share/${project}")       # /usr/[local]/share/<project>
-    set(INSTALL_DATA      "share/${project}")       # /usr/[local]/share/<project>
     set(INSTALL_BIN       "bin")                    # /usr/[local]/bin
     set(INSTALL_SHARED    "lib")                    # /usr/[local]/lib
     set(INSTALL_LIB       "lib")                    # /usr/[local]/lib
@@ -122,7 +121,6 @@ else()
     set(INSTALL_ROOT      ".")                      # ./
     set(INSTALL_CMAKE     "cmake")                  # ./cmake
     set(INSTALL_EXAMPLES  ".")                      # ./
-    set(INSTALL_DATA      ".")                      # ./
     set(INSTALL_BIN       ".")                      # ./
     set(INSTALL_SHARED    "lib")                    # ./lib
     set(INSTALL_LIB       "lib")                    # ./lib
@@ -171,6 +169,3 @@ install(FILES ${META_PROJECT_NAME}-config.cmake DESTINATION ${INSTALL_ROOT} COMP
 install(FILES AUTHORS   DESTINATION ${INSTALL_ROOT} COMPONENT runtime)
 install(FILES LICENSE   DESTINATION ${INSTALL_ROOT} COMPONENT runtime)
 install(FILES README.md DESTINATION ${INSTALL_ROOT} COMPONENT runtime)
-
-# Install runtime data
-install(DIRECTORY ${PROJECT_SOURCE_DIR}/data DESTINATION ${INSTALL_DATA} COMPONENT runtime)
