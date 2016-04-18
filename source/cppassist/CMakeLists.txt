@@ -3,6 +3,8 @@
 # External dependencies
 # 
 
+set(ADDITIONAL_LIBRARIES)
+set(ADDITIONAL_INCLUDES)
 if(NOT OPTION_BUILD_WITH_STD_REGEX)
     find_package(Boost COMPONENTS regex REQUIRED)
     
@@ -164,6 +166,7 @@ target_include_directories(${target}
     ${PROJECT_BINARY_DIR}/source/include
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${CMAKE_CURRENT_BINARY_DIR}/include
+    ${ADDITIONAL_INCLUDES}
 
     PUBLIC
     ${DEFAULT_INCLUDE_DIRECTORIES}
@@ -181,6 +184,7 @@ target_include_directories(${target}
 
 target_link_libraries(${target}
     PRIVATE
+    ${ADDITIONAL_LIBRARIES}
 
     PUBLIC
     ${DEFAULT_LIBRARIES}
