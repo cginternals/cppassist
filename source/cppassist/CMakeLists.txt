@@ -3,7 +3,19 @@
 # External dependencies
 # 
 
-# find_package(THIRDPARTY REQUIRED)
+if(NOT OPTION_BUILD_WITH_STD_REGEX)
+    find_package(Boost COMPONENTS regex REQUIRED)
+    
+    if (Boost_FOUND)
+        message(STATUS "Use Boost for regex.")
+        
+        set(ADDITIONAL_LIBRARIES ${ADDITIONAL_LIBRARIES} ${Boost_LIBRARIES})
+        set(ADDITIONAL_INCLUDES ${ADDITIONAL_INCLUDES} ${Boost_INCLUDE_DIRS})
+    else()
+        message(WARNING "OPTION_BUILD_WITH_STD_REGEX is set to Off: Boost not found.")
+        message(WARNING "Defaulting to C++11 regex.")
+    endif()
+endif()
 
 
 # 
@@ -31,11 +43,52 @@ set(include_path "${CMAKE_CURRENT_SOURCE_DIR}/include/${target}")
 set(source_path  "${CMAKE_CURRENT_SOURCE_DIR}/source")
 
 set(headers
-    ${include_path}/baselib.h
+    ${include_path}/io/readfile.h
+    ${include_path}/io/directorytraversal.h
+    ${include_path}/io/filename.h
+    ${include_path}/io/FilePath.h
+    ${include_path}/io/SystemInfo.h
+
+    ${include_path}/logging/AbstractLogHandler.h
+    ${include_path}/logging/ConsoleLogHandler.h
+    ${include_path}/logging/FileLogHandler.h
+    ${include_path}/logging/LogMessage.h
+    ${include_path}/logging/LogMessageBuilder.h
+    ${include_path}/logging/LogMessageBuilder.hpp
+    ${include_path}/logging/formatString.h
+    ${include_path}/logging/formatString.hpp
+    ${include_path}/logging/logging.h
+    ${include_path}/logging/logging.hpp
+
+    ${include_path}/strings/conversion.h
+    ${include_path}/strings/conversion.hpp
+    ${include_path}/strings/regex.h
+    ${include_path}/strings/manipulation.h
+    ${include_path}/strings/manipulation.hpp
+
+    ${include_path}/threading/parallelfor.h
+    ${include_path}/threading/parallelfor.hpp
 )
 
 set(sources
-    ${source_path}/baselib.cpp
+    ${source_path}/io/readfile.cpp
+    ${source_path}/io/directorytraversal.cpp
+    ${source_path}/io/filename.cpp
+    ${source_path}/io/FilePath.cpp
+    ${source_path}/io/SystemInfo.cpp
+
+    ${source_path}/logging/ConsoleLogHandler.cpp
+    ${source_path}/logging/FileLogHandler.cpp
+    ${source_path}/logging/LogMessage.cpp
+    ${source_path}/logging/LogMessageBuilder.cpp
+    ${source_path}/logging/formatString.cpp
+    ${source_path}/logging/logging.cpp
+
+    ${source_path}/strings/conversion.cpp
+    ${source_path}/strings/regex.cpp
+    ${source_path}/strings/manipulation.cpp
+
+    ${source_path}/threading/parallelfor.cpp
 )
 
 # Group source files
@@ -142,6 +195,7 @@ target_link_libraries(${target}
 
 target_compile_definitions(${target}
     PRIVATE
+    $<$<BOOL:${OPTION_BUILD_WITH_STD_REGEX}>:USE_STD_REGEX>
 
     PUBLIC
     $<$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>:${target_upper}_STATIC_DEFINE>
