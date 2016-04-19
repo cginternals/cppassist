@@ -7,17 +7,41 @@
 
 namespace cppassist
 {
-
+/**
+*  @brief
+*
+*  @param[in] str
+*    
+*  @param[in] number
+*    
+*  @return
+*/
 CPPASSIST_API int readInt(const char* str, int& number);
+
+/**
+*  @brief
+*
+*  @param[in] stream
+*
+*  @param[in] format
+*/
 CPPASSIST_API void parseFormat(std::ostream& stream, const char*& format);
 
+/**
+*  @brief
+*
+*  @param[in] stream
+*
+*  @param[in] format
+*/
 CPPASSIST_API void streamprintf(std::ostream& stream, const char* format);
 
 /**
- * Format a number of arguments and prints them to a stream.
- *
- * \see formatString
- */
+*   @brief
+*       Format a number of arguments and prints them to a stream.
+*
+*   @see formatString
+*/
 template <typename T, typename... Args>
 void streamprintf(std::ostream& stream, const char* format, const T& value, Args... args);
 
@@ -75,7 +99,7 @@ void streamprintf(std::ostream& stream, const char* format, const T& value, Args
  * Note: To end a format specifier, you have to add a semicolon.
  * `%%` will escape a % character.
  *
- * \see http://www.cplusplus.com/reference/ios/ios_base/fmtflags/
+ * @see http://www.cplusplus.com/reference/ios/ios_base/fmtflags/
  */
 template <typename... Args>
 std::string formatString(const char* format, Args... args);

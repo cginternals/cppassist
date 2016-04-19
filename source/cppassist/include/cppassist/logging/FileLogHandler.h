@@ -7,16 +7,29 @@
 namespace cppassist
 {
 
-/** \brief Writes LogMessages to a file (default: logfile.log).
-
-	\see setLoggingHandler
-	\see logging.h
+/** @brief Writes LogMessages to a file (default: logfile.log).
+*
+*	@see setLoggingHandler
+*	@see logging.h
 */
 class CPPASSIST_API FileLogHandler : public AbstractLogHandler
 {
 public:
+    /**
+    *  @brief
+    *       Constructor
+    *  @param[in] logfile
+    *
+    */
     FileLogHandler(const std::string & logfile = "logfile.log");
 
+
+    /**
+    *  @brief
+    *
+    *  @param[in] message
+    *
+    */
     virtual void handle(const LogMessage & message) override;
 
 protected:

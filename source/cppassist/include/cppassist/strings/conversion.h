@@ -11,7 +11,6 @@
 namespace cppassist
 {
 
-
 //@{
 /**
 *  @brief
@@ -26,9 +25,15 @@ namespace cppassist
 template <typename Type>
 Type fromString(const std::string & string);
 
+/**
+*   @see fromString
+*/
 template <>
 CPPASSIST_API char fromString<char>(const std::string & string);
 
+/**
+*   @see fromString
+*/
 template <>
 CPPASSIST_API unsigned char fromString<unsigned char>(const std::string & string);
 //@}
@@ -47,9 +52,15 @@ CPPASSIST_API unsigned char fromString<unsigned char>(const std::string & string
 template <typename Type>
 std::string toString(const Type & value);
 
+/**
+*   @see toString
+*/
 template <>
 CPPASSIST_API std::string toString<char>(const char & value);
 
+/**
+*   @see toString
+*/
 template <>
 CPPASSIST_API std::string toString<unsigned char>(const unsigned char & value);
 //@}

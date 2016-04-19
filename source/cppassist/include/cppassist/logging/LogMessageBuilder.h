@@ -16,29 +16,30 @@ namespace cppassist
 
 class AbstractLogHandler;
 
-/** \brief Builds a LogMessage from different kinds of primitive types.
-
-	The LogMessageBuilder is  usually created by one of the global functions 
-    log, debug, warning, error or fatal. It works similar to streams and 
-    accepts a number of different types which will be converted to strings 
-    automatically. When it goes out of scope, it creates a LogMessage from 
-    all streamed objects and sends it to the log handler.
-
-    Typical usage of the LogMessageBuilder:
-	\code{.cpp}
-
-		warning() << "This is warning number " << 3;
-	
-    \endcode
-
-	\see logging.h
-	\see LogMessage
-	\see setLoggingHandler
-    \see setVerbosityLevel
-    \see info
-	\see debug
-	\see warning
-    \see critical
+/**     
+*   @brief Builds a LogMessage from different kinds of primitive types.
+*
+*	    The LogMessageBuilder is  usually created by one of the global functions 
+*       log, debug, warning, error or fatal. It works similar to streams and 
+*       accepts a number of different types which will be converted to strings 
+*       automatically. When it goes out of scope, it creates a LogMessage from 
+*       all streamed objects and sends it to the log handler.
+*
+*       Typical usage of the LogMessageBuilder:
+*	    \code{.cpp}
+*
+*		    warning() << "This is warning number " << 3;
+*	
+*       \endcode
+*
+*	@see logging.h
+*	@see LogMessage
+*	@see setLoggingHandler
+*   @see setVerbosityLevel
+*   @see info
+*	@see debug
+*	@see warning
+*   @see critical
 */
 class CPPASSIST_API LogMessageBuilder
 {
@@ -48,10 +49,36 @@ public:
     using FillManipulator = decltype(std::setfill('0'));
     using WidthManipulator = decltype(std::setw(0));
 public:
+    /**
+    *   @brief
+    *       Constructor
+    *   @param[in] level
+    *
+    *   @param[in] message
+    *
+    *   @param[in] context
+    */
     LogMessageBuilder(LogMessage::Level level, AbstractLogHandler * handler, const std::string & context);
+
+    /**
+    *   @brief
+    *       Copy constructor
+    *   @param[in] builder
+    *
+    */
     LogMessageBuilder(const LogMessageBuilder & builder);
+    
+    /**
+    *   @brief
+    *       Destructor
+    */
 	virtual ~LogMessageBuilder();
 
+    /**
+    *   @brief
+    *
+    *   @param[in] 
+    */
     LogMessageBuilder & operator<<(const char * c);
     LogMessageBuilder & operator<<(const std::string & str);
     LogMessageBuilder & operator<<(bool b);

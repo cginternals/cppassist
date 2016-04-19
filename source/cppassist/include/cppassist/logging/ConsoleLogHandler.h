@@ -17,6 +17,12 @@ namespace cppassist
 class CPPASSIST_API ConsoleLogHandler : public AbstractLogHandler
 {
 public:
+    /**
+    *  @brief
+    *   
+    *  @param[in] message
+    *    
+    */
     virtual void handle(const LogMessage & message) override;
 
 protected:
