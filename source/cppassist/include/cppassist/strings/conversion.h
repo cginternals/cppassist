@@ -79,6 +79,16 @@ enum class Encoding : unsigned int
 ,   UTF8
 };
 
+/**
+*  @brief
+*
+*  @param[in] input
+*
+*  @param[in] encoding
+*
+*  @returns
+*
+*/
 CPPASSIST_API std::u32string encode(const std::string & input, Encoding encoding);
 //CPPASSIST_API std::u32string encode(const std::wstring & input, Encoding encoding);
 //CPPASSIST_API std::u32string encode(const std::u16string & input, Encoding encoding);
@@ -99,6 +109,14 @@ namespace std
 template<>
 struct hash<cppassist::Encoding>
 {
+    /**
+    *  @brief
+    *
+    *  @param[in] arg
+    *
+    *  @returns
+    *
+    */
     std::hash<unsigned int>::result_type operator()(const cppassist::Encoding & arg) const
     {
         std::hash<unsigned int> hasher;

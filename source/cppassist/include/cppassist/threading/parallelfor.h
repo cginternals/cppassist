@@ -12,7 +12,12 @@
 namespace cppassist
 {
 
-
+/**
+*  @brief
+*       
+*  @return
+*    
+*/
 CPPASSIST_API size_t getNumberOfThreads();
 
 
@@ -24,24 +29,78 @@ struct identity
     typedef T type;
 };
 
+/**
+*  @brief
+*
+*  @param[in] start
+*   
+*  @param[in] end
+*    
+*  @param[in] callback
+*
+*  @param[in] parallelize
+*
+*/
 template<typename T>
 void forEach(T start, T end, typename identity<std::function<void(T)>>::type callback, bool parallelize = true);
 
+/**
+*  @brief
+*
+*  @param[in] start
+*
+*  @param[in] end
+*
+*  @param[in] callback
+*
+*/
 template<typename T>
 void parallelFor(T start, T end, typename identity<std::function<void(T)>>::type callback);
 
+/**
+*  @brief
+*
+*  @param[in] elements
+*
+*  @param[in] callback
+*
+*/
 template<typename T>
 void parallelFor(const std::vector<T> & elements, typename identity<std::function<void(const T & element)>>::type callback);
 
+/**
+*  @see parallelFor(const std::vector<T> & elements, typename identity<std::function<void(const T & element)>>::type callback)
+*/
 template<typename T>
 void parallelFor(std::vector<T> & elements, typename identity<std::function<void(T & element)>>::type callback);
 
+/**
+*  @brief
+*
+*  @param[in] start
+*
+*  @param[in] end
+*
+*  @param[in] callback
+*
+*/
 template<typename T>
 void sequentialFor(T start, T end, typename identity<std::function<void(T)>>::type callback);
 
+/**
+*  @brief
+*
+*  @param[in] elements
+*
+*  @param[in] callback
+*
+*/
 template<typename T>
 void sequentialFor(const std::vector<T> & elements, typename identity<std::function<void(const T & element)>>::type callback);
 
+/**
+*   @see sequentialFor(const std::vector<T> & elements, typename identity<std::function<void(const T & element)>>::type callback);
+*/
 template<typename T>
 void sequentialFor(std::vector<T> & elements, typename identity<std::function<void(T & element)>>::type callback);
 
