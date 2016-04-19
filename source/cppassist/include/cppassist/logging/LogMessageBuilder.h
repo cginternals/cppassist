@@ -16,30 +16,28 @@ namespace cppassist
 
 class AbstractLogHandler;
 
-/**     
-*   @brief Builds a LogMessage from different kinds of primitive types.
+/**
+*  @brief Builds a LogMessage from different kinds of primitive types.
 *
-*	    The LogMessageBuilder is  usually created by one of the global functions 
-*       log, debug, warning, error or fatal. It works similar to streams and 
-*       accepts a number of different types which will be converted to strings 
-*       automatically. When it goes out of scope, it creates a LogMessage from 
-*       all streamed objects and sends it to the log handler.
+*    The LogMessageBuilder is  usually created by one of the global functions
+*    log, debug, warning, error or fatal. It works similar to streams and
+*    accepts a number of different types which will be converted to strings
+*    automatically. When it goes out of scope, it creates a LogMessage from
+*    all streamed objects and sends it to the log handler.
 *
-*       Typical usage of the LogMessageBuilder:
-*	    \code{.cpp}
+*    Typical usage of the LogMessageBuilder:
+*    \code{.cpp}
+*      warning() << "This is warning number " << 3;
+*    \endcode
 *
-*		    warning() << "This is warning number " << 3;
-*	
-*       \endcode
-*
-*	@see logging.h
-*	@see LogMessage
-*	@see setLoggingHandler
-*   @see setVerbosityLevel
-*   @see info
-*	@see debug
-*	@see warning
-*   @see critical
+*  @see logging.h
+*  @see LogMessage
+*  @see setLoggingHandler
+*  @see setVerbosityLevel
+*  @see info
+*  @see debug
+*  @see warning
+*  @see critical
 */
 class CPPASSIST_API LogMessageBuilder
 {
@@ -50,34 +48,34 @@ public:
     using WidthManipulator = decltype(std::setw(0));
 public:
     /**
-    *   @brief
-    *       Constructor
-    *   @param[in] level
+    *  @brief
+    *    Constructor
+    *  @param[in] level
     *
-    *   @param[in] message
+    *  @param[in] message
     *
-    *   @param[in] context
+    *  @param[in] context
     */
     LogMessageBuilder(LogMessage::Level level, AbstractLogHandler * handler, const std::string & context);
 
     /**
     *   @brief
-    *       Copy constructor
+    *     Copy constructor
     *   @param[in] builder
     *
     */
     LogMessageBuilder(const LogMessageBuilder & builder);
-    
-    /**
-    *   @brief
-    *       Destructor
-    */
-	virtual ~LogMessageBuilder();
 
     /**
-    *   @brief
+    *  @brief
+    *    Destructor
+    */
+    virtual ~LogMessageBuilder();
+
+    /**
+    *  @brief
     *
-    *   @param[in] 
+    *  @param[in]
     */
     LogMessageBuilder & operator<<(const char * c);
     LogMessageBuilder & operator<<(const std::string & str);
@@ -95,7 +93,7 @@ public:
     LogMessageBuilder & operator<<(unsigned char uc);
     LogMessageBuilder & operator<<(const void * pointer);
 
-	// manipulators
+    // manipulators
     LogMessageBuilder & operator<<(std::ostream & (*manipulator)(std::ostream&));
     LogMessageBuilder & operator<<(PrecisionManipulator manipulator);
     LogMessageBuilder & operator<<(FillManipulator manipulator);
@@ -103,9 +101,9 @@ public:
     // in Windows PrecisionManipulator = WidthManipulator
     LogMessageBuilder & operator<<(WidthManipulator manipulator);
 #endif
-	
-	// pointers
-	template <typename T>
+
+    // pointers
+    template <typename T>
     LogMessageBuilder & operator<<(const T * pointer);
 
     // array types
@@ -114,7 +112,7 @@ public:
     template <typename T, std::size_t Count>
     LogMessageBuilder & operator<<(const std::array<T, Count> & array);
 protected:
-	LogMessage::Level m_level;
+    LogMessage::Level m_level;
     AbstractLogHandler * m_handler;
     std::string m_context;
     std::shared_ptr<std::stringstream> m_stream;

@@ -7,21 +7,23 @@
 namespace cppassist
 {
 
-/** \brief Writes LogMessages to stdout.
-
-	This is the default LogMessage handler of loggingzeug.
-
-	\see setLoggingHandler
-	\see logging.h
+/**
+*  @brief
+*    Writes LogMessages to stdout.
+*
+*    This is the default LogMessage handler of loggingzeug.
+*
+*  @see setLoggingHandler
+*  @see logging.h
 */
 class CPPASSIST_API ConsoleLogHandler : public AbstractLogHandler
 {
 public:
     /**
     *  @brief
-    *   
+    *
     *  @param[in] message
-    *    
+    *
     */
     virtual void handle(const LogMessage & message) override;
 

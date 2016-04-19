@@ -43,7 +43,7 @@ void parallelFor(T start, T end, typename identity<std::function<void(T)>>::type
 #else
 
     auto threads = std::vector<std::thread>(numberOfThreads);
-    
+
     for (auto i = static_cast<size_t>(0); i < numberOfThreads; ++i)
     {
         threads[i] = std::thread([start, end, i, &callback] () {
@@ -66,16 +66,16 @@ template<typename T>
 void parallelFor(const std::vector<T> & elements, typename identity<std::function<void(const T & element)>>::type callback)
 {
     parallelFor(0, elements.size(), [callback, &elements](size_t i) {
-		callback(elements[i]);
-	});
+        callback(elements[i]);
+    });
 }
 
 template<typename T>
 void parallelFor(std::vector<T> & elements, typename identity<std::function<void(T & element)>>::type callback)
 {
     parallelFor(0, elements.size(), [callback, &elements](size_t i) {
-		callback(elements[i]);
-	});
+        callback(elements[i]);
+    });
 }
 
 template<typename T>
@@ -91,16 +91,16 @@ template<typename T>
 void sequentialFor(const std::vector<T> & elements, typename identity<std::function<void(const T & element)>>::type callback)
 {
     sequentialFor(0, elements.size(), [callback, &elements](size_t i) {
-		callback(elements[i]);
-	});
+        callback(elements[i]);
+    });
 }
 
 template<typename T>
 void sequentialFor(std::vector<T>& elements, typename identity<std::function<void(T& element)>>::type callback)
 {
     sequentialFor(0, elements.size(), [callback, &elements](size_t i) {
-		callback(elements[i]);
-	});
+        callback(elements[i]);
+    });
 }
 
 

@@ -11,7 +11,7 @@ namespace
 #else
     const std::string g_sep = "/";
 #endif
-	const std::string g_allSep = "/\\";
+    const std::string g_allSep = "/\\";
 
 bool endsWith(const std::string & str, const std::string & ending)
 {
@@ -76,19 +76,19 @@ std::string removeTrailingPathSeparator(const std::string & path)
 
 std::string ensurePathSeparatorEnding(const std::string & path)
 {
-	if (endsWith(path, g_allSep))
-	{
-		return path;
-	}
+    if (endsWith(path, g_allSep))
+    {
+        return path;
+    }
 
-	auto i = path.find_last_of(g_allSep);
+    auto i = path.find_last_of(g_allSep);
 
-	if (i == std::string::npos)
-	{
-		return path + g_sep;
-	} else {
-		return path + path[i];
-	}
+    if (i == std::string::npos)
+    {
+        return path + g_sep;
+    } else {
+        return path + path[i];
+    }
 }
 
 
