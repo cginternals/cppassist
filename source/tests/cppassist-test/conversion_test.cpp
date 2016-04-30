@@ -1,3 +1,4 @@
+
 #include <gmock/gmock.h>
 
 #include <cppassist/strings/conversion.h>
@@ -12,9 +13,8 @@ public:
     conversion_test()
     {
     }
-
-protected:
 };
+
 
 TEST_F(conversion_test, fromString_char)
 {

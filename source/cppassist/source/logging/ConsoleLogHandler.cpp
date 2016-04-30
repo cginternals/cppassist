@@ -1,9 +1,12 @@
+
 #include <cppassist/logging/ConsoleLogHandler.h>
 
 #include <iostream>
 
+
 namespace cppassist
 {
+
 
 void ConsoleLogHandler::handle(const LogMessage & message)
 {
@@ -16,7 +19,6 @@ void ConsoleLogHandler::handle(const LogMessage & message)
 std::string ConsoleLogHandler::messagePrefix(const LogMessage & message)
 {
     std::string prefix = levelString(message.level());
-
 
     if (!message.context().empty())
     {
@@ -46,5 +48,6 @@ std::string ConsoleLogHandler::levelString(LogMessage::Level level)
         return "";
     }
 }
+
 
 } // namespace cppassist

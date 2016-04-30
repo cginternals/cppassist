@@ -1,15 +1,18 @@
+
 #pragma once
 
-#include <cppassist/cppassist_api.h>
+
 #include <cppassist/logging/AbstractLogHandler.h>
 #include <cppassist/logging/LogMessage.h>
+
 
 namespace cppassist
 {
 
+
 /**
 *  @brief
-*    Writes LogMessages to stdout.
+*    Log message handler that writes log messages to stdout
 *
 *    This is the default LogMessage handler of loggingzeug.
 *
@@ -19,17 +22,14 @@ namespace cppassist
 class CPPASSIST_API ConsoleLogHandler : public AbstractLogHandler
 {
 public:
-    /**
-    *  @brief
-    *
-    *  @param[in] message
-    *
-    */
+    // Virtual AbstractLogHandler interface
     virtual void handle(const LogMessage & message) override;
+
 
 protected:
     static std::string messagePrefix(const LogMessage & message);
     static std::string levelString(LogMessage::Level level);
 };
+
 
 } // namespace cppassist

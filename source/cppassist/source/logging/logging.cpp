@@ -1,3 +1,4 @@
+
 #include <cppassist/logging/logging.h>
 
 #include <cassert>
@@ -6,14 +7,38 @@
 #include <cppassist/logging/LogMessageBuilder.h>
 #include <cppassist/logging/ConsoleLogHandler.h>
 
+
 namespace
 {
-    cppassist::LogMessage::Level l_verbosityLevel = cppassist::LogMessage::Info;
-    cppassist::AbstractLogHandler * l_logHandler = new cppassist::ConsoleLogHandler();
+    cppassist::LogMessage::Level    l_verbosityLevel = cppassist::LogMessage::Info;
+    cppassist::AbstractLogHandler * l_logHandler     = new cppassist::ConsoleLogHandler();
 }
+
 
 namespace cppassist
 {
+
+
+AbstractLogHandler * loggingHandler()
+{
+    return l_logHandler;
+}
+
+void setLoggingHandler(AbstractLogHandler* handler)
+{
+    delete l_logHandler;
+    l_logHandler = handler;
+}
+
+LogMessage::Level verbosityLevel()
+{
+    return l_verbosityLevel;
+}
+
+void setVerbosityLevel(LogMessage::Level verbosity)
+{
+    l_verbosityLevel = verbosity;
+}
 
 LogMessageBuilder info(const std::string & context, LogMessage::Level level)
 {
@@ -40,25 +65,5 @@ LogMessageBuilder fatal(const std::string & context)
     return info(context, LogMessage::Fatal);
 }
 
-AbstractLogHandler * loggingHandler()
-{
-    return l_logHandler;
-}
-
-void setLoggingHandler(AbstractLogHandler* handler)
-{
-    delete l_logHandler;
-    l_logHandler = handler;
-}
-
-void setVerbosityLevel(LogMessage::Level verbosity)
-{
-    l_verbosityLevel = verbosity;
-}
-
-LogMessage::Level verbosityLevel()
-{
-    return l_verbosityLevel;
-}
 
 } // namespace cppassist

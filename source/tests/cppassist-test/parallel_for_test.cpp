@@ -1,11 +1,13 @@
-#include <gmock/gmock.h>
 
 #include <thread>
+
+#include <gmock/gmock.h>
 
 #include <cppassist/threading/parallelfor.h>
 
 
 using namespace cppassist;
+
 
 class parallelFor_test : public testing::Test
 {
@@ -13,9 +15,8 @@ public:
     parallelFor_test()
     {
     }
-
-protected:
 };
+
 
 TEST_F(parallelFor_test, ParellelIncrementVector)
 {
@@ -94,7 +95,6 @@ TEST_F(parallelFor_test, Uint8Compilation)
         SUCCEED();
     });
 }
-
 
 TEST_F(parallelFor_test, Uint16Compilation)
 {

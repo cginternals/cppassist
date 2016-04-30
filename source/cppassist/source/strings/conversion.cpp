@@ -5,8 +5,10 @@
 #include <algorithm>
 #include <iterator>
 
+
 namespace 
 {
+
 
 void encodeUTF8(const std::string & input, std::u32string & output)
 {
@@ -67,8 +69,8 @@ void encodeUTF8(const std::string & input, std::u32string & output)
     output.resize(characterCount);
 }
 
-} // namespace anonymous
 
+} // namespace
 
 
 namespace cppassist
@@ -112,7 +114,6 @@ std::string toString<unsigned char>(const unsigned char & value)
     stream << static_cast<unsigned int>(value);
     return stream.str();
 }
-
 
 std::u32string encode(const std::string & input, const Encoding encoding)
 {

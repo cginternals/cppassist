@@ -1,3 +1,4 @@
+
 #include <gmock/gmock.h>
 
 #include <cppassist/io/FilePath.h>
@@ -12,9 +13,8 @@ public:
     FilePath_test()
     {
     }
-
-protected:
 };
+
 
 TEST_F(FilePath_test, originalPath)
 {

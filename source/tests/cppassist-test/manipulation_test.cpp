@@ -1,3 +1,4 @@
+
 #include <gmock/gmock.h>
 
 #include <cppassist/strings/manipulation.h>
@@ -12,9 +13,8 @@ public:
     manipulation_test()
     {
     }
-
-protected:
 };
+
 
 TEST_F(manipulation_test, join)
 {

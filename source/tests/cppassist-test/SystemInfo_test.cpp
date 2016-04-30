@@ -1,3 +1,4 @@
+
 #include <gmock/gmock.h>
 
 #include <cppassist/io/SystemInfo.h>
@@ -12,9 +13,8 @@ public:
     SystemInfo_test()
     {
     }
-
-protected:
 };
+
 
 TEST_F(SystemInfo_test, pathSeperator)
 {

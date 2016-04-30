@@ -1,3 +1,4 @@
+
 #pragma once
 
 #include <sstream>
@@ -7,19 +8,21 @@
 #include <memory>
 #include <iomanip>
 
-#include <cppassist/cppassist_api.h>
 #include <cppassist/logging/LogMessage.h>
 
 
 namespace cppassist
 {
 
+
 class AbstractLogHandler;
 
+
 /**
-*  @brief Builds a LogMessage from different kinds of primitive types.
+*  @brief
+*    Stream interface to build LogMessage's from different kinds of primitive types
 *
-*    The LogMessageBuilder is  usually created by one of the global functions
+*    The LogMessageBuilder is usually created by one of the global functions
 *    log, debug, warning, error or fatal. It works similar to streams and
 *    accepts a number of different types which will be converted to strings
 *    automatically. When it goes out of scope, it creates a LogMessage from
@@ -44,25 +47,30 @@ class CPPASSIST_API LogMessageBuilder
 public:
     // These types are unspecified by the C++ standard -> we need to query the compiler specific types
     using PrecisionManipulator = decltype(std::setprecision(0));
-    using FillManipulator = decltype(std::setfill('0'));
-    using WidthManipulator = decltype(std::setw(0));
+    using FillManipulator      = decltype(std::setfill('0'));
+    using WidthManipulator     = decltype(std::setw(0));
+
+
 public:
     /**
     *  @brief
     *    Constructor
+    *
     *  @param[in] level
-    *
-    *  @param[in] message
-    *
+    *    Log level
+    *  @param[in] handler
+    *    Log handler (must NOT be null!)
     *  @param[in] context
+    *    User defined context string
     */
     LogMessageBuilder(LogMessage::Level level, AbstractLogHandler * handler, const std::string & context);
 
     /**
-    *   @brief
-    *     Copy constructor
-    *   @param[in] builder
+    *  @brief
+    *    Copy constructor
     *
+    *  @param[in] builder
+    *    Source object
     */
     LogMessageBuilder(const LogMessageBuilder & builder);
 
@@ -72,11 +80,7 @@ public:
     */
     virtual ~LogMessageBuilder();
 
-    /**
-    *  @brief
-    *
-    *  @param[in]
-    */
+    // Stream operators
     LogMessageBuilder & operator<<(const char * c);
     LogMessageBuilder & operator<<(const std::string & str);
     LogMessageBuilder & operator<<(bool b);
@@ -93,31 +97,35 @@ public:
     LogMessageBuilder & operator<<(unsigned char uc);
     LogMessageBuilder & operator<<(const void * pointer);
 
-    // manipulators
-    LogMessageBuilder & operator<<(std::ostream & (*manipulator)(std::ostream&));
-    LogMessageBuilder & operator<<(PrecisionManipulator manipulator);
-    LogMessageBuilder & operator<<(FillManipulator manipulator);
-#ifndef _MSC_VER
-    // in Windows PrecisionManipulator = WidthManipulator
-    LogMessageBuilder & operator<<(WidthManipulator manipulator);
-#endif
-
-    // pointers
     template <typename T>
     LogMessageBuilder & operator<<(const T * pointer);
 
-    // array types
     template <typename T>
     LogMessageBuilder & operator<<(const std::vector<T> & vector);
+
     template <typename T, std::size_t Count>
     LogMessageBuilder & operator<<(const std::array<T, Count> & array);
+
+    // Stream manipulators
+    LogMessageBuilder & operator<<(std::ostream & (*manipulator)(std::ostream&));
+    LogMessageBuilder & operator<<(PrecisionManipulator manipulator);
+    LogMessageBuilder & operator<<(FillManipulator manipulator);
+
+#ifndef _MSC_VER
+    // On Windows: PrecisionManipulator = WidthManipulator
+    LogMessageBuilder & operator<<(WidthManipulator manipulator);
+#endif
+
+
 protected:
-    LogMessage::Level m_level;
-    AbstractLogHandler * m_handler;
-    std::string m_context;
-    std::shared_ptr<std::stringstream> m_stream;
+    LogMessage::Level m_level;                   ///< Current log level
+    AbstractLogHandler * m_handler;              ///< Log handler (must NOT be null!)
+    std::string m_context;                       ///< User define context string
+    std::shared_ptr<std::stringstream> m_stream; ///< Used string stream
 };
 
+
 } // namespace cppassist
+
 
 #include <cppassist/logging/LogMessageBuilder.hpp>

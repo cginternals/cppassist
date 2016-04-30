@@ -1,15 +1,19 @@
+
 #pragma once
+
 
 #include <cppassist/logging/formatString.h>
 
 #include <sstream>
 #include <cassert>
 
+
 namespace cppassist
 {
 
+
 template <typename T, typename... Args>
-void streamprintf(std::ostream& stream, const char* format, const T& value, Args... args)
+void streamprintf(std::ostream & stream, const char * format, const T & value, Args... args)
 {
     assert(format != nullptr);
 
@@ -25,12 +29,14 @@ void streamprintf(std::ostream& stream, const char* format, const T& value, Args
             return;
         }
         else
+        {
             stream << *format++;
+        }
     }
 }
 
 template <typename... Args>
-std::string formatString(const char* format, Args... args)
+std::string formatString(const char * format, Args... args)
 {
     assert(format != nullptr);
 
@@ -38,5 +44,6 @@ std::string formatString(const char* format, Args... args)
     streamprintf(ss, format, args...);
     return ss.str();
 }
+
 
 } // namespace cppassist

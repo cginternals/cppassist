@@ -1,9 +1,12 @@
+
 #include <cppassist/logging/FileLogHandler.h>
 
 #include <fstream>
 
+
 namespace cppassist
 {
+
 
 FileLogHandler::FileLogHandler(const std::string & logfile)
 : m_logfile(logfile)
@@ -50,5 +53,6 @@ std::string FileLogHandler::levelString(LogMessage::Level level)
         return "";
     }
 }
+
 
 } // namespace cppassist

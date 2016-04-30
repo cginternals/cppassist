@@ -25,15 +25,9 @@ namespace cppassist
 template <typename Type>
 Type fromString(const std::string & string);
 
-/**
-*  @see fromString
-*/
 template <>
 CPPASSIST_API char fromString<char>(const std::string & string);
 
-/**
-*  @see fromString
-*/
 template <>
 CPPASSIST_API unsigned char fromString<unsigned char>(const std::string & string);
 //@}
@@ -52,25 +46,20 @@ CPPASSIST_API unsigned char fromString<unsigned char>(const std::string & string
 template <typename Type>
 std::string toString(const Type & value);
 
-/**
-*  @see toString
-*/
 template <>
 CPPASSIST_API std::string toString<char>(const char & value);
 
-/**
-*  @see toString
-*/
 template <>
 CPPASSIST_API std::string toString<unsigned char>(const unsigned char & value);
 //@}
 
-
+//@{
 /**
 *  @brief
-*    The used encoding of a passed std::string.
+*    String encoding
 *
-*    This enum is mainly used to support the conversion of strings or a collections of characters to UTF-32, which is internally used by gloperate-text.
+*    This enum is mainly used to support the conversion of strings or
+*    collections of characters to UTF-32.
 */
 enum class Encoding : unsigned int
 {
@@ -81,23 +70,27 @@ enum class Encoding : unsigned int
 
 /**
 *  @brief
+*    Encode string to UTF-32
 *
 *  @param[in] input
-*
+*    Input string
 *  @param[in] encoding
+*    Encoding of the input string
 *
 *  @returns
+*    UTF-32 encoded string
 *
 */
 CPPASSIST_API std::u32string encode(const std::string & input, Encoding encoding);
 //CPPASSIST_API std::u32string encode(const std::wstring & input, Encoding encoding);
 //CPPASSIST_API std::u32string encode(const std::u16string & input, Encoding encoding);
 //CPPASSIST_API std::u32string encode(const char * input, size_t size, Encoding encoding);
-//
+
 //CPPASSIST_API void decode(const std::u32string & input, std::string & output, Encoding encoding);
 //CPPASSIST_API void decode(const std::u32string & input, std::wstring & output, Encoding encoding);
 //CPPASSIST_API void decode(const std::u32string & input, std::u16string & output, Encoding encoding);
 //CPPASSIST_API void decode(const std::u32string & input, const char * & output, std::size_t size, Encoding encoding);
+//@}
 
 
 } // namespace cppassist
@@ -106,16 +99,24 @@ CPPASSIST_API std::u32string encode(const std::string & input, Encoding encoding
 namespace std
 {
 
+
+//@{
+/**
+*  @brief
+*    Hash function for cppassist::Encoding
+*/
 template<>
 struct hash<cppassist::Encoding>
 {
     /**
     *  @brief
+    *    Create hash for cppassist::Encoding value
     *
     *  @param[in] arg
+    *    Encoding type
     *
     *  @returns
-    *
+    *    Hash value
     */
     std::hash<unsigned int>::result_type operator()(const cppassist::Encoding & arg) const
     {
@@ -123,6 +124,8 @@ struct hash<cppassist::Encoding>
         return hasher(static_cast<unsigned int>(arg));
     }
 };
+//@}
+
 
 } // namespace std
 

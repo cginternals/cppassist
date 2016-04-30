@@ -1,3 +1,4 @@
+
 #include <cppassist/logging/formatString.h>
 
 #include <string>
@@ -5,17 +6,19 @@
 #include <set>
 #include <locale>
 #include <iomanip>
-
 #include <iostream>
+
 
 namespace cppassist
 {
 
-int readInt(const char* str, int& number)
+
+int readInt(const char * str, int & number)
 {
     number = 0;
     int read = 0;
     char c;
+
     while (isdigit(c = *str++))
     {
         number = 10 * number + (c - '0');
@@ -25,7 +28,7 @@ int readInt(const char* str, int& number)
     return read;
 }
 
-void parseFormat(std::ostream& stream, const char*& format)
+void parseFormat(std::ostream & stream, const char *& format)
 {
     std::locale loc;
 
@@ -160,9 +163,10 @@ void parseFormat(std::ostream& stream, const char*& format)
     while (*format && *format++ != ';');
 }
 
-void streamprintf(std::ostream& stream, const char* format)
+void streamprintf(std::ostream & stream, const char * format)
 {
     stream << format;
 }
+
 
 } // namespace cppassist

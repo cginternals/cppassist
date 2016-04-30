@@ -77,6 +77,7 @@ set(sources
     ${source_path}/io/FilePath.cpp
     ${source_path}/io/SystemInfo.cpp
 
+    ${source_path}/logging/AbstractLogHandler.cpp
     ${source_path}/logging/ConsoleLogHandler.cpp
     ${source_path}/logging/FileLogHandler.cpp
     ${source_path}/logging/LogMessage.cpp

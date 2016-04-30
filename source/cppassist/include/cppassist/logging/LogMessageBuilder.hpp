@@ -1,9 +1,13 @@
+
 #pragma once
+
 
 #include <cppassist/logging/LogMessageBuilder.h>
 
+
 namespace cppassist
 {
+
 
 template <typename T>
 LogMessageBuilder& LogMessageBuilder::operator<<(const T * pointer)
@@ -40,5 +44,6 @@ LogMessageBuilder& LogMessageBuilder::operator<<(const std::array<T, Count> & ar
 
     return *this;
 }
+
 
 } // namespace cppassist

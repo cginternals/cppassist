@@ -10,6 +10,7 @@
 namespace cppassist
 {
 
+
 LogMessageBuilder::LogMessageBuilder(LogMessage::Level level, AbstractLogHandler * handler, const std::string & context)
 : m_level(level)
 , m_handler(handler)
@@ -29,11 +30,13 @@ LogMessageBuilder::LogMessageBuilder(const LogMessageBuilder & builder)
 
 LogMessageBuilder::~LogMessageBuilder()
 {
-    if (m_stream.use_count() > 1)
+    if (m_stream.use_count() > 1) {
         return;
+    }
 
-    if (m_handler)
+    if (m_handler) {
         m_handler->handle(LogMessage(m_level, m_stream->str(), m_context));
+    }
 }
 
 LogMessageBuilder & LogMessageBuilder::operator<<(const char * c)
@@ -147,11 +150,14 @@ LogMessageBuilder & LogMessageBuilder::operator<<(LogMessageBuilder::FillManipul
 }
 
 #ifndef _MSC_VER
+
 LogMessageBuilder & LogMessageBuilder::operator<<(LogMessageBuilder::WidthManipulator manipulator)
 {
     *m_stream << manipulator;
     return *this;
 }
+
 #endif
+
 
 } // namespace cppassist
