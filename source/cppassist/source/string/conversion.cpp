@@ -100,6 +100,12 @@ unsigned char fromString<unsigned char>(const std::string & string)
 }
 
 template <>
+bool fromString<bool>(const std::string & string)
+{
+    return !(string == "" || string == "false");
+}
+
+template <>
 std::string toString<char>(const char & value)
 {
     std::stringstream stream;
@@ -113,6 +119,13 @@ std::string toString<unsigned char>(const unsigned char & value)
     std::stringstream stream;
     stream << static_cast<unsigned int>(value);
     return stream.str();
+}
+
+template <>
+std::string toString<bool>(const bool & value)
+{
+    if (value) return "true";
+    else       return "false";
 }
 
 std::u32string encode(const std::string & input, const Encoding encoding)

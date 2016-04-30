@@ -9,7 +9,7 @@
 # 
 
 # Target name
-set(target logging-example)
+set(target cmdline-example)
 
 # Exit here if required dependencies are not met
 message(STATUS "Example ${target}")

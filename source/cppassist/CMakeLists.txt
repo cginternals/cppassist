@@ -69,6 +69,8 @@ set(headers
 
     ${include_path}/threading/parallelfor.h
     ${include_path}/threading/parallelfor.hpp
+
+    ${include_path}/cmdline/ArgumentParser.h
 )
 
 set(sources
@@ -90,6 +92,8 @@ set(sources
     ${source_path}/string/manipulation.cpp
 
     ${source_path}/threading/parallelfor.cpp
+
+    ${source_path}/cmdline/ArgumentParser.cpp
 )
 
 # Group source files
