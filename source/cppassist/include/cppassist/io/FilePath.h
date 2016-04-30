@@ -13,78 +13,129 @@ namespace cppassist
 
 /**
 *  @brief
-*    A file path class that stores the path as string and provides common
+*    Path to file or directory
+*
+*    This class stores a path to a file or directory and provides common
 *    operations like getting the file name or extension.
+*
+*    FilePath uses a unified format for storing paths, i.e., it uses only
+*    forward slashes '/' as delimiter. When a FilePath is constructed from
+*    a string, the path is translated into the unified format and can then
+*    be used in a cross-platform way throughout an application. All operations
+*    on FilePath also return paths in the same unified format. To obtain the
+*    original input string of a FilePath, use originalPath().
+*
 *    All operations are completely string-based and don't use any system information.
+*    Therefore, paths are treated purely syntactially and do not imply that for example
+*    a file does really exist.
 */
 class CPPASSIST_API FilePath
 {
 public:
+    /**
+    *  @brief
+    *    Constructor
+    */
     FilePath();
+
+    /**
+    *  @brief
+    *    Copy constructor
+    *
+    *  @param[in] filePath
+    *    File path to copy
+    */
     FilePath(const FilePath & filePath);
-    FilePath(const std::string & string);
-    FilePath(const char * string);
+
+    /**
+    *  @brief
+    *    Constructor
+    *
+    *  @param[in] path
+    *    File path
+    */
+    FilePath(const std::string & path);
+
+    /**
+    *  @brief
+    *    Constructor
+    *
+    *  @param[in] string
+    *    File path
+    */
+    FilePath(const char * path);
+
+    /**
+    *  @brief
+    *    Destructor
+    */
     virtual ~FilePath();
 
     /**
     *  @brief
-    *    Get the path
+    *    Get original (unprocessed) input string
     *
     *  @return
-    *    The path as string as it is stored in the FilePath class
+    *    Path that was originally provided
     */
     const std::string & originalPath() const;
 
     /**
     *  @brief
-    *    Get the path as string, with only forward slashes '/'
+    *    Get processed path as string
     *
     *  @return
-    *    The path as string (with only forward slashes '/')
+    *    File path
     *
     *  @remarks
-    *    Trailing slashes are removed.
+    *    The path is processed and modified in a way that it can be used
+    *    consistently on every platform:
+    *    - Only forward slashes '/' are used as delimiter
+    *    - Trailing slashes are removed
     */
     const std::string & path() const;
 
     /**
     *  @brief
-    *    Set the path
+    *    Set path
+    *
+    *  @param[in] path
+    *    File path
     */
     void setPath(const std::string & path);
 
     /**
     *  @brief
-    *    Get the base name
+    *    Get base name
     *
     *  @return
-    *    The base name of the file the stored path points to, without extension
+    *    Base name of the file the stored path points to, without extension
     *
     *  @remarks
     *    This function returns "something" for both "/path/to/something.ex" and
-    *    "/path/to/something.ex/" as stored strings.
+    *    "/path/to/something.ex/".
     */
     std::string baseName() const;
 
     /**
     *  @brief
-    *    Get the full file name
+    *    Get full file name
     *
     *  @return
-    *    The name of the file the stored path points to, with extension
+    *    Name of the file the stored path points to, with extension
 
     *  @remarks
     *    This function returns "something.ex" for both "/path/to/something.ex" and
-    *    "/path/to/something.ex/" as stored strings.
+    *    "/path/to/something.ex/".
     */
     std::string fileName() const;
 
     /**
     *  @brief
-    *    Get the extension
+    *    Get file extension
     *
     *  @return
-    *    The extension of the file the stored path points to
+    *    Extension of the file the stored path points to
 
     *  @remarks
     *    If the path has no extension, an empty string is returned.
@@ -93,36 +144,46 @@ public:
 
     /**
     *  @brief
-    *    Get the directory path
+    *    Get directory path
     *
     *  @return
-    *    The path to the directory, with trailing slashes
+    *    Path to the directory, with trailing slashes
     *
     *  @remarks
     *    The returned path string is in unified form, so only forward slashes '/' are used.
     *    This function returns "/path/to/" as directory path for both
-    *    "/path/to/directory" and "/path/to/directory/" as stored strings.
+    *    "/path/to/directory" and "/path/to/directory/".
     */
     std::string directoryPath() const;
 
     /**
     *  @brief
-    *    Get the drive letter
+    *    Get drive letter
     *
     *  @return
-    *    The drive letter of the path on Windows (e.g., "C").
+    *    Drive letter of the path on Windows (e.g., "C").
     *    If there is no drive letter (Linux, Max), an empty string is returned.
     */
     std::string driveLetter() const;
 
 
 protected:
-    std::string toPath(const std::string & str) const;
+    /**
+    *  @brief
+    *    Convert path into unified form
+    *
+    *  @param[in] path
+    *    File path
+    *
+    *  @return
+    *    Unified form of input path (e.g., only forward slashed '/').
+    */
+    std::string toPath(const std::string & path) const;
 
 
 protected:
-    std::string m_string;
-    std::string m_path;
+    std::string m_originalPath; ///< Original unprocessed input string
+    std::string m_path;         ///< Path (using only forward slashes '/' as delimiter)
 };
 
 
