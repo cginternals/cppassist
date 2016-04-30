@@ -1,7 +1,7 @@
 
 #include <gmock/gmock.h>
 
-#include <cppassist/strings/conversion.h>
+#include <cppassist/string/conversion.h>
 
 
 using namespace cppassist;

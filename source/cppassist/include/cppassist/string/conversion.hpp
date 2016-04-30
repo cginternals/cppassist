@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include <cppassist/strings/conversion.h>
+#include <cppassist/string/conversion.h>
 
 #include <sstream>
 

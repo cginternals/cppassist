@@ -61,11 +61,11 @@ set(headers
     ${include_path}/logging/logging.h
     ${include_path}/logging/logging.hpp
 
-    ${include_path}/strings/conversion.h
-    ${include_path}/strings/conversion.hpp
-    ${include_path}/strings/regex.h
-    ${include_path}/strings/manipulation.h
-    ${include_path}/strings/manipulation.hpp
+    ${include_path}/string/conversion.h
+    ${include_path}/string/conversion.hpp
+    ${include_path}/string/regex.h
+    ${include_path}/string/manipulation.h
+    ${include_path}/string/manipulation.hpp
 
     ${include_path}/threading/parallelfor.h
     ${include_path}/threading/parallelfor.hpp
@@ -85,9 +85,9 @@ set(sources
     ${source_path}/logging/formatString.cpp
     ${source_path}/logging/logging.cpp
 
-    ${source_path}/strings/conversion.cpp
-    ${source_path}/strings/regex.cpp
-    ${source_path}/strings/manipulation.cpp
+    ${source_path}/string/conversion.cpp
+    ${source_path}/string/regex.cpp
+    ${source_path}/string/manipulation.cpp
 
     ${source_path}/threading/parallelfor.cpp
 )

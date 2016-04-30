@@ -130,4 +130,4 @@ CPPASSIST_API bool hasSuffix(const std::string & string, const std::string & suf
 } // namespace cppassist
 
 
-#include <cppassist/strings/manipulation.hpp>
+#include <cppassist/string/manipulation.hpp>

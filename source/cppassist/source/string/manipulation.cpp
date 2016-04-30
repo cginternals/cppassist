@@ -1,5 +1,5 @@
 
-#include <cppassist/strings/manipulation.h>
+#include <cppassist/string/manipulation.h>
 
 #include <cassert>
 

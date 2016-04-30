@@ -1,5 +1,5 @@
 
-#include <cppassist/strings/regex.h>
+#include <cppassist/string/regex.h>
 
 #ifdef USE_STD_REGEX
     #include <regex>

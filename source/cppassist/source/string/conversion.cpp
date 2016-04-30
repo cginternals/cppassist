@@ -1,5 +1,5 @@
 
-#include <cppassist/strings/conversion.h>
+#include <cppassist/string/conversion.h>
 
 #include <cassert>
 #include <algorithm>
