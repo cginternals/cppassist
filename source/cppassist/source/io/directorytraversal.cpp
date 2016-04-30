@@ -5,13 +5,13 @@
 #include <iostream>
 
 #ifdef _MSC_VER
-#include <windows.h>
-#include "dirent_msvc.h"
+    #include <windows.h>
+    #include "dirent_msvc.h"
 #else
-#include <dirent.h>
+    #include <dirent.h>
 #endif
 
-#include <cppassist/io/filename.h>
+#include <cppassist/io/FilePath.h>
 
 
 namespace cppassist
@@ -108,7 +108,7 @@ std::vector<std::string> scanDirectory(const std::string & directory, const std:
     for (const std::string & file : files)
     {
         // Check extension
-        std::string extension = getExtension(file);
+        std::string extension = FilePath(file).extension();
         if (fileExtension != "*" && extension != fileExtension)
             continue;
 
@@ -128,7 +128,7 @@ void scanDirectory(const std::string & directory, const std::string & fileExtens
     for (const std::string & file : files)
     {
         // Check extension
-        std::string extension = getExtension(file);
+        std::string extension = FilePath(file).extension();
         if (fileExtension != "*" && extension != fileExtension)
             continue;
 

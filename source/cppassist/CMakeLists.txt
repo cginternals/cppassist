@@ -47,7 +47,6 @@ set(source_path  "${CMAKE_CURRENT_SOURCE_DIR}/source")
 set(headers
     ${include_path}/io/readfile.h
     ${include_path}/io/directorytraversal.h
-    ${include_path}/io/filename.h
     ${include_path}/io/FilePath.h
     ${include_path}/io/SystemInfo.h
 
@@ -75,7 +74,6 @@ set(headers
 set(sources
     ${source_path}/io/readfile.cpp
     ${source_path}/io/directorytraversal.cpp
-    ${source_path}/io/filename.cpp
     ${source_path}/io/FilePath.cpp
     ${source_path}/io/SystemInfo.cpp
 
