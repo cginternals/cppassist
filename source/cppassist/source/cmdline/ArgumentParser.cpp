@@ -42,7 +42,7 @@ void ArgumentParser::parse(int argc, char * argv[])
     }
 }
 
-std::map<std::string, std::string> ArgumentParser::options() const
+const std::map<std::string, std::string> & ArgumentParser::options() const
 {
     return m_options;
 }
@@ -52,16 +52,19 @@ bool ArgumentParser::isSet(const std::string & option) const
     return m_options.count(option) > 0;
 }
 
-std::string ArgumentParser::value(const std::string & option) const
+const std::string &ArgumentParser::value(const std::string & option, const std::string & defaultValue) const
 {
-    if (isSet(option)) {
-        return m_options.at(option);
-    } else {
-        return "";
+    const auto it = m_options.find(option);
+
+    if (it == m_options.end())
+    {
+        return defaultValue;
     }
+
+    return it->second;
 }
 
-std::vector<std::string> ArgumentParser::params() const
+const std::vector<std::string> & ArgumentParser::params() const
 {
     return m_params;
 }
@@ -69,15 +72,17 @@ std::vector<std::string> ArgumentParser::params() const
 void ArgumentParser::print() const
 {
     std::cout << "Options:" << std::endl;
-    for (auto param : m_options) {
-        std::string option = param.first;
-        std::string value  = param.second;
+    for (const auto & param : m_options)
+    {
+        const auto & option = param.first;
+        const auto & value  = param.second;
         std::cout << "  " << option << " = " << value << std::endl;
     }
     std::cout << std::endl;
 
     std::cout << "Parameters:" << std::endl;
-    for (auto param : m_params) {
+    for (const auto & param : m_params)
+    {
         std::cout << "  " << param << std::endl;
     }
     std::cout << std::endl;

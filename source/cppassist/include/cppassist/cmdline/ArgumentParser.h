@@ -71,7 +71,7 @@ public:
     *  @remarks
     *    Options without values (single -) have the value "true" if set.
     */
-    std::map<std::string, std::string> options() const;
+    const std::map<std::string, std::string> & options() const;
 
     /**
     *  @brief
@@ -91,11 +91,13 @@ public:
     *
     *  @param[in] option
     *    Name of option (e.g., '--v')
+    *  @param[in] defaultValue
+    *    Default value returned if option is not set
     *
     *  @return
-    *    Value of the option
+    *    Value of the option or defaultValue if the option is not set
     */
-    std::string value(const std::string & option) const;
+    const std::string & value(const std::string & option, const std::string & defaultValue = "") const;
 
     /**
     *  @brief
@@ -120,7 +122,7 @@ public:
     *  @return
     *    Additional parameters
     */
-    std::vector<std::string> params() const;
+    const std::vector<std::string> & params() const;
 
     /**
     *  @brief
