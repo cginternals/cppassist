@@ -178,7 +178,7 @@ protected:
     *  @return
     *    Unified form of input path (e.g., only forward slashed '/').
     */
-    std::string toPath(const std::string & path) const;
+    static std::string toPath(const std::string & path);
 
 
 protected:

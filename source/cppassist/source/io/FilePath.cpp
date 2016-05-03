@@ -52,7 +52,7 @@ const std::string & FilePath::path() const
     return m_path;
 }
 
-std::string FilePath::toPath(const std::string & path) const
+std::string FilePath::toPath(const std::string & path)
 {
     auto copy = path;
 
