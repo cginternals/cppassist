@@ -40,29 +40,34 @@ void setVerbosityLevel(LogMessage::Level verbosity)
     l_verbosityLevel = verbosity;
 }
 
-LogMessageBuilder info(const std::string & context, LogMessage::Level level)
+LogMessageBuilder log(const std::string & context, LogMessage::Level level)
 {
     return LogMessageBuilder(level, level <= l_verbosityLevel ? l_logHandler : nullptr, context);
 }
 
+LogMessageBuilder info(const std::string & context)
+{
+    return log(context, LogMessage::Info);
+}
+
 LogMessageBuilder debug(const std::string & context)
 {
-    return info(context, LogMessage::Debug);
+    return log(context, LogMessage::Debug);
 }
 
 LogMessageBuilder warning(const std::string & context)
 {
-    return info(context, LogMessage::Warning);
+    return log(context, LogMessage::Warning);
 }
 
 LogMessageBuilder critical(const std::string & context)
 {
-    return info(context, LogMessage::Critical);
+    return log(context, LogMessage::Critical);
 }
 
 LogMessageBuilder fatal(const std::string & context)
 {
-    return info(context, LogMessage::Fatal);
+    return log(context, LogMessage::Fatal);
 }
 
 

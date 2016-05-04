@@ -30,11 +30,11 @@ public:
     */
     enum Level
     {
-        Fatal,      ///< Fatal errors
-        Critical,   ///< Cricical errors
-        Warning,    ///< Warnings
-        Debug,      ///< Debug messages
-        Info        ///< Info messages
+        Fatal    ///< Fatal errors
+      , Critical ///< Cricical errors
+      , Warning  ///< Warnings
+      , Info     ///< Info messages
+      , Debug    ///< Debug messages
     };
 
 

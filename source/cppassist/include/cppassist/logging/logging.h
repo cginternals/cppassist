@@ -58,12 +58,12 @@ CPPASSIST_API void setVerbosityLevel(LogMessage::Level verbosity);
 
 /**
 *  @brief
-*    Get log stream for info messages
+*    Get log stream
 *
 *    Use the stream interface to create log messages.
 *    Example:
 *      \code{.cpp}
-*      info() << "Message: " << 3.14;
+*      log(LogMessage::Info) << "Message: " << 3.14;
 *      \endcode
 *
 *  @param[in] context
@@ -74,7 +74,22 @@ CPPASSIST_API void setVerbosityLevel(LogMessage::Level verbosity);
 *  @return
 *    Log stream interface
 */
-CPPASSIST_API LogMessageBuilder info(const std::string & context = "", LogMessage::Level level = LogMessage::Info);
+CPPASSIST_API LogMessageBuilder log(const std::string & context = "", LogMessage::Level level = LogMessage::Info);
+
+/**
+*  @brief
+*    Get log stream for info messages
+*
+*  @param[in] context
+*    User defined context string
+*
+*  @return
+*    Log stream interface
+*
+*  @see
+*    log
+*/
+CPPASSIST_API LogMessageBuilder info(const std::string & context = "");
 
 /**
 *  @brief
@@ -87,7 +102,7 @@ CPPASSIST_API LogMessageBuilder info(const std::string & context = "", LogMessag
 *    Log stream interface
 *
 *  @see
-*    info
+*    log
 */
 CPPASSIST_API LogMessageBuilder debug(const std::string & context = "");
 
@@ -102,7 +117,7 @@ CPPASSIST_API LogMessageBuilder debug(const std::string & context = "");
 *    Log stream interface
 *
 *  @see
-*    info
+*    log
 */
 CPPASSIST_API LogMessageBuilder warning(const std::string & context = "");
 
@@ -117,7 +132,7 @@ CPPASSIST_API LogMessageBuilder warning(const std::string & context = "");
 *    Log stream interface
 *
 *  @see
-*    info
+*    log
 */
 CPPASSIST_API LogMessageBuilder critical(const std::string & context = "");
 
@@ -132,7 +147,7 @@ CPPASSIST_API LogMessageBuilder critical(const std::string & context = "");
 *    Log stream interface
 *
 *  @see
-*    info
+*    log
 */
 CPPASSIST_API LogMessageBuilder fatal(const std::string & context = "");
 
