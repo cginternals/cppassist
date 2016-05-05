@@ -78,6 +78,51 @@ CPPASSIST_API LogMessageBuilder log(const std::string & context = "", LogMessage
 
 /**
 *  @brief
+*    Get log stream for fatal errors
+*
+*  @param[in] context
+*    User defined context string
+*
+*  @return
+*    Log stream interface
+*
+*  @see
+*    log
+*/
+CPPASSIST_API LogMessageBuilder fatal(const std::string & context = "");
+
+/**
+*  @brief
+*    Get log stream for critical errors
+*
+*  @param[in] context
+*    User defined context string
+*
+*  @return
+*    Log stream interface
+*
+*  @see
+*    log
+*/
+CPPASSIST_API LogMessageBuilder critical(const std::string & context = "");
+
+/**
+*  @brief
+*    Get log stream for warning messages
+*
+*  @param[in] context
+*    User defined context string
+*
+*  @return
+*    Log stream interface
+*
+*  @see
+*    log
+*/
+CPPASSIST_API LogMessageBuilder warning(const std::string & context = "");
+
+/**
+*  @brief
 *    Get log stream for info messages
 *
 *  @param[in] context
@@ -108,7 +153,7 @@ CPPASSIST_API LogMessageBuilder debug(const std::string & context = "");
 
 /**
 *  @brief
-*    Get log stream for warning messages
+*    Get log stream for debug details
 *
 *  @param[in] context
 *    User defined context string
@@ -119,37 +164,52 @@ CPPASSIST_API LogMessageBuilder debug(const std::string & context = "");
 *  @see
 *    log
 */
-CPPASSIST_API LogMessageBuilder warning(const std::string & context = "");
+CPPASSIST_API LogMessageBuilder details(const std::string & context = "");
 
 /**
 *  @brief
-*    Get log stream for critical errors
+*    Write a formatted string to the fatal error log
 *
-*  @param[in] context
-*    User defined context string
-*
-*  @return
-*    Log stream interface
+*  @param[in] format
+*    Format string (must NOT be null!)
+*  @param[in] arguments
+*    Arguments according to the format string
 *
 *  @see
-*    log
+*    fInfo
 */
-CPPASSIST_API LogMessageBuilder critical(const std::string & context = "");
+template <typename... Arguments>
+void fFatal(const char * format, Arguments... arguments);
 
 /**
 *  @brief
-*    Get log stream for fatal errors
+*    Write a formatted string to the critical error log
 *
-*  @param[in] context
-*    User defined context string
-*
-*  @return
-*    Log stream interface
+*  @param[in] format
+*    Format string (must NOT be null!)
+*  @param[in] arguments
+*    Arguments according to the format string
 *
 *  @see
-*    log
+*    fInfo
 */
-CPPASSIST_API LogMessageBuilder fatal(const std::string & context = "");
+template <typename... Arguments>
+void fCritical(const char * format, Arguments... arguments);
+
+/**
+*  @brief
+*    Write a formatted string to the warning log
+*
+*  @param[in] format
+*    Format string (must NOT be null!)
+*  @param[in] arguments
+*    Arguments according to the format string
+*
+*  @see
+*    fInfo
+*/
+template <typename... Arguments>
+void fWarning(const char * format, Arguments... arguments);
 
 /**
 *  @brief
@@ -189,7 +249,7 @@ void fDebug(const char * format, Arguments... arguments);
 
 /**
 *  @brief
-*    Write a formatted string to the warning log
+*    Write a formatted string to the details log
 *
 *  @param[in] format
 *    Format string (must NOT be null!)
@@ -200,37 +260,7 @@ void fDebug(const char * format, Arguments... arguments);
 *    fInfo
 */
 template <typename... Arguments>
-void fWarning(const char * format, Arguments... arguments);
-
-/**
-*  @brief
-*    Write a formatted string to the critical error log
-*
-*  @param[in] format
-*    Format string (must NOT be null!)
-*  @param[in] arguments
-*    Arguments according to the format string
-*
-*  @see
-*    fInfo
-*/
-template <typename... Arguments>
-void fCritical(const char * format, Arguments... arguments);
-
-/**
-*  @brief
-*    Write a formatted string to the fatal error log
-*
-*  @param[in] format
-*    Format string (must NOT be null!)
-*  @param[in] arguments
-*    Arguments according to the format string
-*
-*  @see
-*    fInfo
-*/
-template <typename... Arguments>
-void fFatal(const char * format, Arguments... arguments);
+void fDetails(const char * format, Arguments... arguments);
 
 
 } // namespace cppassist
