@@ -7,3 +7,4 @@ endif()
 # Example applications
 add_subdirectory(logging)
 add_subdirectory(cmdline)
+add_subdirectory(simd)
