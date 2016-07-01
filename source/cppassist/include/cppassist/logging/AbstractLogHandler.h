@@ -19,7 +19,7 @@ class LogMessage;
 *    cppassist uses a global logging handler to which all generated log
 *    messages are dispatched. This is the abstract interface for handling them.
 *    Subclass this class if you wish to replace the global default logging
-*    behavior in loggingzeug, which is to write everything to stdout.
+*    behavior in cppassist, which is to write everything to stdout.
 *
 *  @see setLoggingHandler
 *  @see logging.h

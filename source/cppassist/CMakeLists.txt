@@ -60,6 +60,23 @@ set(headers
     ${include_path}/logging/formatString.hpp
     ${include_path}/logging/logging.h
     ${include_path}/logging/logging.hpp
+    
+    ${include_path}/simd/simd.h
+    ${include_path}/simd/algorithm.h
+    ${include_path}/simd/algorithm.inl
+    ${include_path}/simd/allocator.h
+    ${include_path}/simd/allocator.inl
+    ${include_path}/simd/value.h
+    ${include_path}/simd/value1.h
+    ${include_path}/simd/value1.inl
+    ${include_path}/simd/value4f.h
+    ${include_path}/simd/value4f.inl
+    ${include_path}/simd/value8f.h
+    ${include_path}/simd/value8f.inl
+    ${include_path}/simd/value16f.h
+    ${include_path}/simd/value16f.inl
+    ${include_path}/simd/vector.h
+    ${include_path}/simd/vector.inl
 
     ${include_path}/string/conversion.h
     ${include_path}/string/conversion.hpp
