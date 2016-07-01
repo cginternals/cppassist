@@ -9,6 +9,7 @@ The current modules in cppassist are:
  * [io](#io)
  * [logging](#logging)
  * [threading](#threading)
+ * [simd](#simd)
  * [string](#string)
  * [cmdline](#cmdline)
 
@@ -35,6 +36,13 @@ threading
 -------------
 
 threading provides a `parallel_for` function that uses either OpenMP or the `std::thread` classes to execute a for loop concurrently.
+
+
+simd
+-------------
+
+simd provides structures and algorithms for SIMD-like data processing, as introduced by GPUs.
+This is achieved by compiler extensions as SSE, AVX2, and AVX512.
 
 
 string
