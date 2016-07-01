@@ -11,7 +11,7 @@
 
 int main(int /*argc*/, char* /*argv*/[])
 {
-    static const auto valueSize = 512ull * 512ull * 512ull * 8ull;
+    static const auto valueSize = 512ull * 512ull * 512ull * 8ull; // 4GB of consecutive data
 
     cppassist::vector<float> values1(valueSize);
     cppassist::vector<float> values2(valueSize);
