@@ -44,6 +44,27 @@ public:
     *    Library prefix (e.g., 'dll', or '.so')
     */
     static std::string libExtension();
+
+    /**
+    *  @brief
+    *    Get home directory of the current user
+    *
+    *  @return
+    *    Home directory (native path)
+    */
+    static std::string homeDir();
+
+    /**
+    *  @brief
+    *    Get config directory for the named application
+    *
+    *  @param[in] application
+    *    Application name
+    *
+    *  @return
+    *    Config directory (native path)
+    */
+    static std::string configDir(const std::string & application);
 };
 
 
