@@ -1,4 +1,6 @@
 
+#include <stdlib.h>
+
 #include <cppassist/io/SystemInfo.h>
 
 
