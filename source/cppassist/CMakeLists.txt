@@ -45,8 +45,6 @@ set(include_path "${CMAKE_CURRENT_SOURCE_DIR}/include/${target}")
 set(source_path  "${CMAKE_CURRENT_SOURCE_DIR}/source")
 
 set(headers
-    ${include_path}/offsetof.h
-
     ${include_path}/io/fs.h
     ${include_path}/io/readfile.h
     ${include_path}/io/directorytraversal.h
@@ -63,6 +61,8 @@ set(headers
     ${include_path}/logging/formatString.hpp
     ${include_path}/logging/logging.h
     ${include_path}/logging/logging.hpp
+
+    ${include_path}/memory/offsetof.h
 
     ${include_path}/string/conversion.h
     ${include_path}/string/conversion.hpp
