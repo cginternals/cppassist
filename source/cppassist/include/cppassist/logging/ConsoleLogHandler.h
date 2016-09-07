@@ -14,7 +14,7 @@ namespace cppassist
 *  @brief
 *    Log message handler that writes log messages to stdout
 *
-*    This is the default LogMessage handler of loggingzeug.
+*    This is the default LogMessage handler of cppassist.
 *
 *  @see setLoggingHandler
 *  @see logging.h
