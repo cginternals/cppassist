@@ -62,6 +62,8 @@ set(headers
     ${include_path}/logging/logging.h
     ${include_path}/logging/logging.hpp
 
+    ${include_path}/memory/offsetof.h
+
     ${include_path}/string/conversion.h
     ${include_path}/string/conversion.hpp
     ${include_path}/string/regex.h
