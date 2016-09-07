@@ -45,6 +45,7 @@ set(include_path "${CMAKE_CURRENT_SOURCE_DIR}/include/${target}")
 set(source_path  "${CMAKE_CURRENT_SOURCE_DIR}/source")
 
 set(headers
+    ${include_path}/io/fs.h
     ${include_path}/io/readfile.h
     ${include_path}/io/directorytraversal.h
     ${include_path}/io/FilePath.h
@@ -78,6 +79,8 @@ set(headers
     ${include_path}/simd/vector.h
     ${include_path}/simd/vector.inl
 
+    ${include_path}/memory/offsetof.h
+
     ${include_path}/string/conversion.h
     ${include_path}/string/conversion.hpp
     ${include_path}/string/regex.h
@@ -91,6 +94,7 @@ set(headers
 )
 
 set(sources
+    ${source_path}/io/fs.cpp
     ${source_path}/io/readfile.cpp
     ${source_path}/io/directorytraversal.cpp
     ${source_path}/io/FilePath.cpp
