@@ -49,6 +49,7 @@ set(headers
     ${include_path}/io/readfile.h
     ${include_path}/io/directorytraversal.h
     ${include_path}/io/FilePath.h
+    ${include_path}/io/RawFile.h
     ${include_path}/io/SystemInfo.h
 
     ${include_path}/logging/AbstractLogHandler.h
@@ -98,6 +99,7 @@ set(sources
     ${source_path}/io/readfile.cpp
     ${source_path}/io/directorytraversal.cpp
     ${source_path}/io/FilePath.cpp
+    ${source_path}/io/RawFile.cpp
     ${source_path}/io/SystemInfo.cpp
 
     ${source_path}/logging/AbstractLogHandler.cpp
