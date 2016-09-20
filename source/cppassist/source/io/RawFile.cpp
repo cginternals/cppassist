@@ -32,11 +32,21 @@ const std::string & RawFile::filePath() const
 
 const char * RawFile::data() const
 {
+    if (!m_valid)
+    {
+        return nullptr;
+    }
+
     return m_data.data();
 }
 
 size_t RawFile::size() const
 {
+    if (!m_valid)
+    {
+        return size_t(0);
+    }
+
     return m_data.size();
 }
 
