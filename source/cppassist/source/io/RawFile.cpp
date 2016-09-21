@@ -4,6 +4,8 @@
 #include <fstream>
 #include <iostream>
 
+#include <cppassist/io/readfile.h>
+
 
 namespace cppassist
 {
@@ -18,6 +20,23 @@ RawFile::RawFile(const std::string & filePath)
 
 RawFile::~RawFile()
 {
+}
+
+bool RawFile::load()
+{
+    return readFile();
+}
+
+bool RawFile::load(const std::string & filePath)
+{
+    m_filePath = filePath;
+
+    return readFile();
+}
+
+bool RawFile::reload()
+{
+    return readFile();
 }
 
 bool RawFile::isValid() const
@@ -52,30 +71,13 @@ size_t RawFile::size() const
 
 bool RawFile::readFile()
 {
-    std::ifstream ifs(m_filePath, std::ios::in | std::ios::binary);
-
-    if (!ifs)
+    if (!cppassist::readFile(m_filePath, m_data))
     {
         std::cerr << "Reading from file \"" << m_filePath << "\" failed." << std::endl;
         return false;
     }
-    
-    readRawData(ifs);
-
-    ifs.close();
 
     return true;
-}
-
-void RawFile::readRawData(std::ifstream & ifs)
-{
-    ifs.seekg(0, std::ios::end);
-
-    const size_t size = ifs.tellg();
-    m_data.resize(size);
-
-    ifs.seekg(0, std::ios::beg);
-    ifs.read(m_data.data(), size);
 }
 
 

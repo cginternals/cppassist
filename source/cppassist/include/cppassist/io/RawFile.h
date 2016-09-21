@@ -46,6 +46,36 @@ public:
 
     /**
     *  @brief
+    *    Load file contents
+    *
+    *  @remarks
+    *    Uses the last passed file path (from either Constructor or load).
+    */
+    bool load();
+
+    /**
+    *  @brief
+    *    Load file contents
+    *
+    *  @param[in]
+    *    Path to the file to load
+    *
+    *  @remarks
+    *    Uses the passed file path and overwrites the stored one.
+    */
+    bool load(const std::string & filePath);
+
+    /**
+    *  @brief
+    *    Reloads file contents
+    *
+    *  @remarks
+    *    Uses the last passed file path (from either Constructor or load).
+    */
+    bool reload();
+
+    /**
+    *  @brief
     *    Get plain C pointer to file contents
     *
     *  @return
@@ -91,20 +121,11 @@ protected:
     */
     bool readFile();
 
-    /**
-    *  @brief
-    *    Load contents from file
-    *
-    *  @param[in] ifs
-    *    Input file stream to load file contents from
-    */
-    void readRawData(std::ifstream & ifs);
-
 
 protected:
-    const std::string m_filePath; ///< File path
-    std::vector<char> m_data; ///< Loaded file contents
-    bool              m_valid; ///< Validity of loaded file contents
+    std::string m_filePath; ///< File path
+    std::string m_data; ///< Loaded file contents
+    bool        m_valid; ///< Validity of loaded file contents
 };
 
 
