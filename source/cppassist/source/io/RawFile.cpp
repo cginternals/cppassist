@@ -23,6 +23,7 @@ RawFile::~RawFile()
 bool RawFile::load(const std::string & filePath)
 {
     m_filePath = filePath;
+
     m_valid = readFile();
 
     return m_valid;
@@ -35,7 +36,9 @@ bool RawFile::reload()
         return false;
     }
 
-    return readFile();
+    m_valid = readFile();
+
+    return m_valid;
 }
 
 bool RawFile::isValid() const
@@ -70,6 +73,8 @@ size_t RawFile::size() const
 
 bool RawFile::readFile()
 {
+    m_data.clear();
+
     if (!cppassist::readFile(m_filePath, m_data))
     {
         std::cerr << "Reading from file \"" << m_filePath << "\" failed." << std::endl;

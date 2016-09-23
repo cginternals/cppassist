@@ -11,6 +11,7 @@
 namespace
 {
 
+
 template<typename T>
 T read(std::ifstream & stream)
 {
@@ -36,7 +37,9 @@ std::string readString(std::ifstream & stream)
     return ss.str();
 }
 
-}
+
+} // namespace
+
 
 namespace cppassist
 {
@@ -44,19 +47,38 @@ namespace cppassist
 
 uint16_t DescriptiveRawFile::s_signature = 0xC6F5;
 
-
-DescriptiveRawFile::DescriptiveRawFile(const std::string & filePath, bool parseProperties)
-: m_filePath(filePath)
+DescriptiveRawFile::DescriptiveRawFile()
+: m_filePath()
+, m_parseProperties(false)
 , m_valid(false)
 {
-    m_valid = readFile(parseProperties);
 }
-
 
 DescriptiveRawFile::~DescriptiveRawFile()
 {
 }
 
+bool DescriptiveRawFile::load(const std::string & filePath, bool parseProperties)
+{
+    m_filePath = filePath;
+    m_parseProperties = parseProperties;
+
+    m_valid = readFile();
+
+    return m_valid;
+}
+
+bool DescriptiveRawFile::reload()
+{
+    if (!m_valid)
+    {
+        return false;
+    }
+
+    m_valid = readFile();
+
+    return m_valid;
+}
 
 bool DescriptiveRawFile::isValid() const
 {
@@ -66,12 +88,22 @@ bool DescriptiveRawFile::isValid() const
 
 const char * DescriptiveRawFile::data() const
 {
+    if (!m_valid)
+    {
+        return nullptr;
+    }
+
     return m_data.data();
 }
 
 
 size_t DescriptiveRawFile::size() const
 {
+    if (!m_valid)
+    {
+        return size_t(0);
+    }
+
     return m_data.size();
 }
 
@@ -111,13 +143,18 @@ bool DescriptiveRawFile::hasDoubleProperty(const std::string & key) const
     return m_doubleProperties.find(key) != m_doubleProperties.end();
 }
 
-bool DescriptiveRawFile::readFile(bool parseProperties)
+bool DescriptiveRawFile::readFile()
 {
     std::ifstream ifs(m_filePath, std::ios::in | std::ios::binary);
 
+    m_stringProperties.clear();
+    m_intProperties.clear();
+    m_doubleProperties.clear();
+    m_data.clear();
+
     if (!ifs)
     {
-        perror("Error");
+        std::cerr << "Reading from file \"" << m_filePath << "\" failed." << std::endl;
         return false;
     }
     
@@ -127,7 +164,7 @@ bool DescriptiveRawFile::readFile(bool parseProperties)
     {
         offset = read<uint64_t>(ifs);
 
-        if (parseProperties)
+        if (m_parseProperties)
         {
             readProperties(ifs, offset);
         }
@@ -148,13 +185,13 @@ void DescriptiveRawFile::readProperties(std::ifstream & ifs, uint64_t offset)
 {
     while (ifs.tellg() < static_cast<int64_t>(offset) && ifs.good())
     {
-        uint8_t type = read<uint8_t>(ifs);
+        auto type = read<PropertyType>(ifs);
 
         std::string key = readString(ifs);
 
-		switch (static_cast<PropertyType>(type))
+        switch (type)
         {
-		case PropertyType::Int:
+        case PropertyType::Integer:
             m_intProperties[key] = read<int32_t>(ifs);
             break;
 
@@ -183,7 +220,8 @@ void DescriptiveRawFile::readRawData(std::ifstream & ifs, uint64_t rawDataOffset
 
     m_data.resize(size);
 
-    ifs.read(m_data.data(), size);
+    ifs.read(const_cast<char*>(m_data.data()), size);
 }
+
 
 } // namespace cppassist

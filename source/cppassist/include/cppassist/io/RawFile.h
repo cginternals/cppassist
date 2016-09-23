@@ -42,7 +42,7 @@ public:
     *  @brief
     *    Load file contents
     *
-    *  @param[in]
+    *  @param[in] path
     *    Path to the file to load
     *
     *  @remarks
