@@ -36,7 +36,7 @@ public:
     *  @brief
     *    Destructor
     */
-    virtual ~RawFile();
+    ~RawFile();
 
     /**
     *  @brief

@@ -24,18 +24,11 @@ bool RawFile::load(const std::string & filePath)
 {
     m_filePath = filePath;
 
-    m_valid = readFile();
-
-    return m_valid;
+    return reload();
 }
 
 bool RawFile::reload()
 {
-    if (!m_valid)
-    {
-        return false;
-    }
-
     m_valid = readFile();
 
     return m_valid;
