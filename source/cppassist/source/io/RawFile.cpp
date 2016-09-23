@@ -30,6 +30,11 @@ bool RawFile::load(const std::string & filePath)
 
 bool RawFile::reload()
 {
+    if (!m_valid)
+    {
+        return false;
+    }
+
     return readFile();
 }
 
