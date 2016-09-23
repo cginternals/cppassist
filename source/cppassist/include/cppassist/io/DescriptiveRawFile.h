@@ -182,6 +182,33 @@ public:
     */
     bool hasDoubleProperty(const std::string & key) const;
 
+    /**
+    *  @brief
+    *    Get keys of string properties
+    *
+    *  @return
+    *    List of string property keys
+    */
+    std::vector<std::string> stringPropertyKeys() const;
+
+    /**
+    *  @brief
+    *    Get keys of integer properties
+    *
+    *  @return
+    *    List of integer property keys
+    */
+    std::vector<std::string> intPropertyKeys() const;
+
+    /**
+    *  @brief
+    *    Get keys of floating-point properties
+    *
+    *  @return
+    *    List of floating-point property keys
+    */
+    std::vector<std::string> doublePropertyKeys() const;
+
 
 protected:
     /**

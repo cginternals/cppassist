@@ -37,6 +37,17 @@ std::string readString(std::ifstream & stream)
     return ss.str();
 }
 
+template <typename T>
+void collectKeys(const std::map<std::string, T> & map, std::vector<std::string> & keys)
+{
+    std::transform(
+        map.begin(),
+        map.end(),
+        std::back_inserter(keys),
+        [](const typename std::map<std::string, T>::value_type & pair) { return pair.first; }
+    );
+}
+
 
 } // namespace
 
@@ -134,6 +145,33 @@ bool DescriptiveRawFile::hasIntProperty(const std::string & key) const
 bool DescriptiveRawFile::hasDoubleProperty(const std::string & key) const
 {
     return m_doubleProperties.find(key) != m_doubleProperties.end();
+}
+
+std::vector<std::string> DescriptiveRawFile::stringPropertyKeys() const
+{
+    std::vector<std::string> keys;
+
+    collectKeys(m_stringProperties, keys);
+
+    return keys;
+}
+
+std::vector<std::string> DescriptiveRawFile::intPropertyKeys() const
+{
+    std::vector<std::string> keys;
+
+    collectKeys(m_intProperties, keys);
+
+    return keys;
+}
+
+std::vector<std::string> DescriptiveRawFile::doublePropertyKeys() const
+{
+    std::vector<std::string> keys;
+
+    collectKeys(m_doubleProperties, keys);
+
+    return keys;
 }
 
 bool DescriptiveRawFile::readFile()
