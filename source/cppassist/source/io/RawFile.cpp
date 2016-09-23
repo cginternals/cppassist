@@ -11,27 +11,21 @@ namespace cppassist
 {
 
 
-RawFile::RawFile(const std::string & filePath)
-: m_filePath(filePath)
-, m_valid(false)
+RawFile::RawFile()
+: m_valid(false)
 {
-    m_valid = readFile();
 }
 
 RawFile::~RawFile()
 {
 }
 
-bool RawFile::load()
-{
-    return readFile();
-}
-
 bool RawFile::load(const std::string & filePath)
 {
     m_filePath = filePath;
+    m_valid = readFile();
 
-    return readFile();
+    return m_valid;
 }
 
 bool RawFile::reload()

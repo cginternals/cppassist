@@ -29,14 +29,8 @@ public:
     /**
     *  @brief
     *    Constructor
-    *
-    *  @param[in] filePath
-    *    Path to the file to load
-    *
-    *  @param remarks
-    *    The file is opened and loaded during construction.
     */
-    RawFile(const std::string & filePath);
+    RawFile();
 
     /**
     *  @brief
@@ -48,20 +42,11 @@ public:
     *  @brief
     *    Load file contents
     *
-    *  @remarks
-    *    Uses the last passed file path (from either Constructor or load).
-    */
-    bool load();
-
-    /**
-    *  @brief
-    *    Load file contents
-    *
     *  @param[in]
     *    Path to the file to load
     *
     *  @remarks
-    *    Uses the passed file path and overwrites the stored one.
+    *    Uses the passed file path and store it for subsequent reloads.
     */
     bool load(const std::string & filePath);
 
@@ -70,7 +55,7 @@ public:
     *    Reloads file contents
     *
     *  @remarks
-    *    Uses the last passed file path (from either Constructor or load).
+    *    Uses the last passed file path to load.
     */
     bool reload();
 
@@ -124,8 +109,8 @@ protected:
 
 protected:
     std::string m_filePath; ///< File path
-    std::string m_data; ///< Loaded file contents
-    bool        m_valid; ///< Validity of loaded file contents
+    std::string m_data;     ///< Loaded file contents
+    bool        m_valid;    ///< Validity of loaded file contents
 };
 
 
