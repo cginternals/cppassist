@@ -42,17 +42,23 @@ public:
     *  @brief
     *    Load file contents
     *
-    *  @param[in] path
+    *  @param[in] filePath
     *    Path to the file to load
     *
+    *  @return
+    *    'true' if file contents could be loaded successfully, else 'false'
+    *
     *  @remarks
-    *    Uses the passed file path and store it for subsequent reloads.
+    *    Uses the passed file path and stores it for subsequent reloads.
     */
     bool load(const std::string & filePath);
 
     /**
     *  @brief
-    *    Reloads file contents
+    *    Reload file contents
+    *
+    *  @return
+    *    'true' if file contents could be loaded successfully, else 'false'
     *
     *  @remarks
     *    Uses the last passed file path to load.
@@ -82,7 +88,7 @@ public:
     *    Get validity of file contents
     *
     *  @return
-    *    'true' if file contents could get successfully loaded, 'false' else
+    *    'true' if file contents could be loaded successfully, else 'false'
     */
     bool isValid() const;
 
@@ -102,7 +108,7 @@ protected:
     *    Load contents from file path
     *
     *  @return
-    *    'true' if loaded was successful, 'false' else
+    *    'true' if file contents could be loaded successfully, else 'false'
     */
     bool readFile();
 

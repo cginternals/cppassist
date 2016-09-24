@@ -226,11 +226,11 @@ void DescriptiveRawFile::readProperties(std::ifstream & ifs, uint64_t offset)
             m_intProperties[key] = read<int32_t>(ifs);
             break;
 
-		case PropertyType::Double:
+        case PropertyType::Double:
             m_doubleProperties[key] = read<double>(ifs);
             break;
 
-		case PropertyType::String:
+        case PropertyType::String:
             m_stringProperties[key] = readString(ifs);
             break;
 

@@ -1,4 +1,6 @@
+
 #pragma once
+
 
 #include <cstdint>
 #include <string>
@@ -25,20 +27,20 @@ class CPPASSIST_API DescriptiveRawFile
 public:
     static uint16_t s_signature; ///< Magic file signature to detect descriptive raw files with header information
 
-
     /**
     *  @brief
     *    Enumeration to all known data types of header properties
     */
     enum class PropertyType : unsigned char
-	{
-        Unknown	= 0,
+    {
+        Unknown = 0,
         Integer = 1,
-        Double	= 2,
-        String	= 3
+        Double  = 2,
+        String  = 3
     };
 
 
+public:
     /**
     *  @brief
     *    Constructor
@@ -55,19 +57,25 @@ public:
     *  @brief
     *    Load file contents
     *
-    *  @param[in] path
+    *  @param[in] filePath
     *    Path to the file to load
     *  @param[in] parseProperties
     *    Flag whether to parse or omit header information
     *
+    *  @return
+    *    'true' if file contents could be loaded successfully, else 'false'
+    *
     *  @remarks
-    *    Uses the passed file path and store it for subsequent reloads.
+    *    Uses the passed file path and stores it for subsequent reloads.
     */
     bool load(const std::string & filePath, bool parseProperties = true);
 
     /**
     *  @brief
-    *    Reloads file contents
+    *    Reload file contents
+    *
+    *  @return
+    *    'true' if file contents could be loaded successfully, else 'false'
     *
     *  @remarks
     *    Uses the last passed file path to load.
@@ -97,7 +105,7 @@ public:
     *    Get validity of file contents
     *
     *  @return
-    *    'true' if file contents could get successfully loaded, 'false' else
+    *    'true' if file contents could be loaded successfully, else 'false'
     */
     bool isValid() const;
 
@@ -215,11 +223,8 @@ protected:
     *  @brief
     *    Load contents from file path
     *
-    *  @param[in] parseProperties
-    *    Wether to load the header or omit it
-    *
     *  @return
-    *    'true' if loaded was successful, 'false' else
+    *    'true' if file contents could be loaded successfully, else 'false'
     */
     bool readFile();
     
