@@ -99,11 +99,6 @@ value<float, 8>::operator const __m256 &() const
     return m_value;
 }
 
-value<float, 8>::operator const __m256 &&() &&
-{
-    return std::move(m_value);
-}
-
 
 // Operators
 

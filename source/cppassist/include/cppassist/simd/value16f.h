@@ -40,9 +40,8 @@ public:
     primitive_type & operator[](size_t i);
     const primitive_type & operator[](size_t i) const;
 
-    operator store_type();
-    operator const store_type & () const;
-    operator const store_type && () &&;
+    inline operator store_type();
+    inline operator const store_type & () const;
 
 protected:
     store_type m_value;

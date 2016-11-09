@@ -99,11 +99,6 @@ value<float, 16>::operator const __m512 &() const
     return m_value;
 }
 
-value<float, 16>::operator const __m512 &&() &&
-{
-    return std::move(m_value);
-}
-
 
 // Operators
 
