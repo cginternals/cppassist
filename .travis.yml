@@ -8,12 +8,12 @@ compiler:
   - clang
 
 before_install:
-  - sudo apt-get install -qq cmake
+  - sudo apt-get install -qq cmake libboost-regex-dev
 
 before_script:
   - mkdir build
   - cd build
-  - cmake -DOPTION_BUILD_EXAMPLES=On ..
+  - cmake -DOPTION_BUILD_EXAMPLES=On -DOPTION_BUILD_WITH_STD_REGEX=Off ..
 
 script:
   - make -j8
