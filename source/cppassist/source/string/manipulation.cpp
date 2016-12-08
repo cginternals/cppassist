@@ -14,14 +14,24 @@
 #endif
 
 
+namespace
+{
+
+
+const regex_namespace::regex trimRegex("(^\\s+|\\s+$)");
+const regex_namespace::regex trimRegexRemoveAllWhiteSpace("\\s+");
+
+
+}
+
+
 namespace cppassist
 {
 
 
 std::string trim(const std::string & string, bool removeAllWhitespace)
 {
-    const regex_namespace::regex regex(removeAllWhitespace ? "\\s+" : "(^\\s+|\\s+$)");
-    return regex_namespace::regex_replace(string, regex, std::string());
+    return regex_namespace::regex_replace(string, removeAllWhitespace ? trimRegexRemoveAllWhiteSpace : trimRegex, std::string());
 }
 
 std::string stripped(const std::string & string, const std::set<char> & blacklist)
@@ -57,17 +67,17 @@ std::vector<std::string> parseArray(const std::string & string, size_t size)
 std::vector<std::string> split(const std::string & input, char delimiter)
 {
     std::vector<std::string> result;
-    result.push_back(std::string());
-    for (const char & c : input)
+    std::string line;
+    std::stringstream ss(input);
+
+    while(std::getline(ss, line, delimiter))
     {
-        if (c == delimiter)
+        if (!line.empty())
         {
-            result.push_back(std::string());
-            continue;
+            result.push_back(line);
         }
-        
-        result.back().push_back(c);
     }
+
     return result;
 }
 

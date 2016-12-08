@@ -140,4 +140,4 @@ void sequentialFor(std::vector<T> & elements, typename identity<std::function<vo
 } // namespace cppassist
 
 
-#include <cppassist/threading/parallelfor.hpp>
+#include <cppassist/threading/parallelfor.inl>

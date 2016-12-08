@@ -49,12 +49,30 @@ public:
 
     /**
     *  @brief
+    *    Move constructor
+    *
+    *  @param[in] filePath
+    *    File path to move
+    */
+    FilePath(FilePath && filePath);
+
+    /**
+    *  @brief
     *    Constructor
     *
     *  @param[in] path
     *    File path
     */
     FilePath(const std::string & path);
+
+    /**
+    *  @brief
+    *    Constructor
+    *
+    *  @param[in] path
+    *    File path
+    */
+    FilePath(std::string && path);
 
     /**
     *  @brief
@@ -165,6 +183,30 @@ public:
     *    If there is no drive letter (Linux, Max), an empty string is returned.
     */
     std::string driveLetter() const;
+
+    /**
+    *  @brief
+    *    Copy assignment operator
+    *
+    *  @param[in] filePath
+    *    Right-hand value to move
+    *
+    *  @return
+    *    Reference to this value
+    */
+    FilePath & operator=(const FilePath & filePath);
+
+    /**
+    *  @brief
+    *    Move assignment operator
+    *
+    *  @param[in] filePath
+    *    Right-hand value to move
+    *
+    *  @return
+    *    Reference to this value
+    */
+    FilePath & operator=(FilePath && filePath);
 
 
 protected:

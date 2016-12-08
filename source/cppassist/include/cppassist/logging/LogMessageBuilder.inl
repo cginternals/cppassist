@@ -2,9 +2,6 @@
 #pragma once
 
 
-#include <cppassist/logging/LogMessageBuilder.h>
-
-
 namespace cppassist
 {
 

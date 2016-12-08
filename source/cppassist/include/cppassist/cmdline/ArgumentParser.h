@@ -6,7 +6,7 @@
 #include <vector>
 #include <map>
 
-#include <cppassist/string/conversion.h>
+#include <cppassist/cppassist_api.h>
 
 
 namespace cppassist
@@ -110,10 +110,7 @@ public:
     *    Value of the option
     */
     template <typename T>
-    T value(const std::string & option) const
-    {
-        return fromString<T>(value(option));
-    }
+    T value(const std::string & option, const T & defaultValue = T()) const;
 
     /**
     *  @brief
@@ -138,3 +135,6 @@ private:
 
 
 } // namespace cppassist
+
+
+#include <cppassist/cmdline/ArgumentParser.inl>

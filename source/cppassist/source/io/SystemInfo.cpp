@@ -4,41 +4,45 @@
 #include <cppassist/io/SystemInfo.h>
 
 
+namespace
+{
+
+
+#if defined(SYSTEM_WINDOWS)
+    const std::string pathSeperatorString = "\\";
+    const std::string libPrefixString = "";
+    const std::string libExtensionString = "dll";
+#elif defined(SYSTEM_DARWIN)
+    const std::string pathSeperatorString = "/";
+    const std::string libPrefixString = "";
+    const std::string libExtensionString = "dylib";
+#else
+    const std::string pathSeperatorString = "/";
+    const std::string libPrefixString = "lib";
+    const std::string libExtensionString = "so";
+#endif
+
+
+} // namespace
+
+
 namespace cppassist
 {
 
 
-std::string SystemInfo::pathSeperator()
+const std::string & SystemInfo::pathSeperator()
 {
-    #ifdef WIN32
-        return "\\";
-    #elif __APPLE__
-        return "/";
-    #else
-        return "/";
-    #endif
+    return pathSeperatorString;
 }
 
-std::string SystemInfo::libPrefix()
+const std::string & SystemInfo::libPrefix()
 {
-    #ifdef WIN32
-        return "";
-    #elif __APPLE__
-        return "";
-    #else
-        return "lib";
-    #endif   
+    return libPrefixString;
 }
 
-std::string SystemInfo::libExtension()
+const std::string & SystemInfo::libExtension()
 {
-    #ifdef WIN32
-        return "dll";
-    #elif __APPLE__
-        return "dylib";
-    #else
-        return "so";
-    #endif
+    return libExtensionString;
 }
 
 std::string SystemInfo::homeDir()

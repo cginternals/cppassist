@@ -20,8 +20,20 @@ FilePath::FilePath(const FilePath & filePath)
 {
 }
 
+FilePath::FilePath(FilePath && filePath)
+: m_originalPath(std::move(filePath.m_originalPath))
+, m_path(std::move(filePath.m_path))
+{
+}
+
 FilePath::FilePath(const std::string & path)
 : m_originalPath(path)
+, m_path(toPath(m_originalPath))
+{
+}
+
+FilePath::FilePath(std::string && path)
+: m_originalPath(std::move(path))
 , m_path(toPath(m_originalPath))
 {
 }
@@ -135,6 +147,22 @@ std::string FilePath::driveLetter() const
         return std::string();
 
     return m_originalPath.substr(0, pos);
+}
+
+FilePath & FilePath::operator =(const FilePath & filePath)
+{
+    m_originalPath = filePath.m_originalPath;
+    m_path = filePath.m_path;
+
+    return *this;
+}
+
+FilePath & FilePath::operator =(FilePath && filePath)
+{
+    m_originalPath = std::move(filePath.m_originalPath);
+    m_path = std::move(filePath.m_path);
+
+    return *this;
 }
 
 

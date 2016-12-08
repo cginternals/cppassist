@@ -25,7 +25,7 @@ public:
     *  @return
     *    Path seperator (e.g., '/' or '\')
     */
-    static std::string pathSeperator();
+    static const std::string & pathSeperator();
 
     /**
     *  @brief
@@ -34,7 +34,7 @@ public:
     *  @return
     *    Library prefix (e.g., 'lib' on UNIX systems, '' on Windows)
     */
-    static std::string libPrefix();
+    static const std::string & libPrefix();
 
     /**
     *  @brief
@@ -43,7 +43,7 @@ public:
     *  @return
     *    Library prefix (e.g., 'dll', or '.so')
     */
-    static std::string libExtension();
+    static const std::string & libExtension();
 
     /**
     *  @brief
