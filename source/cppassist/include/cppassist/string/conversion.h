@@ -136,4 +136,4 @@ struct hash<cppassist::Encoding>
 } // namespace std
 
 
-#include <cppassist/string/conversion.hpp>
+#include <cppassist/string/conversion.inl>

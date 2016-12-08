@@ -59,11 +59,11 @@ set(headers
     ${include_path}/logging/FileLogHandler.h
     ${include_path}/logging/LogMessage.h
     ${include_path}/logging/LogMessageBuilder.h
-    ${include_path}/logging/LogMessageBuilder.hpp
+    ${include_path}/logging/LogMessageBuilder.inl
     ${include_path}/logging/formatString.h
-    ${include_path}/logging/formatString.hpp
+    ${include_path}/logging/formatString.inl
     ${include_path}/logging/logging.h
-    ${include_path}/logging/logging.hpp
+    ${include_path}/logging/logging.inl
     
     ${include_path}/simd/simd.h
     ${include_path}/simd/algorithm.h
@@ -83,17 +83,19 @@ set(headers
     ${include_path}/simd/vector.inl
 
     ${include_path}/memory/offsetof.h
+    ${include_path}/memory/offsetof.inl
 
     ${include_path}/string/conversion.h
-    ${include_path}/string/conversion.hpp
+    ${include_path}/string/conversion.inl
     ${include_path}/string/regex.h
     ${include_path}/string/manipulation.h
-    ${include_path}/string/manipulation.hpp
+    ${include_path}/string/manipulation.inl
 
     ${include_path}/threading/parallelfor.h
-    ${include_path}/threading/parallelfor.hpp
+    ${include_path}/threading/parallelfor.inl
 
     ${include_path}/cmdline/ArgumentParser.h
+    ${include_path}/cmdline/ArgumentParser.inl
 )
 
 set(sources
@@ -125,9 +127,9 @@ set(sources
 # Group source files
 set(header_group "Header Files (API)")
 set(source_group "Source Files")
-source_group_by_path(${include_path} "\\\\.h$|\\\\.hpp$" 
+source_group_by_path(${include_path} "\\\\.h$|\\\\.inl$" 
     ${header_group} ${headers})
-source_group_by_path(${source_path}  "\\\\.cpp$|\\\\.c$|\\\\.h$|\\\\.hpp$" 
+source_group_by_path(${source_path}  "\\\\.cpp$|\\\\.c$|\\\\.h$|\\\\.inl$" 
     ${source_group} ${sources})
 
 

@@ -128,4 +128,4 @@ protected:
 } // namespace cppassist
 
 
-#include <cppassist/logging/LogMessageBuilder.hpp>
+#include <cppassist/logging/LogMessageBuilder.inl>

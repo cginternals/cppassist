@@ -2,8 +2,6 @@
 #pragma once
 
 
-#include <cppassist/string/manipulation.h>
-
 #include <sstream>
 
 
@@ -20,7 +18,7 @@ std::string join(const Iterable & iterable, const std::string & separator)
     {
         stream << *it;
 
-        if (it != --iterable.end())
+        if (it+1 != iterable.end())
             stream << separator;
     }
 

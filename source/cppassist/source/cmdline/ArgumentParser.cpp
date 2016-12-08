@@ -18,6 +18,9 @@ ArgumentParser::~ArgumentParser()
 
 void ArgumentParser::parse(int argc, char * argv[])
 {
+    m_options.clear();
+    m_params.clear();
+
     for (int i=1; i<argc; i++) {
         // Get current and next argument
         std::string arg  = argv[i];
@@ -72,19 +75,23 @@ const std::vector<std::string> & ArgumentParser::params() const
 void ArgumentParser::print() const
 {
     std::cout << "Options:" << std::endl;
+
     for (const auto & param : m_options)
     {
         const auto & option = param.first;
         const auto & value  = param.second;
         std::cout << "  " << option << " = " << value << std::endl;
     }
+
     std::cout << std::endl;
 
     std::cout << "Parameters:" << std::endl;
+
     for (const auto & param : m_params)
     {
         std::cout << "  " << param << std::endl;
     }
+
     std::cout << std::endl;
 }
 

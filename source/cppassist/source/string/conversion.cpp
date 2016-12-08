@@ -4,6 +4,8 @@
 #include <cassert>
 #include <algorithm>
 #include <iterator>
+#include <locale>
+#include <codecvt>
 
 
 namespace 
@@ -12,61 +14,9 @@ namespace
 
 void encodeUTF8(const std::string & input, std::u32string & output)
 {
-    std::size_t currentCharacterIndex = 0;
-    std::size_t characterCount = 0;
+    static std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> conversion;
 
-    output.resize(input.size() * 4);
-    while (currentCharacterIndex < input.size())
-    {
-        if ((input.at(currentCharacterIndex) & (1 << 7)) == 0) // 1 byte
-        {
-            output.at(characterCount) = input.at(currentCharacterIndex) & 127;
-            currentCharacterIndex += 1;
-            ++characterCount;
-        }
-        else if ((input.at(currentCharacterIndex) & (7 << 5)) == (6 << 5)) // 2 bytes
-        {
-            assert(currentCharacterIndex + 1 < input.size());
-            assert((input.at(currentCharacterIndex + 1) & (2 << 6)) == (2 << 6));
-
-            output.at(characterCount) = (input.at(currentCharacterIndex) & 31 << 6) +
-                (input.at(currentCharacterIndex + 1) & 63);
-            currentCharacterIndex += 2;
-            ++characterCount;
-        }
-        else if ((input.at(currentCharacterIndex) & (15 << 4)) == (14 << 4)) // 3 bytes
-        {
-            assert(currentCharacterIndex + 2 < input.size());
-            assert((input.at(currentCharacterIndex + 1) & (2 << 6)) == (2 << 6));
-            assert((input.at(currentCharacterIndex + 2) & (2 << 6)) == (2 << 6));
-
-            output.at(characterCount) = (input.at(currentCharacterIndex) & 31 << 12) +
-                (input.at(currentCharacterIndex + 1) & 63 << 6) +
-                (input.at(currentCharacterIndex + 2) & 63);
-            currentCharacterIndex += 3;
-            ++characterCount;
-        }
-        else if ((input.at(currentCharacterIndex) & (31 << 3)) == (30 << 3)) // 4 bytes
-        {
-            assert(currentCharacterIndex + 3 < input.size());
-            assert((input.at(currentCharacterIndex + 1) & (2 << 6)) == (2 << 6));
-            assert((input.at(currentCharacterIndex + 2) & (2 << 6)) == (2 << 6));
-            assert((input.at(currentCharacterIndex + 3) & (2 << 6)) == (2 << 6));
-
-            output.at(characterCount) = (input.at(currentCharacterIndex) & 31 << 18) +
-                (input.at(currentCharacterIndex + 1) & 63 << 12) +
-                (input.at(currentCharacterIndex + 1) & 63 << 6) +
-                (input.at(currentCharacterIndex + 2) & 63);
-            currentCharacterIndex += 4;
-            ++characterCount;
-        }
-        else
-        {
-            assert(false);
-        }
-    }
-
-    output.resize(characterCount);
+    output = conversion.from_bytes(input);
 }
 
 
