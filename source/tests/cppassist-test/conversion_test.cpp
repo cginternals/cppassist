@@ -132,6 +132,13 @@ TEST_F(conversion_test, fromString_bool)
     val = fromString<bool>(str);
 
     ASSERT_EQ(typeid(bool), typeid(val));
+    ASSERT_TRUE(val);
+
+    str = "false";
+
+    val = fromString<bool>(str);
+
+    ASSERT_EQ(typeid(bool), typeid(val));
     ASSERT_FALSE(val);
 
     str = "asd";
@@ -139,7 +146,7 @@ TEST_F(conversion_test, fromString_bool)
     val = fromString<bool>(str);
 
     ASSERT_EQ(typeid(bool), typeid(val));
-    ASSERT_FALSE(val);
+    ASSERT_TRUE(val);
 }
 
 TEST_F(conversion_test, toString_char)
@@ -209,5 +216,5 @@ TEST_F(conversion_test, toString_bool)
     auto str = toString(val);
 
     ASSERT_EQ(typeid(std::string), typeid(str));
-    ASSERT_EQ("1", str);
+    ASSERT_EQ("true", str);
 }
