@@ -8,7 +8,7 @@ compiler:
   - clang
 
 before_install:
-  - sudo apt-get install -qq cmake qt5-default
+  - sudo apt-get install -qq cmake
 
 before_script:
   - mkdir build
