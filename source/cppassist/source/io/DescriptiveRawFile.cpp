@@ -21,7 +21,8 @@ T read(std::ifstream & stream)
     return value;
 }
 
-std::string readString(std::ifstream & stream)
+template<>
+std::string read<std::string>(std::ifstream & stream)
 {
     std::stringstream ss;
     char c;
@@ -90,7 +91,6 @@ bool DescriptiveRawFile::isValid() const
     return m_valid;
 }
 
-
 const char * DescriptiveRawFile::data() const
 {
     if (!m_valid)
@@ -100,7 +100,6 @@ const char * DescriptiveRawFile::data() const
 
     return m_data.data();
 }
-
 
 size_t DescriptiveRawFile::size() const
 {
@@ -112,36 +111,30 @@ size_t DescriptiveRawFile::size() const
     return m_data.size();
 }
 
-
 const std::string & DescriptiveRawFile::stringProperty(const std::string & key) const
 {
     return m_stringProperties.at(key);
 }
-
 
 int32_t DescriptiveRawFile::intProperty(const std::string & key) const
 {
     return m_intProperties.at(key);
 }
 
-
 double DescriptiveRawFile::doubleProperty(const std::string & key) const
 {
     return m_doubleProperties.at(key);
 }
-
 
 bool DescriptiveRawFile::hasStringProperty(const std::string & key) const
 {
     return m_stringProperties.find(key) != m_stringProperties.end();
 }
 
-
 bool DescriptiveRawFile::hasIntProperty(const std::string & key) const
 {
     return m_intProperties.find(key) != m_intProperties.end();
 }
-
 
 bool DescriptiveRawFile::hasDoubleProperty(const std::string & key) const
 {
@@ -219,7 +212,7 @@ void DescriptiveRawFile::readProperties(std::ifstream & ifs, uint64_t offset)
     {
         auto type = read<PropertyType>(ifs);
 
-        std::string key = readString(ifs);
+        std::string key = read<std::string>(ifs);
 
         switch (type)
         {
@@ -232,7 +225,7 @@ void DescriptiveRawFile::readProperties(std::ifstream & ifs, uint64_t offset)
             break;
 
         case PropertyType::String:
-            m_stringProperties[key] = readString(ifs);
+            m_stringProperties[key] = read<std::string>(ifs);
             break;
 
         default:

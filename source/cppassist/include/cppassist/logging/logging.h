@@ -266,4 +266,4 @@ void fDetails(const char * format, Arguments... arguments);
 } // namespace cppassist
 
 
-#include <cppassist/logging/logging.hpp>
+#include <cppassist/logging/logging.inl>

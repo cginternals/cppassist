@@ -141,4 +141,4 @@ std::string formatString(const char * format, Args... args);
 } // namespace cppassist
 
 
-#include <cppassist/logging/formatString.hpp>
+#include <cppassist/logging/formatString.inl>
