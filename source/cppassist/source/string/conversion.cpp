@@ -7,9 +7,14 @@
 
 #if defined(__GNUG__) && !defined(__clang__) && (__GNUG__ < 5)
 // not implemented for GCC < 5
+#define CPPASSIST_CODECVT_AVAILABLE 0
+#elif defined(__clang__) && (!defined(__has_include) || !__has_include(<codecvt>))
+// not implemented for clang without codecvt header
+#define CPPASSIST_CODECVT_AVAILABLE 0
 #else
 #include <locale>
 #include <codecvt>
+#define CPPASSIST_CODECVT_AVAILABLE 1
 #endif
 
 
@@ -20,15 +25,15 @@ namespace
 // [TODO]: probably rename to decodeUTF8 as it is UTF-8 -> UCS4
 void encodeUTF8(const std::string & input, std::u32string & output)
 {
-#if defined(__GNUG__) && !defined(__clang__) && (__GNUG__ < 5)
-    #pragma message "encodeUTF8 not implemented for GCC 4.x since it depends on codecvt"
-    output.clear();
-    output.reserve(input.size());
-    std::copy(input.begin(), input.end(), std::back_inserter(output));
-#else
+#if CPPASSIST_CODECVT_AVAILABLE
     static std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> conversion;
 
     output = conversion.from_bytes(input);
+#else
+    #pragma message "encodeUTF8 not implemented since it depends on codecvt"
+    output.clear();
+    output.reserve(input.size());
+    std::copy(input.begin(), input.end(), std::back_inserter(output));
 #endif
 }
 
