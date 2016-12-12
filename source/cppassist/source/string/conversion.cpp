@@ -4,19 +4,32 @@
 #include <cassert>
 #include <algorithm>
 #include <iterator>
+
+#if defined(__GNUG__) && (__GNUG__ < 5)
+// not implemented for GCC < 5
+#else
 #include <locale>
 #include <codecvt>
+#endif
 
 
 namespace 
 {
 
 
+// [TODO]: probably rename to decodeUTF8 as it is UTF-8 -> UCS4
 void encodeUTF8(const std::string & input, std::u32string & output)
 {
+#if defined(__GNUG__) && (__GNUG__ < 5)
+    #pragma message "encodeUTF8 not implemented for GCC 4.x since it depends on codecvt"
+    output.clear();
+    output.reserve(input.size());
+    std::copy(input.begin(), input.end(), std::back_inserter(output));
+#else
     static std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> conversion;
 
     output = conversion.from_bytes(input);
+#endif
 }
 
 
