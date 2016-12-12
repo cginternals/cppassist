@@ -218,7 +218,7 @@ template <typename Callback, typename Vector, typename... Vectors>
 inline void traverse_mt(Callback callback, Vector && vector, Vectors && ... vectors)
 {
     // circumvent compiler bug, see http://stackoverflow.com/questions/14191989/how-do-i-use-variadic-perfect-forwarding-into-a-lambda
-#if defined(__GNUG__) && ((__GNUG__ == 4) && (__GNUC_MINOR__ <= 8))
+#if defined(__GNUG__) && !defined(__clang__) && ((__GNUG__ == 4) && (__GNUC_MINOR__ <= 8))
     forEach(size_t(0), vector.chunkSize(),
         std::bind([&](size_t i, Vector && vector, Vectors&& ... vectors) {
             callback(vector.chunk(i), vectors.chunk(i)...);

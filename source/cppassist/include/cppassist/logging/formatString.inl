@@ -2,8 +2,6 @@
 #pragma once
 
 
-#include <cppassist/logging/formatString.h>
-
 #include <sstream>
 #include <cassert>
 
