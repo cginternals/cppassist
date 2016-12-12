@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <iterator>
 
-#if defined(__GNUG__) && (__GNUG__ < 5)
+#if defined(__GNUG__) && !defined(__clang__) && (__GNUG__ < 5)
 // not implemented for GCC < 5
 #else
 #include <locale>
@@ -20,7 +20,7 @@ namespace
 // [TODO]: probably rename to decodeUTF8 as it is UTF-8 -> UCS4
 void encodeUTF8(const std::string & input, std::u32string & output)
 {
-#if defined(__GNUG__) && (__GNUG__ < 5)
+#if defined(__GNUG__) && !defined(__clang__) && (__GNUG__ < 5)
     #pragma message "encodeUTF8 not implemented for GCC 4.x since it depends on codecvt"
     output.clear();
     output.reserve(input.size());
