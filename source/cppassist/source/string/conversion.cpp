@@ -5,10 +5,14 @@
 #include <algorithm>
 #include <iterator>
 
+#ifndef __has_include
+    #define __has_include(x) 0
+#endif
+
 #if defined(__GNUG__) && !defined(__clang__) && (__GNUG__ < 5)
 // not implemented for GCC < 5
 #define CPPASSIST_CODECVT_AVAILABLE 0
-#elif defined(__clang__) && (!defined(__has_include) || !__has_include(<codecvt>))
+#elif defined(__clang__) && !__has_include(<codecvt>)
 // not implemented for clang without codecvt header
 #define CPPASSIST_CODECVT_AVAILABLE 0
 #else
