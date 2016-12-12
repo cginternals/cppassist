@@ -52,7 +52,7 @@ unsigned char fromString<unsigned char>(const std::string & string)
 template <>
 bool fromString<bool>(const std::string & string)
 {
-    return !(string == "" || string == "false");
+    return !(string == "" || string == "0" || string == "false");
 }
 
 template <>
