@@ -23,8 +23,8 @@ class vector
 
 public:
     using primitive_type = T;
-    using value_type = value<T, SIMD_SIZE>;
-    using allocator = cppassist::aligned_allocator<T, simd_size * sizeof(T)>;
+    using value_type = value<primitive_type, simd_size>;
+    using allocator = cppassist::aligned_allocator<value_type, simd_size * sizeof(primitive_type)>;
     using iterator = typename std::vector<value_type, allocator>::iterator;
     using const_iterator = typename std::vector<value_type, allocator>::const_iterator;
     using size_type = typename std::vector<value_type, allocator>::size_type;
