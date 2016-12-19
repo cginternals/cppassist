@@ -12,19 +12,19 @@ namespace cppassist
 
 
 template <typename... Arguments>
-void fFatal(const char * format, Arguments... arguments)
-{
-    assert(format != nullptr);
-
-    fatal() << formatString(format, arguments...);
-}
-
-template <typename... Arguments>
 void fCritical(const char * format, Arguments... arguments)
 {
     assert(format != nullptr);
 
     critical() << formatString(format, arguments...);
+}
+
+template <typename... Arguments>
+void fError(const char * format, Arguments... arguments)
+{
+    assert(format != nullptr);
+
+    error() << formatString(format, arguments...);
 }
 
 template <typename... Arguments>
@@ -52,11 +52,11 @@ void fDebug(const char * format, Arguments... arguments)
 }
 
 template <typename... Arguments>
-void fDetails(const char * format, Arguments... arguments)
+void fDebug(unsigned int debugLevel, const char * format, Arguments... arguments)
 {
     assert(format != nullptr);
 
-    debug() << formatString(format, arguments...);
+    debug(debugLevel) << formatString(format, arguments...);
 }
 
 

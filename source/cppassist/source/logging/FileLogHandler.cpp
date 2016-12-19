@@ -39,19 +39,13 @@ std::string FileLogHandler::messagePrefix(const LogMessage & message)
     return prefix + ": ";
 }
 
-std::string FileLogHandler::levelString(LogMessage::Level level)
+std::string FileLogHandler::levelString(int level)
 {
-    switch (level)
-    {
-    case LogMessage::Fatal:
-        return "#fatal";
-    case LogMessage::Critical:
-        return "#critical";
-    case LogMessage::Warning:
-        return "#warning";
-    default:
-        return "";
-    }
+         if (level == LogMessage::Critical) return "#critical";
+    else if (level == LogMessage::Error)    return "#error";
+    else if (level == LogMessage::Warning)  return "#warning";
+    else if (level >= LogMessage::Debug)    return "#debug";
+    else                                    return "";
 }
 
 

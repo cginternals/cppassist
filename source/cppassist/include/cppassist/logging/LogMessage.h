@@ -30,12 +30,11 @@ public:
     */
     enum Level
     {
-        Fatal           ///< Fatal errors
-      , Critical        ///< Cricical errors
-      , Warning         ///< Warnings
-      , Info            ///< Info messages
-      , Debug           ///< Debug messages
-      , DebugDetails    ///< Debug details
+        Critical ///< Cricical errors
+      , Error    ///< Errors
+      , Warning  ///< Warnings
+      , Info     ///< Info messages
+      , Debug    ///< Debug messages (Use Debug + x for further debug levels)
     };
 
 
@@ -51,7 +50,7 @@ public:
     *  @param[in] context
     *    User defined context string
     */
-    LogMessage(Level level, const std::string & message, const std::string & context);
+    LogMessage(int level, const std::string & message, const std::string & context);
 
     /**
     *  @brief
@@ -60,7 +59,7 @@ public:
     *  @return
     *    Log level
     */
-    Level level() const;
+    int level() const;
 
     /**
     *  @brief
@@ -82,7 +81,7 @@ public:
 
 
 protected:
-    Level       m_level;   ///< Log level
+    int         m_level;   ///< Log level
     std::string m_message; ///< Log message
     std::string m_context; ///< User defined context string
 };

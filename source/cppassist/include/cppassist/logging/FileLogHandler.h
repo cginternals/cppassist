@@ -34,7 +34,7 @@ public:
 
 protected:
     static std::string messagePrefix(const LogMessage & message);
-    static std::string levelString(LogMessage::Level level);
+    static std::string levelString(int level);
 
 
 protected:
