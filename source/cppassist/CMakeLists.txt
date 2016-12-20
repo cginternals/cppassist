@@ -60,10 +60,7 @@ set(headers
     ${include_path}/logging/LogMessage.h
     ${include_path}/logging/LogMessageBuilder.h
     ${include_path}/logging/LogMessageBuilder.inl
-    ${include_path}/logging/formatString.h
-    ${include_path}/logging/formatString.inl
     ${include_path}/logging/logging.h
-    ${include_path}/logging/logging.inl
     
     ${include_path}/simd/simd.h
     ${include_path}/simd/algorithm.h
@@ -112,7 +109,6 @@ set(sources
     ${source_path}/logging/FileLogHandler.cpp
     ${source_path}/logging/LogMessage.cpp
     ${source_path}/logging/LogMessageBuilder.cpp
-    ${source_path}/logging/formatString.cpp
     ${source_path}/logging/logging.cpp
 
     ${source_path}/string/conversion.cpp

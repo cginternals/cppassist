@@ -11,7 +11,7 @@ namespace cppassist
 {
 
 
-LogMessageBuilder::LogMessageBuilder(LogMessage::Level level, AbstractLogHandler * handler, const std::string & context)
+LogMessageBuilder::LogMessageBuilder(int level, AbstractLogHandler * handler, const std::string & context)
 : m_level(level)
 , m_handler(handler)
 , m_context(context)

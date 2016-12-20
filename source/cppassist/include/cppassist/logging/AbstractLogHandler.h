@@ -4,6 +4,8 @@
 
 #include <cppassist/cppassist_api.h>
 
+#include <string>
+
 
 namespace cppassist
 {
@@ -47,6 +49,11 @@ public:
     *    Log message
     */
     virtual void handle(const LogMessage & message) = 0;
+
+
+protected:
+    static std::string messagePrefix(const LogMessage & message);
+    static std::string levelString(int level);
 };
 
 
