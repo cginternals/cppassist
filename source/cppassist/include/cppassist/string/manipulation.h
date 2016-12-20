@@ -44,6 +44,38 @@ CPPASSIST_API std::string trim(const std::string & string, bool removeAllWhitesp
 
 /**
 *  @brief
+*    Pad string with character (add to the left until the given size is reached)
+*
+*  @param[in] string
+*    String
+*  @param[in] length
+*    Desired string length
+*  @param[in] c
+*    Character that is used to pad the string
+*
+*  @return
+*    String
+*/
+CPPASSIST_API std::string padLeft(const std::string & string, size_t length, char c = ' ');
+
+/**
+*  @brief
+*    Pad string with character (add to the right until the given size is reached)
+*
+*  @param[in] string
+*    String
+*  @param[in] length
+*    Desired string length
+*  @param[in] c
+*    Character that is used to pad the string
+*
+*  @return
+*    String
+*/
+CPPASSIST_API std::string padRight(const std::string & string, size_t length, char c = ' ');
+
+/**
+*  @brief
 *    Remove all occurences of provided characters from the string.
 *
 *  @param[in] string

@@ -96,6 +96,12 @@ set(headers
 
     ${include_path}/cmdline/ArgumentParser.h
     ${include_path}/cmdline/ArgumentParser.inl
+    ${include_path}/cmdline/CommandLineProgram.h
+    ${include_path}/cmdline/CommandLineAction.h
+    ${include_path}/cmdline/CommandLineCommand.h
+    ${include_path}/cmdline/CommandLineOption.h
+    ${include_path}/cmdline/CommandLineSwitch.h
+    ${include_path}/cmdline/CommandLineParameter.h
 )
 
 set(sources
@@ -122,6 +128,12 @@ set(sources
     ${source_path}/threading/parallelfor.cpp
 
     ${source_path}/cmdline/ArgumentParser.cpp
+    ${source_path}/cmdline/CommandLineProgram.cpp
+    ${source_path}/cmdline/CommandLineAction.cpp
+    ${source_path}/cmdline/CommandLineCommand.cpp
+    ${source_path}/cmdline/CommandLineOption.cpp
+    ${source_path}/cmdline/CommandLineSwitch.cpp
+    ${source_path}/cmdline/CommandLineParameter.cpp
 )
 
 # Group source files

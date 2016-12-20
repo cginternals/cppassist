@@ -21,25 +21,29 @@ void ArgumentParser::parse(int argc, char * argv[])
     m_options.clear();
     m_params.clear();
 
-    for (int i=1; i<argc; i++) {
+    for (int i=1; i<argc; i++)
+    {
         // Get current and next argument
         std::string arg  = argv[i];
         std::string next = (i+1 < argc ? argv[i+1] : "");
 
         // Options with value (--option-name <value>)
-        if (arg.find("--") == 0) {
+        if (arg.find("--") == 0)
+        {
             // Save value
             m_options[arg] = next;
             i++;
         }
 
         // Options without value (-option-name)
-        else if (arg.find("-") == 0) {
+        else if (arg.find("-") == 0)
+        {
             m_options[arg] = "true";
         }
 
         // Additional parameters
-        else {
+        else
+        {
             m_params.push_back(arg);
         }
     }

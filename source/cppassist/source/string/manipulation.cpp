@@ -34,6 +34,22 @@ std::string trim(const std::string & string, bool removeAllWhitespace)
     return regex_namespace::regex_replace(string, removeAllWhitespace ? trimRegexRemoveAllWhiteSpace : trimRegex, std::string());
 }
 
+std::string padLeft(const std::string & string, size_t length, char c)
+{
+    std::string padded = string;
+    while (padded.size() < length) padded = c + padded;
+
+    return padded;
+}
+
+std::string padRight(const std::string & string, size_t length, char c)
+{
+    std::string padded = string;
+    while (padded.size() < length) padded = padded + c;
+
+    return padded;
+}
+
 std::string stripped(const std::string & string, const std::set<char> & blacklist)
 {
     auto result = string;
