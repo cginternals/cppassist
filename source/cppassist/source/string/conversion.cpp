@@ -30,18 +30,17 @@ namespace
 void encodeUTF8(const std::string & input, std::u32string & output)
 {
 #if CPPASSIST_CODECVT_AVAILABLE
-#  if defined(_MSC_VER) && (_MSC_VER == 1900)
-    // MSVC 2015 was compiled using uint32_t instead of char32_t, see https://social.msdn.microsoft.com/Forums/expression/en-US/8f40dcd8-c67f-4eba-9134-a19b9178e481/vs-2015-rc-linker-stdcodecvt-error?forum=vcgeneral
-    static std::wstring_convert<std::codecvt_utf8<uint32_t>, uint32_t> conversion;
+    #if defined(_MSC_VER) && (_MSC_VER == 1900)
+        // MSVC 2015 was compiled using uint32_t instead of char32_t, see https://social.msdn.microsoft.com/Forums/expression/en-US/8f40dcd8-c67f-4eba-9134-a19b9178e481/vs-2015-rc-linker-stdcodecvt-error?forum=vcgeneral
+        static std::wstring_convert<std::codecvt_utf8<uint32_t>, uint32_t> conversion;
 
-    auto temp = conversion.from_bytes(input);
-    output = std::u32string(temp.begin(), temp.end());
-#  else
-    static std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> conversion;
+        const auto temp = conversion.from_bytes(input);
+        output = std::u32string(temp.begin(), temp.end());
+    #else
+        static std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> conversion;
 
-    output = conversion.from_bytes(input);
-#  endif
-
+        output = conversion.from_bytes(input);
+    #endif
 #else
     #pragma message "encodeUTF8 not implemented since it depends on codecvt"
     output.clear();
