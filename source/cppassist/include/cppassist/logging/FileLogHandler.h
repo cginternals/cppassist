@@ -33,11 +33,6 @@ public:
 
 
 protected:
-    static std::string messagePrefix(const LogMessage & message);
-    static std::string levelString(LogMessage::Level level);
-
-
-protected:
     std::string m_logfile; ///< File name of the log file
 };
 

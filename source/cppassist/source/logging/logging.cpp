@@ -10,8 +10,8 @@
 
 namespace
 {
-    cppassist::LogMessage::Level    l_verbosityLevel = cppassist::LogMessage::Info;
-    cppassist::AbstractLogHandler * l_logHandler     = new cppassist::ConsoleLogHandler();
+    int                             g_verbosityLevel = cppassist::LogMessage::Info;
+    cppassist::AbstractLogHandler * g_logHandler     = new cppassist::ConsoleLogHandler();
 }
 
 
@@ -21,58 +21,58 @@ namespace cppassist
 
 AbstractLogHandler * loggingHandler()
 {
-    return l_logHandler;
+    return g_logHandler;
 }
 
-void setLoggingHandler(AbstractLogHandler* handler)
+void setLoggingHandler(AbstractLogHandler * handler)
 {
-    delete l_logHandler;
-    l_logHandler = handler;
+    delete g_logHandler;
+    g_logHandler = handler;
 }
 
-LogMessage::Level verbosityLevel()
+int verbosityLevel()
 {
-    return l_verbosityLevel;
+    return g_verbosityLevel;
 }
 
-void setVerbosityLevel(LogMessage::Level verbosity)
+void setVerbosityLevel(int verbosity)
 {
-    l_verbosityLevel = verbosity;
+    g_verbosityLevel = verbosity;
 }
 
-LogMessageBuilder log(const std::string & context, LogMessage::Level level)
+LogMessageBuilder log(int level, const std::string & context)
 {
-    return LogMessageBuilder(level, level <= l_verbosityLevel ? l_logHandler : nullptr, context);
+    return LogMessageBuilder(level, level <= g_verbosityLevel ? g_logHandler : nullptr, context);
 }
 
 LogMessageBuilder critical(const std::string & context)
 {
-    return log(context, LogMessage::Critical);
+    return log(LogMessage::Critical, context);
 }
 
-LogMessageBuilder fatal(const std::string & context)
+LogMessageBuilder error(const std::string & context)
 {
-    return log(context, LogMessage::Fatal);
+    return log(LogMessage::Error, context);
 }
 
 LogMessageBuilder warning(const std::string & context)
 {
-    return log(context, LogMessage::Warning);
+    return log(LogMessage::Warning, context);
 }
 
 LogMessageBuilder info(const std::string & context)
 {
-    return log(context, LogMessage::Info);
+    return log(LogMessage::Info, context);
 }
 
 LogMessageBuilder debug(const std::string & context)
 {
-    return log(context, LogMessage::Debug);
+    return log(LogMessage::Debug, context);
 }
 
-LogMessageBuilder details(const std::string & context)
+LogMessageBuilder debug(unsigned int debugLevel, const std::string & context)
 {
-    return log(context, LogMessage::DebugDetails);
+    return log(LogMessage::Debug + debugLevel, context);
 }
 
 

@@ -63,7 +63,7 @@ public:
     *  @param[in] context
     *    User defined context string
     */
-    LogMessageBuilder(LogMessage::Level level, AbstractLogHandler * handler, const std::string & context);
+    LogMessageBuilder(int level, AbstractLogHandler * handler, const std::string & context);
 
     /**
     *  @brief
@@ -118,10 +118,10 @@ public:
 
 
 protected:
-    LogMessage::Level m_level;                   ///< Current log level
-    AbstractLogHandler * m_handler;              ///< Log handler (must NOT be null!)
-    std::string m_context;                       ///< User define context string
-    std::shared_ptr<std::stringstream> m_stream; ///< Used string stream
+    int                                m_level;   ///< Current log level
+    AbstractLogHandler               * m_handler; ///< Log handler (must NOT be null!)
+    std::string                        m_context; ///< User define context string
+    std::shared_ptr<std::stringstream> m_stream;  ///< Used string stream
 };
 
 
