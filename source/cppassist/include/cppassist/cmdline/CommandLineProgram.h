@@ -201,6 +201,28 @@ public:
 
     /**
     *  @brief
+    *    Execute command line action
+    *
+    *    This function is called from execute(), when an action has
+    *    been identified. Override this function to insert code that
+    *    shall allways be executed (when no error has occured),
+    *    regardless of the selected action. For example, a program
+    *    can apply its global options here. Afterwards, the function
+    *    is expected to call the specified action and return its
+    *    error code.
+    *
+    *  @param[in] argc
+    *    Number of arguments
+    *  @param[in] argv
+    *    List of arguments
+    *
+    *  @return
+    *    Error code (0 on success)
+    */
+    virtual int executeAction(CommandLineAction * action);
+
+    /**
+    *  @brief
     *    Check if there were any errors during parsing
     *
     *  @return

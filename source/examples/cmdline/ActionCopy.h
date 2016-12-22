@@ -6,26 +6,38 @@
 #include <cppassist/cmdline/CommandLineCommand.h>
 #include <cppassist/cmdline/CommandLineParameter.h>
 
-#include <DefaultOptions.h>
+
+class Program;
 
 
-namespace cppassist
-{
-    class CommandLineProgram;
-}
-
-
+/**
+*  @brief
+*    Command 'cp'
+*/
 class ActionCopy : public cppassist::CommandLineAction
 {
 public:
-    ActionCopy(DefaultOptions & defaultOptions);
+    /**
+    *  @brief
+    *    Constructor
+    *
+    *  @param[in] program
+    *    Main program
+    */
+    ActionCopy(Program & program);
+
+    /**
+    *  @brief
+    *    Destructor
+    */
     ~ActionCopy();
 
-    virtual int execute(cppassist::CommandLineProgram * program) override;
+    // Virtual cppassist::CommandLineAction functions
+    virtual int execute() override;
 
 
 protected:
-    DefaultOptions                  & m_defaultOptions;
+    Program                         & m_program;
     cppassist::CommandLineCommand     m_commandCopy;
     cppassist::CommandLineParameter   m_paramSrc;
 };

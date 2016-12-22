@@ -6,26 +6,38 @@
 #include <cppassist/cmdline/CommandLineSwitch.h>
 #include <cppassist/cmdline/CommandLineParameter.h>
 
-#include <DefaultOptions.h>
+
+class Program;
 
 
-namespace cppassist
-{
-    class CommandLineProgram;
-}
-
-
+/**
+*  @brief
+*    Command 'help'
+*/
 class ActionHelp : public cppassist::CommandLineAction
 {
 public:
-    ActionHelp(DefaultOptions & defaultOptions);
+    /**
+    *  @brief
+    *    Constructor
+    *
+    *  @param[in] program
+    *    Main program
+    */
+    ActionHelp(Program & program);
+
+    /**
+    *  @brief
+    *    Destructor
+    */
     ~ActionHelp();
 
-    virtual int execute(cppassist::CommandLineProgram * program) override;
+    // Virtual cppassist::CommandLineAction functions
+    virtual int execute() override;
 
 
 protected:
-    DefaultOptions                  & m_defaultOptions;
+    Program                         & m_program;
     cppassist::CommandLineSwitch      m_switchHelp;
     cppassist::CommandLineParameter   m_paramCommand;
 };

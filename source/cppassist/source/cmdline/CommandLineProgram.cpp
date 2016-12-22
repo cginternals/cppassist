@@ -195,7 +195,7 @@ int CommandLineProgram::execute(int argc, char * argv[])
     if (selectedAction() && !hasErrors())
     {
         // Execute action
-        return selectedAction()->execute(this);
+        return executeAction(selectedAction());
     }
 
     // Print help
@@ -213,6 +213,16 @@ int CommandLineProgram::execute(int argc, char * argv[])
     }
 
     // Return without error
+    return 0;
+}
+
+int CommandLineProgram::executeAction(CommandLineAction * action)
+{
+    if (action)
+    {
+        return action->execute();
+    }
+
     return 0;
 }
 

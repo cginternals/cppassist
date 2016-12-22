@@ -7,26 +7,38 @@
 #include <cppassist/cmdline/CommandLineOption.h>
 #include <cppassist/cmdline/CommandLineParameter.h>
 
-#include <DefaultOptions.h>
+
+class Program;
 
 
-namespace cppassist
-{
-    class CommandLineProgram;
-}
-
-
+/**
+*  @brief
+*    Command 'count'
+*/
 class ActionCount : public cppassist::CommandLineAction
 {
 public:
-    ActionCount(DefaultOptions & defaultOptions);
+    /**
+    *  @brief
+    *    Constructor
+    *
+    *  @param[in] program
+    *    Main program
+    */
+    ActionCount(Program & program);
+
+    /**
+    *  @brief
+    *    Destructor
+    */
     ~ActionCount();
 
-    virtual int execute(cppassist::CommandLineProgram * program) override;
+    // Virtual cppassist::CommandLineAction functions
+    virtual int execute() override;
 
 
 protected:
-    DefaultOptions                  & m_defaultOptions;
+    Program                         & m_program;
     cppassist::CommandLineCommand     m_commandCount;
     cppassist::CommandLineOption      m_optionStep;
     cppassist::CommandLineParameter   m_paramFrom;

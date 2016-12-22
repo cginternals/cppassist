@@ -1,23 +1,23 @@
 
 #include "ActionCount.h"
 
-#include <iostream>
-
 #include <cppassist/logging/logging.h>
+
+#include "Program.h"
 
 
 using namespace cppassist;
 
 
-ActionCount::ActionCount(DefaultOptions & defaultOptions)
+ActionCount::ActionCount(Program & program)
 : CommandLineAction("count", "Count from one number to another")
-, m_defaultOptions(defaultOptions)
+, m_program(program)
 , m_commandCount("count")
 , m_optionStep("--increment-by", "-i", "step", "Number that is added per iteration", CommandLineOption::Optional)
 , m_paramFrom("from", CommandLineParameter::NonOptional)
 , m_paramTo("to", CommandLineParameter::NonOptional)
 {
-    m_defaultOptions.apply(*this);
+    m_program.addDefaultOptionsTo(*this);
 
     add(&m_commandCount);
     add(&m_optionStep);
@@ -29,10 +29,10 @@ ActionCount::~ActionCount()
 {
 }
 
-int ActionCount::execute(CommandLineProgram *)
+int ActionCount::execute()
 {
     // Display verbosity level
-    info() << "Verbosity level: " << m_defaultOptions.m_switchVerbose.count() << std::endl;
+    info() << "Verbosity level: " << m_program.m_switchVerbose.count() << std::endl;
 
     // Count
     info() << "Let me count for you ..." << std::endl;

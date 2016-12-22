@@ -1,21 +1,21 @@
 
 #include "ActionCopy.h"
 
-#include <iostream>
-
 #include <cppassist/logging/logging.h>
+
+#include "Program.h"
 
 
 using namespace cppassist;
 
 
-ActionCopy::ActionCopy(DefaultOptions & defaultOptions)
+ActionCopy::ActionCopy(Program & program)
 : CommandLineAction("cp", "Copy files")
-, m_defaultOptions(defaultOptions)
+, m_program(program)
 , m_commandCopy("cp")
 , m_paramSrc("path", CommandLineParameter::NonOptional)
 {
-    m_defaultOptions.apply(*this);
+    m_program.addDefaultOptionsTo(*this);
 
     setOptionalParametersAllowed(true);
     setOptionalParameterName("path");
@@ -28,10 +28,10 @@ ActionCopy::~ActionCopy()
 {
 }
 
-int ActionCopy::execute(CommandLineProgram *)
+int ActionCopy::execute()
 {
     // Display verbosity level
-    info() << "Verbosity level: " << m_defaultOptions.m_switchVerbose.count() << std::endl;
+    info() << "Verbosity level: " << m_program.m_switchVerbose.count() << std::endl;
 
     // Copy
     info() << "Let me copy that for you ...";

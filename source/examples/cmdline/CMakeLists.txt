@@ -20,17 +20,15 @@ message(STATUS "Example ${target}")
 # 
 
 set(sources
-    DefaultOptions.h
-    DefaultOptions.cpp
-    ActionHelp.h
-    ActionHelp.cpp
-    ActionCount.h
-    ActionCount.cpp
-    ActionCopy.h
-    ActionCopy.cpp
-    Program.h
-    Program.cpp
     main.cpp
+    Program.cpp
+    Program.h
+    ActionHelp.cpp
+    ActionHelp.h
+    ActionCount.cpp
+    ActionCount.h
+    ActionCopy.cpp
+    ActionCopy.h
 )
 
 
