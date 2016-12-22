@@ -173,7 +173,7 @@ std::string CommandLineProgram::help(CommandLineAction * forAction) const
 
 void CommandLineProgram::print(const std::string & msg)
 {
-    cppassist::log() << msg;
+    cppassist::info() << msg;
 }
 
 void CommandLineProgram::reset()
