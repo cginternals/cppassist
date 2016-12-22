@@ -372,7 +372,7 @@ const std::vector<std::string> & CommandLineAction::optionalParameters() const
     return m_optionalParameters;
 }
 
-int CommandLineAction::execute()
+int CommandLineAction::execute(CommandLineProgram *)
 {
     // To be implement in derived classes
     return 0;

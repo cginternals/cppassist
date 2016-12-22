@@ -12,6 +12,7 @@ namespace cppassist
 {
 
 
+class CommandLineProgram;
 class CommandLineCommand;
 class CommandLineOption;
 class CommandLineSwitch;
@@ -342,10 +343,13 @@ public:
     *  @brief
     *    Execute action
     *
+    *  @param[in] program
+    *    The program instance (never null)
+    *
     *  @return
     *    Error code (0 on success)
     */
-    virtual int execute();
+    virtual int execute(CommandLineProgram * program);
 
 
 protected:
