@@ -30,9 +30,6 @@ ActionCopy::~ActionCopy()
 
 int ActionCopy::execute()
 {
-    // Display verbosity level
-    info() << "Verbosity level: " << m_program.m_switchVerbose.count() << std::endl;
-
     // Copy
     info() << "Let me copy that for you ...";
     info() << "- " << m_paramSrc.value();

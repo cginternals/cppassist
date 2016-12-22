@@ -38,6 +38,9 @@ public:
     */
     void addDefaultOptionsTo(cppassist::CommandLineAction & action);
 
+    // Virtual cppassist::CommandLineProgram functions
+    virtual int executeAction(cppassist::CommandLineAction * action) override;
+
 
 public:
     // Global options

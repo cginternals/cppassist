@@ -31,9 +31,6 @@ ActionCount::~ActionCount()
 
 int ActionCount::execute()
 {
-    // Display verbosity level
-    info() << "Verbosity level: " << m_program.m_switchVerbose.count() << std::endl;
-
     // Count
     info() << "Let me count for you ..." << std::endl;
 

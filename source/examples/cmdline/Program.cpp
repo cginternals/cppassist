@@ -3,6 +3,8 @@
 
 #include <cppassist/cppassist-version.h>
 
+#include <cppassist/logging/logging.h>
+
 
 using namespace cppassist;
 
@@ -29,4 +31,28 @@ Program::~Program()
 void Program::addDefaultOptionsTo(CommandLineAction & action)
 {
     action.add(&m_switchVerbose);
+}
+
+int Program::executeAction(CommandLineAction * action)
+{
+    // Set log level
+    int logLevel = LogMessage::Info;
+
+    if (m_switchVerbose.activated())
+    {
+        logLevel += m_switchVerbose.count();
+    }
+
+    setVerbosityLevel(logLevel);
+
+    // Display verbosity level
+    info() << "Verbosity level: " << m_switchVerbose.count() << std::endl;
+
+    // Call action
+    if (action)
+    {
+        return action->execute();
+    }
+
+    return 0;
 }
