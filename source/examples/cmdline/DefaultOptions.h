@@ -6,11 +6,19 @@
 #include <cppassist/cmdline/CommandLineSwitch.h>
 
 
+namespace cppassist
+{
+    class CommandLineAction;
+}
+
+
 class DefaultOptions
 {
 public:
-    DefaultOptions(cppassist::CommandLineAction & action);
+    DefaultOptions();
     ~DefaultOptions();
+
+    void apply(cppassist::CommandLineAction & action);
 
 
 public:

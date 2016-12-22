@@ -7,12 +7,14 @@
 using namespace cppassist;
 
 
-ActionHelp::ActionHelp()
+ActionHelp::ActionHelp(DefaultOptions & defaultOptions)
 : CommandLineAction("help", "Print help text")
-, m_defaultOptions(*this)
+, m_defaultOptions(defaultOptions)
 , m_switchHelp("--help", "-h", "Print help text", CommandLineSwitch::NonOptional)
 , m_paramCommand("command", CommandLineParameter::Optional)
 {
+    m_defaultOptions.apply(*this);
+
     add(&m_switchHelp);
     add(&m_paramCommand);
 }

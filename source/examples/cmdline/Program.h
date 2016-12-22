@@ -4,6 +4,7 @@
 
 #include <cppassist/cmdline/CommandLineProgram.h>
 
+#include "DefaultOptions.h"
 #include "ActionHelp.h"
 #include "ActionCount.h"
 #include "ActionCopy.h"
@@ -17,7 +18,8 @@ public:
 
 
 protected:
-    ActionHelp  m_actionHelp;
-    ActionCount m_actionCount;
-    ActionCopy  m_actionCopy;
+    DefaultOptions m_defaultOptions;
+    ActionHelp     m_actionHelp;
+    ActionCount    m_actionCount;
+    ActionCopy     m_actionCopy;
 };

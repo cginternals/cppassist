@@ -2,10 +2,11 @@
 #pragma once
 
 
+#include <cppassist/cmdline/CommandLineAction.h>
 #include <cppassist/cmdline/CommandLineCommand.h>
 #include <cppassist/cmdline/CommandLineParameter.h>
 
-#include "DefaultOptions.h"
+#include <DefaultOptions.h>
 
 
 namespace cppassist
@@ -17,14 +18,14 @@ namespace cppassist
 class ActionCopy : public cppassist::CommandLineAction
 {
 public:
-    ActionCopy();
+    ActionCopy(DefaultOptions & defaultOptions);
     ~ActionCopy();
 
     virtual int execute(cppassist::CommandLineProgram * program) override;
 
 
 protected:
-    DefaultOptions                  m_defaultOptions;
-    cppassist::CommandLineCommand   m_commandCopy;
-    cppassist::CommandLineParameter m_paramSrc;
+    DefaultOptions                  & m_defaultOptions;
+    cppassist::CommandLineCommand     m_commandCopy;
+    cppassist::CommandLineParameter   m_paramSrc;
 };

@@ -9,14 +9,16 @@
 using namespace cppassist;
 
 
-ActionCount::ActionCount()
+ActionCount::ActionCount(DefaultOptions & defaultOptions)
 : CommandLineAction("count", "Count from one number to another")
-, m_defaultOptions(*this)
+, m_defaultOptions(defaultOptions)
 , m_commandCount("count")
 , m_optionStep("--increment-by", "-i", "step", "Number that is added per iteration", CommandLineOption::Optional)
 , m_paramFrom("from", CommandLineParameter::NonOptional)
 , m_paramTo("to", CommandLineParameter::NonOptional)
 {
+    m_defaultOptions.apply(*this);
+
     add(&m_commandCount);
     add(&m_optionStep);
     add(&m_paramFrom);

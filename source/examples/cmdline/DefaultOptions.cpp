@@ -5,12 +5,16 @@
 using namespace cppassist;
 
 
-DefaultOptions::DefaultOptions(CommandLineAction & action)
+DefaultOptions::DefaultOptions()
 : m_switchVerbose("--verbose", "-v", "Make output more verbose")
 {
-    action.add(&m_switchVerbose);
 }
 
 DefaultOptions::~DefaultOptions()
 {
+}
+
+void DefaultOptions::apply(CommandLineAction & action)
+{
+    action.add(&m_switchVerbose);
 }

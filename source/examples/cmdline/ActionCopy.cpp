@@ -9,12 +9,14 @@
 using namespace cppassist;
 
 
-ActionCopy::ActionCopy()
+ActionCopy::ActionCopy(DefaultOptions & defaultOptions)
 : CommandLineAction("cp", "Copy files")
-, m_defaultOptions(*this)
+, m_defaultOptions(defaultOptions)
 , m_commandCopy("cp")
 , m_paramSrc("path", CommandLineParameter::NonOptional)
 {
+    m_defaultOptions.apply(*this);
+
     setOptionalParametersAllowed(true);
     setOptionalParameterName("path");
 
