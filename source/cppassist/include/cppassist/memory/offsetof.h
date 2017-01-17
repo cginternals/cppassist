@@ -16,4 +16,4 @@ std::ptrdiff_t offset(Type Class::*member);
 } // namespace cppassist
 
 
-#include <cppassist/memory/offsetof.hpp>
+#include <cppassist/memory/offsetof.inl>
