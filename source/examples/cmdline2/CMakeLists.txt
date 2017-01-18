@@ -9,7 +9,7 @@
 # 
 
 # Target name
-set(target cmdline-example)
+set(target cmdline-example2)
 
 # Exit here if required dependencies are not met
 message(STATUS "Example ${target}")
@@ -21,14 +21,6 @@ message(STATUS "Example ${target}")
 
 set(sources
     main.cpp
-    Program.cpp
-    Program.h
-    ActionHelp.cpp
-    ActionHelp.h
-    ActionCount.cpp
-    ActionCount.h
-    ActionCopy.cpp
-    ActionCopy.h
 )
 
 

@@ -1,16 +1,9 @@
 
-#include <cppassist/cmdline/ArgumentParser.h>
-
-
-using namespace cppassist;
+#include "Program.h"
 
 
 int main(int argc, char * argv[])
 {
-    ArgumentParser arguments;
-    arguments.parse(argc, argv);
-
-    arguments.print();
-
-    return 0;
+    Program program;
+    return program.execute(argc, argv);
 }
