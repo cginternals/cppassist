@@ -7,6 +7,8 @@
 
 namespace cppassist
 {
+namespace string
+{
 
 
 template <typename Type>
@@ -26,5 +28,6 @@ std::string toString(const Type & value)
     return stream.str();
 }
 
-    
+
+} // namespace string
 } // namespace cppassist

@@ -27,6 +27,8 @@ const regex_namespace::regex trimRegexRemoveAllWhiteSpace("\\s+");
 
 namespace cppassist
 {
+namespace string
+{
 
 
 std::string trim(const std::string & string, bool removeAllWhitespace)
@@ -113,4 +115,5 @@ bool hasSuffix(const std::string & string, const std::string & suffix)
 }
 
 
+} // namespace string
 } // namespace cppassist

@@ -12,6 +12,8 @@
 
 namespace cppassist
 {
+namespace fs
+{
 
 
 int makeDir(const std::string & path)
@@ -24,4 +26,5 @@ int makeDir(const std::string & path)
 }
 
 
+} // namespace fs
 } // namespace cppassist

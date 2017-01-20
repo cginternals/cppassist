@@ -6,6 +6,8 @@
 
 namespace cppassist
 {
+namespace fs
+{
 
 
 bool readFile(const std::string & filePath, std::string & content)
@@ -30,4 +32,5 @@ std::string readFile(const std::string & filePath)
 }
 
 
+} // namespace fs
 } // namespace cppassist

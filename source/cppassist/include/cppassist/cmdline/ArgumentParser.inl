@@ -16,7 +16,7 @@ T ArgumentParser::value(const std::string & option, const T & defaultValue) cons
         return defaultValue;
     }
 
-    return fromString<T>(it->second);
+    return string::fromString<T>(it->second);
 }
 
 

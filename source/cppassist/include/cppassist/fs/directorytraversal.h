@@ -11,6 +11,8 @@
 
 namespace cppassist
 {
+namespace fs
+{
 
 
 /**
@@ -93,4 +95,5 @@ CPPASSIST_API std::vector<std::string> scanDirectory(const std::string & directo
 CPPASSIST_API void scanDirectory(const std::string & directory, const std::string & fileExtension, bool recursive, const std::function<void(const std::string &)> & callback);
 
 
+} // namespace fs
 } // namespace cppassist

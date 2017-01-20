@@ -68,7 +68,7 @@ bool RawFile::readFile()
 {
     m_data.clear();
 
-    if (!cppassist::readFile(m_filePath, m_data))
+    if (!fs::readFile(m_filePath, m_data))
     {
         std::cerr << "Reading from file \"" << m_filePath << "\" failed." << std::endl;
         return false;

@@ -7,6 +7,8 @@
 
 namespace cppassist
 {
+namespace string
+{
 
 
 template <class Iterable>
@@ -25,5 +27,6 @@ std::string join(const Iterable & iterable, const std::string & separator)
     return stream.str();
 }
 
-    
+
+} // namespace string
 } // namespace cppassist

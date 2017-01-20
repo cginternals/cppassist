@@ -11,6 +11,28 @@
 namespace cppassist
 {
 
+
+//@{
+/**
+*  @brief
+*    String encoding
+*
+*    This enum is mainly used to support the conversion of strings or
+*    collections of characters to UTF-32.
+*/
+enum class Encoding : unsigned int
+{
+    ANSI
+,   ASCII = Encoding::ANSI // for both ANSI and ASCII 1 byte in a std::string or char is used to encode it
+,   UTF8
+};
+//@}
+
+
+namespace string
+{
+
+
 //@{
 /**
 *  @brief
@@ -62,20 +84,6 @@ CPPASSIST_API std::string toString<bool>(const bool & value);
 //@{
 /**
 *  @brief
-*    String encoding
-*
-*    This enum is mainly used to support the conversion of strings or
-*    collections of characters to UTF-32.
-*/
-enum class Encoding : unsigned int
-{
-    ANSI
-,   ASCII = Encoding::ANSI // for both ANSI and ASCII 1 byte in a std::string or char is used to encode it
-,   UTF8
-};
-
-/**
-*  @brief
 *    Encode string to UTF-32
 *
 *  @param[in] input
@@ -99,6 +107,7 @@ CPPASSIST_API std::u32string encode(const std::string & input, Encoding encoding
 //@}
 
 
+} // namespace string
 } // namespace cppassist
 
 

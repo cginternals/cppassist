@@ -55,6 +55,8 @@ void encodeUTF8(const std::string & input, std::u32string & output)
 
 namespace cppassist
 {
+namespace string
+{
 
 
 template <>
@@ -166,4 +168,5 @@ std::u32string encode(const std::string & input, const Encoding encoding)
 //}
 
 
+} // namespace string
 } // namespace cppassist

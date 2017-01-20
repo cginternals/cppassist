@@ -9,6 +9,8 @@
 
 namespace cppassist 
 {
+namespace fs
+{
 
 
 /**
@@ -38,4 +40,5 @@ CPPASSIST_API bool readFile(const std::string & filePath, std::string & content)
 CPPASSIST_API std::string readFile(const std::string & filePath);
 
 
+} // namespace fs
 } // namespace cppassist
