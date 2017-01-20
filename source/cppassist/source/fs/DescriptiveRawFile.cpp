@@ -1,5 +1,5 @@
 
-#include <cppassist/io/DescriptiveRawFile.h>
+#include <cppassist/fs/DescriptiveRawFile.h>
 
 #include <algorithm>
 #include <fstream>

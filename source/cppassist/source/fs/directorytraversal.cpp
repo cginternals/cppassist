@@ -1,5 +1,5 @@
 
-#include <cppassist/io/directorytraversal.h>
+#include <cppassist/fs/directorytraversal.h>
 
 #include <cassert>
 #include <iostream>
@@ -11,7 +11,7 @@
     #include <dirent.h>
 #endif
 
-#include <cppassist/io/FilePath.h>
+#include <cppassist/fs/FilePath.h>
 
 
 namespace cppassist

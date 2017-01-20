@@ -1,10 +1,10 @@
 
-#include <cppassist/io/RawFile.h>
+#include <cppassist/fs/RawFile.h>
 
 #include <fstream>
 #include <iostream>
 
-#include <cppassist/io/readfile.h>
+#include <cppassist/fs/readfile.h>
 
 
 namespace cppassist

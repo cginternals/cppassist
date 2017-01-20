@@ -1,5 +1,5 @@
 
-#include <cppassist/io/fs.h>
+#include <cppassist/fs/fs.h>
 
 #ifdef WIN32
     #include <stdlib.h>

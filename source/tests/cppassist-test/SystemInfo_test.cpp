@@ -1,7 +1,7 @@
 
 #include <gmock/gmock.h>
 
-#include <cppassist/io/SystemInfo.h>
+#include <cppassist/fs/SystemInfo.h>
 
 
 using namespace cppassist;

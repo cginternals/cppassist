@@ -1,5 +1,5 @@
 
-#include <cppassist/io/FilePath.h>
+#include <cppassist/fs/FilePath.h>
 
 #include <algorithm>
 

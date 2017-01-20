@@ -1,7 +1,7 @@
 
 #include <gmock/gmock.h>
 
-#include <cppassist/io/FilePath.h>
+#include <cppassist/fs/FilePath.h>
 
 
 using namespace cppassist;
