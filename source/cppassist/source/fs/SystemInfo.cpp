@@ -1,7 +1,7 @@
 
 #include <stdlib.h>
 
-#include <cppassist/io/SystemInfo.h>
+#include <cppassist/fs/SystemInfo.h>
 
 
 namespace

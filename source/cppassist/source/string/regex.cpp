@@ -14,6 +14,8 @@
 
 namespace cppassist
 {
+namespace string
+{
 
 
 bool matchesRegex(const std::string & string, const std::string & regex)
@@ -38,4 +40,5 @@ std::vector<std::string> extract(const std::string & string, const std::string &
 }
 
 
+} // namespace string
 } // namespace cppassist

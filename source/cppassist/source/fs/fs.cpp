@@ -1,5 +1,5 @@
 
-#include <cppassist/io/fs.h>
+#include <cppassist/fs/fs.h>
 
 #ifdef WIN32
     #include <stdlib.h>
@@ -11,6 +11,8 @@
 
 
 namespace cppassist
+{
+namespace fs
 {
 
 
@@ -24,4 +26,5 @@ int makeDir(const std::string & path)
 }
 
 
+} // namespace fs
 } // namespace cppassist

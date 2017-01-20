@@ -46,13 +46,13 @@ set(include_path "${CMAKE_CURRENT_SOURCE_DIR}/include/${target}")
 set(source_path  "${CMAKE_CURRENT_SOURCE_DIR}/source")
 
 set(headers
-    ${include_path}/io/fs.h
-    ${include_path}/io/readfile.h
-    ${include_path}/io/DescriptiveRawFile.h
-    ${include_path}/io/directorytraversal.h
-    ${include_path}/io/FilePath.h
-    ${include_path}/io/RawFile.h
-    ${include_path}/io/SystemInfo.h
+    ${include_path}/fs/fs.h
+    ${include_path}/fs/readfile.h
+    ${include_path}/fs/DescriptiveRawFile.h
+    ${include_path}/fs/directorytraversal.h
+    ${include_path}/fs/FilePath.h
+    ${include_path}/fs/RawFile.h
+    ${include_path}/fs/SystemInfo.h
 
     ${include_path}/logging/AbstractLogHandler.h
     ${include_path}/logging/ConsoleLogHandler.h
@@ -102,13 +102,13 @@ set(headers
 )
 
 set(sources
-    ${source_path}/io/fs.cpp
-    ${source_path}/io/readfile.cpp
-    ${source_path}/io/DescriptiveRawFile.cpp
-    ${source_path}/io/directorytraversal.cpp
-    ${source_path}/io/FilePath.cpp
-    ${source_path}/io/RawFile.cpp
-    ${source_path}/io/SystemInfo.cpp
+    ${source_path}/fs/fs.cpp
+    ${source_path}/fs/readfile.cpp
+    ${source_path}/fs/DescriptiveRawFile.cpp
+    ${source_path}/fs/directorytraversal.cpp
+    ${source_path}/fs/FilePath.cpp
+    ${source_path}/fs/RawFile.cpp
+    ${source_path}/fs/SystemInfo.cpp
 
     ${source_path}/logging/AbstractLogHandler.cpp
     ${source_path}/logging/ConsoleLogHandler.cpp

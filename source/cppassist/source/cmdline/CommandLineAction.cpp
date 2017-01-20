@@ -255,7 +255,7 @@ void CommandLineAction::parse(int argc, char * argv[])
         std::string arg = argv[i];
 
         // Expand grouped options (e.g., "-abc" -> "-a -b -c")
-        if (!hasPrefix(arg, "--") && hasPrefix(arg, "-") && arg.size() > 2)
+        if (!string::hasPrefix(arg, "--") && string::hasPrefix(arg, "-") && arg.size() > 2)
         {
             for (size_t j=0; j<arg.size()-1; j++)
             {
@@ -278,7 +278,7 @@ void CommandLineAction::parse(int argc, char * argv[])
         std::string next = (i+1 < args.size() ? args[i+1] : "");
 
         // If item starts with "--" or "-", it may be an option or a switch
-        if (hasPrefix(arg, "-"))
+        if (string::hasPrefix(arg, "-"))
         {
             CommandLineOption * option = getOption(arg);
             CommandLineSwitch * sw     = getSwitch(arg);
@@ -287,7 +287,7 @@ void CommandLineAction::parse(int argc, char * argv[])
             if (option)
             {
                 // Check that next item is a valid value (and not empty or an option)
-                if (!next.empty() && !hasPrefix(next, "-"))
+                if (!next.empty() && !string::hasPrefix(next, "-"))
                 {
                     option->setValue(next);
                     i++;

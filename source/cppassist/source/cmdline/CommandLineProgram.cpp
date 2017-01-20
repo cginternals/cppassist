@@ -159,12 +159,12 @@ std::string CommandLineProgram::help(CommandLineAction * forAction) const
 
     for (auto * sw : switches)
     {
-        msg += " " + padRight(sw->names(), length) + "  " + sw->description() + "\n";
+        msg += " " + string::padRight(sw->names(), length) + "  " + sw->description() + "\n";
     }
 
     for (auto * option : options)
     {
-        msg += " " + padRight(option->names(), length) + "  " + option->description() + "\n";
+        msg += " " + string::padRight(option->names(), length) + "  " + option->description() + "\n";
     }
 
     // Return help text

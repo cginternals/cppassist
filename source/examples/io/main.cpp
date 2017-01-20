@@ -1,6 +1,6 @@
 
 #include <cppassist/logging/logging.h>
-#include <cppassist/io/SystemInfo.h>
+#include <cppassist/fs/SystemInfo.h>
 
 
 using namespace cppassist;

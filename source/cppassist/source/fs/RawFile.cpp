@@ -1,10 +1,10 @@
 
-#include <cppassist/io/RawFile.h>
+#include <cppassist/fs/RawFile.h>
 
 #include <fstream>
 #include <iostream>
 
-#include <cppassist/io/readfile.h>
+#include <cppassist/fs/readfile.h>
 
 
 namespace cppassist
@@ -68,7 +68,7 @@ bool RawFile::readFile()
 {
     m_data.clear();
 
-    if (!cppassist::readFile(m_filePath, m_data))
+    if (!fs::readFile(m_filePath, m_data))
     {
         std::cerr << "Reading from file \"" << m_filePath << "\" failed." << std::endl;
         return false;

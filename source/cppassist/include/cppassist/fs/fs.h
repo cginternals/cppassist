@@ -9,6 +9,8 @@
 
 namespace cppassist 
 {
+namespace fs
+{
 
 
 /**
@@ -24,4 +26,5 @@ namespace cppassist
 CPPASSIST_API int makeDir(const std::string & path);
 
 
+} // nameapace fs
 } // namespace cppassist

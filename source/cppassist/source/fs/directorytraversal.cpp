@@ -1,5 +1,5 @@
 
-#include <cppassist/io/directorytraversal.h>
+#include <cppassist/fs/directorytraversal.h>
 
 #include <cassert>
 #include <iostream>
@@ -11,10 +11,12 @@
     #include <dirent.h>
 #endif
 
-#include <cppassist/io/FilePath.h>
+#include <cppassist/fs/FilePath.h>
 
 
 namespace cppassist
+{
+namespace fs
 {
 
 
@@ -90,7 +92,7 @@ std::vector<std::string> getFiles(const std::vector<std::string> & directories, 
 
     for (const std::string & directory : directories)
     {
-        const std::vector<std::string> fs(cppassist::getFiles(directory, recursive));
+        const std::vector<std::string> fs(cppassist::fs::getFiles(directory, recursive));
         files.insert(files.end(), fs.begin(), fs.end());
     }
 
@@ -138,4 +140,5 @@ void scanDirectory(const std::string & directory, const std::string & fileExtens
 }
 
 
+} // namespace fs
 } // namespace cppassist

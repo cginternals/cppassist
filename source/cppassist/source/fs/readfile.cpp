@@ -1,10 +1,12 @@
 
-#include <cppassist/io/readfile.h>
+#include <cppassist/fs/readfile.h>
 
 #include <fstream>
 
 
 namespace cppassist
+{
+namespace fs
 {
 
 
@@ -30,4 +32,5 @@ std::string readFile(const std::string & filePath)
 }
 
 
+} // namespace fs
 } // namespace cppassist
