@@ -3,18 +3,35 @@ language: cpp
 sudo: required
 dist: trusty
 
+os:
+  - linux
+  - osx
+
 compiler:
   - gcc
   - clang
 
+env:
+  global:
+    - CMAKE_OPTIONS="-DOPTION_BUILD_EXAMPLES=On"
+  matrix:
+    - CMAKE_CONFIGURATION=release BUILD_DIR=build
+    - CMAKE_CONFIGURATION=debug BUILD_DIR=build-debug
+
+matrix:
+  exclude:
+  - os: osx
+    compiler: gcc
+
 before_install:
-  - sudo apt-get install -qq cmake libboost-regex-dev
+  - if [ $TRAVIS_OS_NAME == linux ]; then sudo apt-get install -qq cmake libboost-regex-dev; fi
+  - if [ $TRAVIS_OS_NAME == osx ]; then brew update && brew install boost; fi
 
 before_script:
-  - mkdir build
-  - cd build
-  - cmake -DOPTION_BUILD_EXAMPLES=On -DOPTION_BUILD_WITH_STD_REGEX=Off ..
+  - ./configure
+  - if [ $CMAKE_CONFIGURATION == release ]; then ./configure; fi
+  - if [ $CMAKE_CONFIGURATION == debug ]; then ./configure debug; fi
 
 script:
-  - make -j8
-  - make test
+  - cmake --build $BUILD_DIR
+  - cmake --build $BUILD_DIR --target test
