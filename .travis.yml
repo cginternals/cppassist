@@ -25,10 +25,10 @@ matrix:
 
 before_install:
   - if [ $TRAVIS_OS_NAME == linux ]; then sudo apt-get install -qq cmake libboost-regex-dev; fi
-  - if [ $TRAVIS_OS_NAME == osx ]; then brew update && brew install boost; fi
 
 before_script:
   - ./configure
+  - if [ $TRAVIS_OS_NAME == linux ]; then export CMAKE_OPTIONS="$CMAKE_OPTIONS -DOPTION_BUILD_WITH_STD_REGEX=Off"; fi
   - if [ $CMAKE_CONFIGURATION == release ]; then ./configure; fi
   - if [ $CMAKE_CONFIGURATION == debug ]; then ./configure debug; fi
 
