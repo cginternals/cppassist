@@ -97,7 +97,21 @@ public:
     *  @return
     *    Value of the option or defaultValue if the option is not set
     */
-    const std::string & value(const std::string & option, const std::string & defaultValue = "") const;
+    std::string value(const std::string & option, const std::string & defaultValue = "") const;
+
+    /**
+    *  @brief
+    *    Get option value
+    *
+    *  @param[in] option
+    *    Name of option (e.g., '--v')
+    *  @param[in] defaultValue
+    *    Default value returned if option is not set
+    *
+    *  @return
+    *    Value of the option or defaultValue if the option is not set
+    */
+    const std::string & value(const std::string & option, std::string & defaultValue) const;
 
     /**
     *  @brief

@@ -31,20 +31,20 @@ void ArgumentParser::parse(int argc, char * argv[])
         if (arg.find("--") == 0)
         {
             // Save value
-            m_options[arg] = next;
+            m_options[std::move(arg)] = std::move(next);
             i++;
         }
 
         // Options without value (-option-name)
         else if (arg.find("-") == 0)
         {
-            m_options[arg] = "true";
+            m_options[std::move(arg)] = "true";
         }
 
         // Additional parameters
         else
         {
-            m_params.push_back(arg);
+            m_params.push_back(std::move(arg));
         }
     }
 }
@@ -59,7 +59,19 @@ bool ArgumentParser::isSet(const std::string & option) const
     return m_options.count(option) > 0;
 }
 
-const std::string &ArgumentParser::value(const std::string & option, const std::string & defaultValue) const
+std::string ArgumentParser::value(const std::string & option, const std::string & defaultValue) const
+{
+    const auto it = m_options.find(option);
+
+    if (it == m_options.end())
+    {
+        return defaultValue;
+    }
+
+    return it->second;
+}
+
+const std::string & ArgumentParser::value(const std::string & option, std::string & defaultValue) const
 {
     const auto it = m_options.find(option);
 
