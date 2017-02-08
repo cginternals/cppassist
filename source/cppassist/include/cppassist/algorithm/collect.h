@@ -133,7 +133,7 @@ auto collect(const BaseContainer<SourceValueType, Args<SourceValueType>...> & so
 -> typename detail::Container<BaseContainer, detail::ResultValueType<SourceValueType, Function>, Args...>::Type
 {
     return collect<typename detail::Container<BaseContainer, detail::ResultValueType<SourceValueType, Function>, Args...>::Type>(source, f);
-};
+}
 
 template <
     typename Function
@@ -149,7 +149,7 @@ template <
 ResultType collect(const std::map<SourceKeyType, SourceValueType, Compare<SourceKeyType>, Allocator<std::pair<const SourceKeyType, SourceValueType>>> & source, const Function & f)
 {
     return collect<ResultType>(source, f);
-};
+}
 
 template <
     typename Function
@@ -166,7 +166,7 @@ template <
 ResultType collect(const std::unordered_map<SourceKeyType, SourceValueType, Hash<SourceKeyType>, EqualTo<SourceKeyType>, Allocator<std::pair<const SourceKeyType, SourceValueType>>> & source, const Function & f)
 {
     return collect<ResultType>(source, f);
-};
+}
 
 
 // Result container differs from source container
@@ -180,7 +180,7 @@ template <
 ResultType collect(const SourceType & source, const Function & f)
 {
     return collect<ResultType>(source, f);
-};
+}
 
 template <
     template <typename...> class BaseContainer
@@ -192,7 +192,7 @@ template <
 ResultType collect(const SourceType & source, const Function & f)
 {
     return collect<ResultType>(source, f);
-};
+}
 
 template <
     template <typename...> class BaseContainer
@@ -205,7 +205,7 @@ template <
 ResultType collect(const SourceType & source, const Function & f)
 {
     return collect<ResultType>(source, f);
-};
+}
 
 template <
     template <typename...> class BaseContainer
@@ -219,7 +219,7 @@ template <
 ResultType collect(const SourceType & source, const Function & f)
 {
     return collect<ResultType>(source, f);
-};
+}
 
 template <
     template <typename...> class BaseContainer
@@ -234,7 +234,7 @@ template <
 ResultType collect(const SourceType & source, const Function & f)
 {
     return collect<ResultType>(source, f);
-};
+}
 
 
 } // namespace algorithm

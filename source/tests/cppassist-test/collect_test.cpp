@@ -5,6 +5,7 @@
 #include <gmock/gmock.h>
 
 #include <cppassist/algorithm/collect.h>
+#include <unordered_set>
 
 
 using namespace cppassist;
@@ -14,6 +15,34 @@ using namespace algorithm;
 template <typename T>
 struct Allocator : std::allocator<T>
 {
+};
+
+
+template <typename T>
+struct Greater
+{
+    bool operator()(const T & v1, const T & v2) const
+    {
+        return std::less<T>{}(v2, v1);
+    }
+};
+
+template <typename T>
+struct Hash
+{
+    std::size_t operator()(const T & v) const
+    {
+        return std::hash<T>{}(v);
+    }
+};
+
+template <typename T>
+struct EqualTo
+{
+    bool operator()(const T&  v1, const T & v2) const
+    {
+        return std::equal_to<T>{}(v1, v2);
+    }
 };
 
 
@@ -41,20 +70,37 @@ public:
             m_dequeAllocator.push_back(v);
             m_list.push_back(v);
             m_listAllocator.push_back(v);
+            m_set.insert(v);
+            m_setGreater.insert(v);
+            m_setGreaterAllocator.insert(v);
+            m_unorderedSet.insert(v);
+            m_unorderedSetHash.insert(v);
+            m_unorderedSetHashEqualTo.insert(v);
+            m_unorderedSetHashEqualToAllocator.insert(v);
 
-            m_expectedSingle.push_back(convert_single(v));
+            m_expectedList.push_back(convert_single(v));
+            m_expectedSet.insert(convert_single(v));
         }
     }
 
 protected:
     template <typename T>
-    bool equalExpected(const T & container)
+    bool equalExpectedList(const T & container)
     {
-        return std::equal(container.begin(), container.end(), m_expectedSingle.begin(), m_expectedSingle.end());
+        std::vector<std::string> actual{ container.begin(), container.end() };
+        return m_expectedList == actual;
+    }
+
+    template <typename T>
+    bool equalExpectedSet(const T & container)
+    {
+        std::set<std::string> actual{ container.begin(), container.end() };
+        return m_expectedSet == actual;
     }
 
 protected:
-    std::vector<std::string> m_expectedSingle;
+    std::vector<std::string> m_expectedList;
+    std::set<std::string> m_expectedSet;
 
     std::array<int, 256> m_array;
     std::vector<int> m_vector;
@@ -63,6 +109,14 @@ protected:
     std::deque<int, Allocator<int>> m_dequeAllocator;
     std::list<int> m_list;
     std::list<int, Allocator<int>> m_listAllocator;
+    std::set<int> m_set;
+    std::set<int, Greater<int>> m_setGreater;
+    std::set<int, Greater<int>, Allocator<int>> m_setGreaterAllocator;
+    // TODO
+    std::unordered_set<int> m_unorderedSet;
+    std::unordered_set<int, Hash<int>> m_unorderedSetHash;
+    std::unordered_set<int, Hash<int>, EqualTo<int>> m_unorderedSetHashEqualTo;
+    std::unordered_set<int, Hash<int>, EqualTo<int>, Allocator<int>> m_unorderedSetHashEqualToAllocator;
 };
 
 
@@ -75,41 +129,42 @@ void static_assert_allocator(const Container &)
 
 TEST_F(collect_test, vector_equal)
 {
-    const auto fromInitializerList = collect<std::vector>(m_initializerList, &convert_single);
-    const auto fromVector          = collect<std::vector>(m_vector,          &convert_single);
-    const auto fromVectorAllocator = collect<std::vector>(m_vectorAllocator, &convert_single);
-    const auto fromDeque           = collect<std::vector>(m_deque,           &convert_single);
-    const auto fromDequeAllocator  = collect<std::vector>(m_dequeAllocator,  &convert_single);
-    const auto fromList            = collect<std::vector>(m_list,            &convert_single);
-    const auto fromListAllocator   = collect<std::vector>(m_listAllocator,   &convert_single);
+    const auto fromInitializerList     = collect<std::vector>(m_initializerList,     &convert_single);
+    const auto fromVector              = collect<std::vector>(m_vector,              &convert_single);
+    const auto fromVectorAllocator     = collect<std::vector>(m_vectorAllocator,     &convert_single);
+    const auto fromDeque               = collect<std::vector>(m_deque,               &convert_single);
+    const auto fromDequeAllocator      = collect<std::vector>(m_dequeAllocator,      &convert_single);
+    const auto fromList                = collect<std::vector>(m_list,                &convert_single);
+    const auto fromListAllocator       = collect<std::vector>(m_listAllocator,       &convert_single);
+    const auto fromSet                 = collect<std::vector>(m_set,                 &convert_single);
+    const auto fromSetGreater          = collect<std::vector>(m_setGreater,          &convert_single);
+    const auto fromSetGreaterAllocator = collect<std::vector>(m_setGreaterAllocator, &convert_single);
 
-    static_assert_allocator<std::allocator<std::string>>(fromInitializerList);
-    static_assert_allocator<std::allocator<std::string>>(fromVector);
-    static_assert_allocator<Allocator<std::string>>(fromVectorAllocator);
-    static_assert_allocator<std::allocator<std::string>>(fromDeque);
-    static_assert_allocator<std::allocator<std::string>>(fromDequeAllocator);
-    static_assert_allocator<std::allocator<std::string>>(fromList);
-    static_assert_allocator<std::allocator<std::string>>(fromListAllocator);
-
-    EXPECT_TRUE(equalExpected(fromInitializerList));
-    EXPECT_TRUE(equalExpected(fromVector));
-    EXPECT_TRUE(equalExpected(fromVectorAllocator));
-    EXPECT_TRUE(equalExpected(fromDeque));
-    EXPECT_TRUE(equalExpected(fromDequeAllocator));
-    EXPECT_TRUE(equalExpected(fromList));
-    EXPECT_TRUE(equalExpected(fromListAllocator));
+    EXPECT_TRUE(equalExpectedList(fromInitializerList));
+    EXPECT_TRUE(equalExpectedList(fromVector));
+    EXPECT_TRUE(equalExpectedList(fromVectorAllocator));
+    EXPECT_TRUE(equalExpectedList(fromDeque));
+    EXPECT_TRUE(equalExpectedList(fromDequeAllocator));
+    EXPECT_TRUE(equalExpectedList(fromList));
+    EXPECT_TRUE(equalExpectedList(fromListAllocator));
+    EXPECT_TRUE(equalExpectedSet(fromSet));
+    EXPECT_TRUE(equalExpectedSet(fromSetGreater));
+    EXPECT_TRUE(equalExpectedSet(fromSetGreaterAllocator));
 }
 
 
 TEST_F(collect_test, vector_source_allocator)
 {
-    const auto fromInitializerList = collect<std::vector>(m_initializerList, &convert_single);
-    const auto fromVector          = collect<std::vector>(m_vector,          &convert_single);
-    const auto fromVectorAllocator = collect<std::vector>(m_vectorAllocator, &convert_single);
-    const auto fromDeque           = collect<std::vector>(m_deque,           &convert_single);
-    const auto fromDequeAllocator  = collect<std::vector>(m_dequeAllocator,  &convert_single);
-    const auto fromList            = collect<std::vector>(m_list,            &convert_single);
-    const auto fromListAllocator   = collect<std::vector>(m_listAllocator,   &convert_single);
+    const auto fromInitializerList     = collect<std::vector>(m_initializerList,     &convert_single);
+    const auto fromVector              = collect<std::vector>(m_vector,              &convert_single);
+    const auto fromVectorAllocator     = collect<std::vector>(m_vectorAllocator,     &convert_single);
+    const auto fromDeque               = collect<std::vector>(m_deque,               &convert_single);
+    const auto fromDequeAllocator      = collect<std::vector>(m_dequeAllocator,      &convert_single);
+    const auto fromList                = collect<std::vector>(m_list,                &convert_single);
+    const auto fromListAllocator       = collect<std::vector>(m_listAllocator,       &convert_single);
+    const auto fromSet                 = collect<std::vector>(m_set,                 &convert_single);
+    const auto fromSetGreater          = collect<std::vector>(m_setGreater,          &convert_single);
+    const auto fromSetGreaterAllocator = collect<std::vector>(m_setGreaterAllocator, &convert_single);
 
     static_assert_allocator<std::allocator<std::string>>(fromInitializerList);
     static_assert_allocator<std::allocator<std::string>>(fromVector);
@@ -118,6 +173,9 @@ TEST_F(collect_test, vector_source_allocator)
     static_assert_allocator<std::allocator<std::string>>(fromDequeAllocator);
     static_assert_allocator<std::allocator<std::string>>(fromList);
     static_assert_allocator<std::allocator<std::string>>(fromListAllocator);
+    static_assert_allocator<std::allocator<std::string>>(fromSet);
+    static_assert_allocator<std::allocator<std::string>>(fromSetGreater);
+    static_assert_allocator<std::allocator<std::string>>(fromSetGreaterAllocator);
 }
 
 
@@ -139,6 +197,6 @@ TEST_F(collect_test, vector_same_type)
     static_assert_allocator<std::allocator<std::string>>(fromVector);
     static_assert_allocator<Allocator<std::string>>(fromVectorAllocator);
 
-    EXPECT_TRUE(equalExpected(fromVector));
-    EXPECT_TRUE(equalExpected(fromVectorAllocator));
+    EXPECT_TRUE(equalExpectedList(fromVector));
+    EXPECT_TRUE(equalExpectedList(fromVectorAllocator));
 }
