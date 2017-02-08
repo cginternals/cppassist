@@ -99,6 +99,8 @@ set(headers
     ${include_path}/cmdline/CommandLineOption.h
     ${include_path}/cmdline/CommandLineSwitch.h
     ${include_path}/cmdline/CommandLineParameter.h
+
+    ${include_path}/algorithm/collect.h
 )
 
 set(sources

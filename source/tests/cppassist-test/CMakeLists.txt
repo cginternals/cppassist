@@ -32,6 +32,9 @@ set(sources
     # io
     manipulation_test.cpp
     conversion_test.cpp
+
+    # algorithm
+    collect_test.cpp
 )
 
 
