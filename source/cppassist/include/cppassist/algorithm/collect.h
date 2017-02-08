@@ -116,7 +116,7 @@ ResultType collect(const SourceType & source, const Function & f)
     using std::inserter;
 
     auto result = detail::Instantiator<SourceType, ResultType>::create(source);
-    std::transform(begin(source), end(source), inserter(result, end(result)), f);
+    std::transform(begin(source), end(source), inserter(result, begin(result)), f);
     return result;
 }
 
