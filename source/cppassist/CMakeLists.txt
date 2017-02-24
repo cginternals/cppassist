@@ -81,6 +81,8 @@ set(headers
 
     ${include_path}/memory/offsetof.h
     ${include_path}/memory/offsetof.inl
+    ${include_path}/memory/make_unique.h
+    ${include_path}/memory/make_unique.inl
 
     ${include_path}/string/conversion.h
     ${include_path}/string/conversion.inl
