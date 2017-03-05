@@ -13,16 +13,8 @@
     namespace regex_namespace = boost;
 #endif
 
-
-namespace
-{
-
-
-const regex_namespace::regex trimRegex("(^\\s+|\\s+$)");
-const regex_namespace::regex trimRegexRemoveAllWhiteSpace("\\s+");
-
-
-}
+// [TODO] Right now, these functions do not work for gcc 4.8 as regex are not fully implemented.
+//        Maybe a version without regex would be possible, as the operations are not very complex
 
 
 namespace cppassist
@@ -33,6 +25,9 @@ namespace string
 
 std::string trim(const std::string & string, bool removeAllWhitespace)
 {
+    static const regex_namespace::regex trimRegex("(^\\s+|\\s+$)");
+    static const regex_namespace::regex trimRegexRemoveAllWhiteSpace("\\s+");
+
     return regex_namespace::regex_replace(string, removeAllWhitespace ? trimRegexRemoveAllWhiteSpace : trimRegex, std::string());
 }
 
