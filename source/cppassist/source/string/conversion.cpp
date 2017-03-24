@@ -177,8 +177,7 @@ std::string toLower(const std::string & input)
 
 std::string toLower(std::string && input)
 {
-    std::string result;
-    std::swap(result,input);
+    std::string result = std::move(input);
     std::transform(result.begin(), result.end(), result.begin(), ::tolower);
     return result;
 }
@@ -192,8 +191,7 @@ std::string toUpper(const std::string & input)
 
 std::string toUpper(std::string && input)
 {
-    std::string result;
-    std::swap(result,input);
+    std::string result = std::move(input);
     std::transform(result.begin(), result.end(), result.begin(), ::toupper);
     return result;
 }

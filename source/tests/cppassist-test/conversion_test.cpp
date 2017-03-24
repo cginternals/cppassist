@@ -223,14 +223,14 @@ TEST_F(conversion_test, toLower)
 {
     const std::string input = "toLower";
 
-    auto output = string::toLower(input);
+    const auto output = string::toLower(input);
 
     ASSERT_EQ("tolower", output);
 }
 
 TEST_F(conversion_test, toLower_uniRef)
 {
-    auto output = string::toLower("toLower");
+    const auto output = string::toLower("toLower");
 
     ASSERT_EQ("tolower", output);
 }
@@ -239,14 +239,14 @@ TEST_F(conversion_test, toUpper)
 {
     const std::string input = "toUpper";
 
-    auto output = string::toUpper(input);
+    const auto output = string::toUpper(input);
 
     ASSERT_EQ("TOUPPER", output);
 }
 
 TEST_F(conversion_test, toUpper_uniRef)
 {
-    auto output = string::toUpper("toUpper");
+    const auto output = string::toUpper("toUpper");
 
     ASSERT_EQ("TOUPPER", output);
 }
