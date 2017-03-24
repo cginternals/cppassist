@@ -218,3 +218,35 @@ TEST_F(conversion_test, toString_bool)
     ASSERT_EQ(typeid(std::string), typeid(str));
     ASSERT_EQ("true", str);
 }
+
+TEST_F(conversion_test, toLower)
+{
+    const std::string input = "toLower";
+
+    const auto output = string::toLower(input);
+
+    ASSERT_EQ("tolower", output);
+}
+
+TEST_F(conversion_test, toLower_uniRef)
+{
+    const auto output = string::toLower("toLower");
+
+    ASSERT_EQ("tolower", output);
+}
+
+TEST_F(conversion_test, toUpper)
+{
+    const std::string input = "toUpper";
+
+    const auto output = string::toUpper(input);
+
+    ASSERT_EQ("TOUPPER", output);
+}
+
+TEST_F(conversion_test, toUpper_uniRef)
+{
+    const auto output = string::toUpper("toUpper");
+
+    ASSERT_EQ("TOUPPER", output);
+}
