@@ -177,8 +177,10 @@ std::string toLower(const std::string & input)
 
 std::string toLower(std::string && input)
 {
-    std::transform(input.begin(), input.end(), input.begin(), ::tolower);
-    return input;
+    std::string result;
+    std::swap(result,input);
+    std::transform(result.begin(), result.end(), result.begin(), ::tolower);
+    return result;
 }
 
 std::string toUpper(const std::string & input)
@@ -190,8 +192,10 @@ std::string toUpper(const std::string & input)
 
 std::string toUpper(std::string && input)
 {
-    std::transform(input.begin(), input.end(), input.begin(), ::toupper);
-    return input;
+    std::string result;
+    std::swap(result,input);
+    std::transform(result.begin(), result.end(), result.begin(), ::toupper);
+    return result;
 }
 
 } // namespace string
