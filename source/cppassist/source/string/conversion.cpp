@@ -168,5 +168,31 @@ std::u32string encode(const std::string & input, const Encoding encoding)
 //}
 
 
+std::string toLower(const std::string & input)
+{
+    std::string result = input;
+    std::transform(result.begin(), result.end(), result.begin(), ::tolower);
+    return result;
+}
+
+std::string toLower(std::string && input)
+{
+    std::transform(input.begin(), input.end(), input.begin(), ::tolower);
+    return input;
+}
+
+std::string toUpper(const std::string & input)
+{
+    std::string result = input;
+    std::transform(result.begin(), result.end(), result.begin(), ::toupper);
+    return result;
+}
+
+std::string toUpper(std::string && input)
+{
+    std::transform(input.begin(), input.end(), input.begin(), ::toupper);
+    return input;
+}
+
 } // namespace string
 } // namespace cppassist
