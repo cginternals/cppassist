@@ -55,6 +55,9 @@ CPPASSIST_API unsigned char fromString<unsigned char>(const std::string & string
 
 template <>
 CPPASSIST_API bool fromString<bool>(const std::string & string);
+
+template <>
+CPPASSIST_API int fromString<int>(const std::string & string);
 //@}
 
 //@{

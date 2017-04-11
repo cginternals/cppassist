@@ -88,6 +88,12 @@ bool fromString<bool>(const std::string & string)
 }
 
 template <>
+int fromString<int>(const std::string & string)
+{
+    return static_cast<int>(std::strtol(string.data(),nullptr,10));
+}
+
+template <>
 std::string toString<char>(const char & value)
 {
     std::stringstream stream;
