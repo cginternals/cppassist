@@ -110,6 +110,37 @@ CPPASSIST_API std::u32string encode(const std::string & input, Encoding encoding
 //@}
 
 
+//@{
+/**
+*  @brief
+*    Create lowercase string from input
+*
+*  @param[in] input
+*    Input string
+*
+*  @return
+*    String in lower-case
+*/
+CPPASSIST_API std::string toLower(const std::string & input);
+CPPASSIST_API std::string toLower(std::string && input);
+//@}
+
+//@{
+/**
+*  @brief
+*    Create uppercase string from input
+*
+*  @param[in] input
+*    Input string
+*
+*  @return
+*    String in upper-case
+*/
+CPPASSIST_API std::string toUpper(const std::string & input);
+CPPASSIST_API std::string toUpper(std::string && input);
+//@}
+
+
 } // namespace string
 } // namespace cppassist
 
