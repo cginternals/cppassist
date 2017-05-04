@@ -79,7 +79,7 @@ TEST_F(conversion_test, fromString_uint)
 
 TEST_F(conversion_test, fromString_float)
 {
-    std::string str = "6.23f";
+    std::string str = "6.23";
 
     auto val = string::fromString<float>(str);
 
