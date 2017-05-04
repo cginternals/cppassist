@@ -24,9 +24,10 @@ matrix:
     compiler: gcc
 
 before_install:
-  - if [ $TRAVIS_OS_NAME == linux ]; then sudo apt-get install -qq cmake libboost-regex-dev; fi
+  - if [ $TRAVIS_OS_NAME == linux ]; then sudo apt-get install -qq cmake libboost-regex-dev cppcheck clang-tidy-3.8; fi
   - if [ $TRAVIS_OS_NAME == linux ]; then export CMAKE_OPTIONS="$CMAKE_OPTIONS -DOPTION_BUILD_WITH_STD_REGEX=Off"; fi
   - if [ $TRAVIS_OS_NAME == linux ]; then echo "CMAKE_OPTIONS = $CMAKE_OPTIONS"; fi
+  - if [ $TRAVIS_OS_NAME == osx ]; then brew update && brew install cppcheck; fi
 
 before_script:
   - ./configure
@@ -36,3 +37,4 @@ before_script:
 script:
   - cmake --build $BUILD_DIR
   - cmake --build $BUILD_DIR --target test
+  - cmake --build $BUILD_DIR --target check-all
