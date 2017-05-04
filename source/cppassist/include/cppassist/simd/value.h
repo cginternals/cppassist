@@ -2,6 +2,7 @@
 #pragma once
 
 
+#include <cppassist/cppassist_api.h>
 #include <cppassist/simd/simd.h>
 
 

@@ -12,7 +12,7 @@ namespace cppassist
 
 
 template <>
-class value<float, 16>
+class CPPASSIST_TEMPLATE_API value<float, 16>
 {
 public:
     static const auto simd_size = 16;

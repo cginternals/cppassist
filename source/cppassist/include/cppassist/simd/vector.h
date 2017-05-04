@@ -17,7 +17,7 @@ namespace cppassist
 
 
 template <typename T, size_t SIMD_SIZE = CPPASSIST_SIMD_SIZE>
-class vector
+class CPPASSIST_TEMPLATE_API vector
 {
     static const auto simd_size = SIMD_SIZE;
 

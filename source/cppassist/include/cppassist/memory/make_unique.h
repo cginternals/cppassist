@@ -4,6 +4,8 @@
 
 #include <memory>
 
+#include <cppassist/cppassist_api.h>
+
 
 namespace cppassist
 {
@@ -17,19 +19,19 @@ namespace detail
 
 
 template<class T>
-struct UniqueIf
+struct CPPASSIST_TEMPLATE_API UniqueIf
 {
     using UniqueSingle = std::unique_ptr<T>;
 };
 
 template<class T>
-struct UniqueIf<T[]>
+struct CPPASSIST_TEMPLATE_API UniqueIf<T[]>
 {
     using UniqueArrayUnknownBound = std::unique_ptr<T[]>;
 };
 
 template<class T, size_t N>
-struct UniqueIf<T[N]>
+struct CPPASSIST_TEMPLATE_API UniqueIf<T[N]>
 {
     using UniqueArrayKnownBound = void;
 };

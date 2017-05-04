@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include <cppassist/cppassist_api.h>
+
+
 namespace cppassist
 {
 
@@ -10,7 +13,7 @@ namespace cppassist
  * @see http://jmabille.github.io/blog/2014/12/06/aligned-memory-allocator/
  */
 template <class T, int N>
-class aligned_allocator
+class CPPASSIST_TEMPLATE_API aligned_allocator
 {
 public:
     typedef T value_type;
