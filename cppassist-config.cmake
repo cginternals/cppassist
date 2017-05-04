@@ -49,4 +49,4 @@ else()
 endif()
 
 # Signal success/failure to CMake
-set(template_FOUND ${MODULE_FOUND})
+set(cppassist_FOUND ${MODULE_FOUND})
