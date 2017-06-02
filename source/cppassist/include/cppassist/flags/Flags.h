@@ -85,5 +85,39 @@ protected:
 } // namespace cppassist
 
 
+// namespace
+// {
+
+
+template <typename EnumType>
+cppassist::Flags<EnumType> operator|(EnumType flag1, EnumType flag2);
+template <typename EnumType>
+cppassist::Flags<EnumType> operator|(const cppassist::Flags<EnumType> & flags1, EnumType flag2);
+template <typename EnumType>
+cppassist::Flags<EnumType> operator|(EnumType flag1, const cppassist::Flags<EnumType> & flags2);
+template <typename EnumType>
+cppassist::Flags<EnumType> operator|(const cppassist::Flags<EnumType> & flags1, const cppassist::Flags<EnumType> & flags2);
+
+template <typename EnumType>
+cppassist::Flags<EnumType> operator&(EnumType flag1, EnumType flag2);
+template <typename EnumType>
+cppassist::Flags<EnumType> operator&(EnumType flag1, const cppassist::Flags<EnumType> & flags2);
+template <typename EnumType>
+cppassist::Flags<EnumType> operator&(const cppassist::Flags<EnumType> & flags1, EnumType flag2);
+template <typename EnumType>
+cppassist::Flags<EnumType> operator&(const cppassist::Flags<EnumType> & flags1, const cppassist::Flags<EnumType> & flags2);
+
+template <typename EnumType>
+cppassist::Flags<EnumType> operator^(EnumType flag1, EnumType flag2);
+template <typename EnumType>
+cppassist::Flags<EnumType> operator^(EnumType flag1, const cppassist::Flags<EnumType> & flags2);
+template <typename EnumType>
+cppassist::Flags<EnumType> operator^(const cppassist::Flags<EnumType> & flags1, EnumType flag2);
+template <typename EnumType>
+cppassist::Flags<EnumType> operator^(const cppassist::Flags<EnumType> & flags1, const cppassist::Flags<EnumType> & flags2);
+
+
+// } // global namespace
+
+
 #include <cppassist/flags/Flags.inl>
-#include <cppassist/flags/operators.h>

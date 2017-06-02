@@ -55,8 +55,6 @@ set(headers
     ${include_path}/fs/RawFile.h
     ${include_path}/fs/SystemInfo.h
     
-    ${include_path}/flags/operators.h
-    ${include_path}/flags/operators.inl
     ${include_path}/flags/Flags.h
     ${include_path}/flags/Flags.inl
 

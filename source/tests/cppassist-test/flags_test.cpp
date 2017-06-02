@@ -3,10 +3,6 @@
 
 #include <cppassist/flags/Flags.h>
 
-
-using namespace cppassist;
-
-
 // This is really more a compilation test
 
 
@@ -27,21 +23,21 @@ enum class MyEnum : unsigned int {
 
 TEST_F(flags_test, EmptyFlags)
 {
-    auto f = Flags<MyEnum>();
+    auto f = cppassist::Flags<MyEnum>();
 
     ASSERT_FALSE(f);
 }
 
 TEST_F(flags_test, SingleFlags)
 {
-    auto f = Flags<MyEnum>(MyEnum::Value1);
+    auto f = cppassist::Flags<MyEnum>(MyEnum::Value1);
 
     ASSERT_TRUE(f);
 }
 
 TEST_F(flags_test, MultipleFlags)
 {
-    auto f = Flags<MyEnum>({ MyEnum::Value1, MyEnum::Value2 });
+    auto f = cppassist::Flags<MyEnum>({ MyEnum::Value1, MyEnum::Value2 });
 
     ASSERT_TRUE(f);
 }
