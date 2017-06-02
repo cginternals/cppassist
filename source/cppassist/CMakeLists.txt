@@ -54,6 +54,9 @@ set(headers
     ${include_path}/fs/FilePath.h
     ${include_path}/fs/RawFile.h
     ${include_path}/fs/SystemInfo.h
+    
+    ${include_path}/flags/Flags.h
+    ${include_path}/flags/Flags.inl
 
     ${include_path}/logging/AbstractLogHandler.h
     ${include_path}/logging/ConsoleLogHandler.h

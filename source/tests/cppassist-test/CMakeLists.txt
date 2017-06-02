@@ -32,6 +32,9 @@ set(sources
     # io
     manipulation_test.cpp
     conversion_test.cpp
+    
+    # flags
+    flags_test.cpp
 
     # memory
     make_unique_test.cpp
