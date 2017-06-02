@@ -66,10 +66,6 @@ public:
 
 
 protected:
-    underlying_type m_value; ///< The current value (a bit combination)
-
-
-protected:
     /**
     *  @brief
     *    Constructor
@@ -78,6 +74,11 @@ protected:
     *    The value of the flags object
     */
     Flags(underlying_type value);
+
+
+protected:
+    underlying_type m_value; ///< The current value (a bit combination)
+
 };
 
 
