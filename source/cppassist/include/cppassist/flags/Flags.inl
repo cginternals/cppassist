@@ -56,7 +56,7 @@ Flags<EnumType>::operator underlying_type() const
 
 
 template <typename EnumType>
-cppassist::Flags<EnumType> operator|(EnumType flag1, EnumType flag2)
+auto operator|(EnumType flag1, EnumType flag2) -> typename std::enable_if<std::is_enum<EnumType>::value, cppassist::Flags<EnumType>>::type
 {
     using underlying_type = typename std::underlying_type<EnumType>::type;
 
@@ -64,7 +64,7 @@ cppassist::Flags<EnumType> operator|(EnumType flag1, EnumType flag2)
 }
 
 template <typename EnumType>
-cppassist::Flags<EnumType> operator|(const cppassist::Flags<EnumType> & flags1, EnumType flag2)
+auto operator|(const cppassist::Flags<EnumType> & flags1, EnumType flag2) -> typename std::enable_if<std::is_enum<EnumType>::value, cppassist::Flags<EnumType>>::type
 {
     using underlying_type = typename std::underlying_type<EnumType>::type;
 
@@ -72,7 +72,7 @@ cppassist::Flags<EnumType> operator|(const cppassist::Flags<EnumType> & flags1, 
 }
 
 template <typename EnumType>
-cppassist::Flags<EnumType> operator|(EnumType flag1, const cppassist::Flags<EnumType> & flags2)
+auto operator|(EnumType flag1, const cppassist::Flags<EnumType> & flags2) -> typename std::enable_if<std::is_enum<EnumType>::value, cppassist::Flags<EnumType>>::type
 {
     using underlying_type = typename std::underlying_type<EnumType>::type;
 
@@ -80,7 +80,7 @@ cppassist::Flags<EnumType> operator|(EnumType flag1, const cppassist::Flags<Enum
 }
 
 template <typename EnumType>
-cppassist::Flags<EnumType> operator|(const cppassist::Flags<EnumType> & flags1, const cppassist::Flags<EnumType> & flags2)
+auto operator|(const cppassist::Flags<EnumType> & flags1, const cppassist::Flags<EnumType> & flags2) -> typename std::enable_if<std::is_enum<EnumType>::value, cppassist::Flags<EnumType>>::type
 {
     using underlying_type = typename std::underlying_type<EnumType>::type;
 
@@ -89,7 +89,7 @@ cppassist::Flags<EnumType> operator|(const cppassist::Flags<EnumType> & flags1, 
 
 
 template <typename EnumType>
-cppassist::Flags<EnumType> operator&(EnumType flag1, EnumType flag2)
+auto operator&(EnumType flag1, EnumType flag2) -> typename std::enable_if<std::is_enum<EnumType>::value, cppassist::Flags<EnumType>>::type
 {
     using underlying_type = typename std::underlying_type<EnumType>::type;
 
@@ -97,7 +97,7 @@ cppassist::Flags<EnumType> operator&(EnumType flag1, EnumType flag2)
 }
 
 template <typename EnumType>
-cppassist::Flags<EnumType> operator&(EnumType flag1, const cppassist::Flags<EnumType> & flags2)
+auto operator&(EnumType flag1, const cppassist::Flags<EnumType> & flags2) -> typename std::enable_if<std::is_enum<EnumType>::value, cppassist::Flags<EnumType>>::type
 {
     using underlying_type = typename std::underlying_type<EnumType>::type;
 
@@ -105,7 +105,7 @@ cppassist::Flags<EnumType> operator&(EnumType flag1, const cppassist::Flags<Enum
 }
 
 template <typename EnumType>
-cppassist::Flags<EnumType> operator&(const cppassist::Flags<EnumType> & flags1, EnumType flag2)
+auto operator&(const cppassist::Flags<EnumType> & flags1, EnumType flag2) -> typename std::enable_if<std::is_enum<EnumType>::value, cppassist::Flags<EnumType>>::type
 {
     using underlying_type = typename std::underlying_type<EnumType>::type;
 
@@ -113,7 +113,7 @@ cppassist::Flags<EnumType> operator&(const cppassist::Flags<EnumType> & flags1, 
 }
 
 template <typename EnumType>
-cppassist::Flags<EnumType> operator&(const cppassist::Flags<EnumType> & flags1, const cppassist::Flags<EnumType> & flags2)
+auto operator&(const cppassist::Flags<EnumType> & flags1, const cppassist::Flags<EnumType> & flags2) -> typename std::enable_if<std::is_enum<EnumType>::value, cppassist::Flags<EnumType>>::type
 {
     using underlying_type = typename std::underlying_type<EnumType>::type;
 
@@ -122,7 +122,7 @@ cppassist::Flags<EnumType> operator&(const cppassist::Flags<EnumType> & flags1, 
 
 
 template <typename EnumType>
-cppassist::Flags<EnumType> operator^(EnumType flag1, EnumType flag2)
+auto operator^(EnumType flag1, EnumType flag2) -> typename std::enable_if<std::is_enum<EnumType>::value, cppassist::Flags<EnumType>>::type
 {
     using underlying_type = typename std::underlying_type<EnumType>::type;
 
@@ -130,7 +130,7 @@ cppassist::Flags<EnumType> operator^(EnumType flag1, EnumType flag2)
 }
 
 template <typename EnumType>
-cppassist::Flags<EnumType> operator^(EnumType flag1, const cppassist::Flags<EnumType> & flags2)
+auto operator^(EnumType flag1, const cppassist::Flags<EnumType> & flags2) -> typename std::enable_if<std::is_enum<EnumType>::value, cppassist::Flags<EnumType>>::type
 {
     using underlying_type = typename std::underlying_type<EnumType>::type;
 
@@ -138,7 +138,7 @@ cppassist::Flags<EnumType> operator^(EnumType flag1, const cppassist::Flags<Enum
 }
 
 template <typename EnumType>
-cppassist::Flags<EnumType> operator^(const cppassist::Flags<EnumType> & flags1, EnumType flag2)
+auto operator^(const cppassist::Flags<EnumType> & flags1, EnumType flag2) -> typename std::enable_if<std::is_enum<EnumType>::value, cppassist::Flags<EnumType>>::type
 {
     using underlying_type = typename std::underlying_type<EnumType>::type;
 
@@ -146,7 +146,7 @@ cppassist::Flags<EnumType> operator^(const cppassist::Flags<EnumType> & flags1, 
 }
 
 template <typename EnumType>
-cppassist::Flags<EnumType> operator^(const cppassist::Flags<EnumType> & flags1, const cppassist::Flags<EnumType> & flags2)
+auto operator^(const cppassist::Flags<EnumType> & flags1, const cppassist::Flags<EnumType> & flags2) -> typename std::enable_if<std::is_enum<EnumType>::value, cppassist::Flags<EnumType>>::type
 {
     using underlying_type = typename std::underlying_type<EnumType>::type;
 
