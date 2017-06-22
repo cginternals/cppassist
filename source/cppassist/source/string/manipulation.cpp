@@ -1,20 +1,17 @@
 
 #include <cppassist/string/manipulation.h>
 
-#include <cassert>
+#include <algorithm>
 
-#ifdef USE_STD_REGEX
-    #include <regex>
 
-    namespace regex_namespace = std;
-#else
-    #include <boost/regex.hpp>
+namespace
+{
 
-    namespace regex_namespace = boost;
-#endif
 
-// [TODO] Right now, these functions do not work for gcc 4.8 as regex are not fully implemented.
-//        Maybe a version without regex would be possible, as the operations are not very complex
+static const char whitespace[] = " \t\n\r\f\v";
+
+
+}
 
 
 namespace cppassist
@@ -23,12 +20,41 @@ namespace string
 {
 
 
+std::string trimRight(const std::string & string)
+{
+    std::string out = string;
+
+    out.erase(out.find_last_not_of(whitespace) + 1);
+
+    return out;
+}
+
+std::string trimLeft(const std::string & string)
+{
+    std::string out = string;
+
+    out.erase(0, out.find_first_not_of(whitespace));
+
+    return out;
+}
+
 std::string trim(const std::string & string, bool removeAllWhitespace)
 {
-    static const regex_namespace::regex trimRegex("(^\\s+|\\s+$)");
-    static const regex_namespace::regex trimRegexRemoveAllWhiteSpace("\\s+");
+    if (removeAllWhitespace)
+    {
+        std::string out = string;
 
-    return regex_namespace::regex_replace(string, removeAllWhitespace ? trimRegexRemoveAllWhiteSpace : trimRegex, std::string());
+        for (unsigned int i = 0; i < 6; ++i)
+        {
+            out.erase(std::remove(out.begin(), out.end(), whitespace[i]), out.end());
+        }
+
+        return out;
+    }
+
+    else {
+        return trimLeft(trimRight(string));
+    }
 }
 
 std::string padLeft(const std::string & string, size_t length, char c)
@@ -58,22 +84,40 @@ std::string stripped(const std::string & string, const std::set<char> & blacklis
 
 std::vector<std::string> parseArray(const std::string & string, size_t size)
 {
-    std::string regexString = "\\s*\\(";
-    for (size_t i = 0; i < size - 1; ++i)
-        regexString.append("([^,]*),");
-    regexString.append("([^,]*)\\)\\s*");
-
-    regex_namespace::smatch match;
-    regex_namespace::regex regex(regexString);
-
-    if (!regex_namespace::regex_match(string, match, regex))
-        return {};
-
     std::vector<std::string> result;
-    for (size_t i = 1; i < match.size(); ++i)
-        result.push_back(trim(match[i].str(), false));
 
-    assert(result.size() == size);
+    // Skip whitespace
+    auto pos = string.find_first_not_of(whitespace);
+    if (pos == std::string::npos)
+        return result;
+
+    // Expect '('
+    if (string[pos] != '(')
+        return result;
+
+    // Position at the first element
+    pos++;
+
+    // Parse elements
+    for (size_t i=0; i<size; i++)
+    {
+        // Abort if we read beyond the end of the string
+        if (pos >= string.size())
+            break;
+
+        // Get position of next ',' or ')' for the last element
+        auto rpos = ((i == size - 1) ? string.find(")", pos) : string.find(",", pos));
+        if (rpos == std::string::npos)
+            break;
+
+        // Get substring
+        std::string element = string.substr(pos, rpos - pos);
+        result.push_back(trim(element));
+
+        // Next element
+        pos = rpos + 1;
+    }
+
     return result;
 }
 
