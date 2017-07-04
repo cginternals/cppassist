@@ -35,6 +35,9 @@ set(sources
     
     # flags
     flags_test.cpp
+    
+    # typelist
+    typelist_test.cpp
 
     # memory
     make_unique_test.cpp
