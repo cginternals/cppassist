@@ -96,6 +96,9 @@ set(headers
 
     ${include_path}/threading/parallelfor.h
     ${include_path}/threading/parallelfor.inl
+    
+    ${include_path}/typelist/TypeList.h
+    ${include_path}/typelist/TypeList.inl
 
     ${include_path}/cmdline/ArgumentParser.h
     ${include_path}/cmdline/ArgumentParser.inl
