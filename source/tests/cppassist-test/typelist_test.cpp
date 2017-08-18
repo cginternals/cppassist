@@ -15,7 +15,7 @@ public:
     }
 
     template <typename T>
-    void operator()()
+    void apply()
     {
         if (typeid(T) == typeid(int))
         {
