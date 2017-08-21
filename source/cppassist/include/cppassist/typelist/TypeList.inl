@@ -13,7 +13,7 @@ template <typename T, typename... Types>
 template <typename Functor>
 void TypeList<T, Types...>::apply(Functor && callback)
 {
-    (callback.template apply<T>)();
+    (callback.template operator()<T>)();
 
     TypeList<Types...>::apply(std::forward<Functor>(callback));
 }
