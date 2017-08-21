@@ -20,7 +20,7 @@ class TypeList;
 *    A compile-time list of types.
 *
 *    This is the template specialization for non-zero type lists.
-*    There is an interface to call a template operator() on a Functor for each type in the type list.
+*    There is an interface to call a template method invoke() on a Functor for each type in the type list.
 */
 template <typename T, typename... Types>
 class TypeList<T, Types...>
@@ -28,10 +28,10 @@ class TypeList<T, Types...>
 public:
     /**
     *  @brief
-    *    Call the template operator() on the Functor for each type.
+    *    Call the template method invoke() on the Functor for each type.
     *
     *  @param[in] callback
-    *    The functor, supporting a templated operator()
+    *    The functor, supporting a templated method invoke()
     */
     template <typename Functor>
     static void apply(Functor && callback);
@@ -50,12 +50,12 @@ class TypeList<>
 public:
     /**
     *  @brief
-    *    Call the template operator() on the Functor for each type.
+    *    Call the template method invoke() on the Functor for each type.
     *
     *    As this is the empty type list, no operator is called.
     *
     *  @param[in] callback
-    *    The functor, supporting a templated operator()
+    *    The functor, supporting a templated method invoke()
     */
     template <typename Functor>
     static void apply(Functor && callback);
