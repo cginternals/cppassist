@@ -165,5 +165,25 @@ FilePath & FilePath::operator =(FilePath && filePath)
     return *this;
 }
 
+bool FilePath::operator==(const FilePath & other) const
+{
+    if (this == &other)
+    {
+        return true;
+    }
+
+    return m_path == other.m_path;
+}
+
+bool FilePath::operator!=(const FilePath & other) const
+{
+    if (this == &other)
+    {
+        return false;
+    }
+
+    return m_path != other.m_path;
+}
+
 
 } // namespace cppassist
