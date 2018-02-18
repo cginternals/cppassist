@@ -55,7 +55,6 @@ libcppassist-dbg:
 	rm debian/tmp/usr/share/*/README.md
 	rm debian/tmp/usr/share/*/VERSION
 	rm debian/tmp/usr/share/*/cmake/*/*-export.cmake
-	rm debian/tmp/usr/share/*/cmake/ModuleInformation.cmake
 	mkdir -p debian/tmp/DEBIAN
 	dpkg-gencontrol -plibcppassist-dbg
 	dpkg --build debian/tmp ..
