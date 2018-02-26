@@ -3,6 +3,10 @@
 # External dependencies
 # 
 
+    
+find_package(cppintrinsics REQUIRED)
+
+
 set(ADDITIONAL_LIBRARIES)
 set(ADDITIONAL_INCLUDES)
 if(NOT OPTION_BUILD_WITH_STD_REGEX)
@@ -224,6 +228,10 @@ target_link_libraries(${target}
     ${DEFAULT_LIBRARIES}
 
     INTERFACE
+    cppintrinsics::SSE
+    cppintrinsics::AVX
+    cppintrinsics::AVX2
+    cppintrinsics::AVX512
 )
 
 
