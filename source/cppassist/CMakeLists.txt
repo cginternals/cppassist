@@ -228,11 +228,17 @@ target_link_libraries(${target}
     ${DEFAULT_LIBRARIES}
 
     INTERFACE
-    cppintrinsics::SSE
+)
+
+foreach (intrinsic_target
+	cppintrinsics::SSE
     cppintrinsics::AVX
     cppintrinsics::AVX2
-    cppintrinsics::AVX512
-)
+    cppintrinsics::AVX512)
+    if (TARGET ${intrinsic_target})
+        target_link_libraries(${target} INTERFACE ${intrinsic_target})
+	endif()
+endforeach()
 
 
 # 
