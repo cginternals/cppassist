@@ -108,6 +108,7 @@ public:
 
     // Stream manipulators
     LogMessageBuilder & operator<<(std::ostream & (*manipulator)(std::ostream&));
+    LogMessageBuilder & operator<<(std::ios_base & (*manipulator)(std::ios_base&));
     LogMessageBuilder & operator<<(PrecisionManipulator manipulator);
     LogMessageBuilder & operator<<(FillManipulator manipulator);
 
