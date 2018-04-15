@@ -19,7 +19,7 @@ void TypeList<T, Types...>::apply(Functor && callback)
 }
 
 template <typename Functor>
-void TypeList<>::apply(Functor && /*callback*/)
+void TypeList<>::apply(Functor &&)
 {
 }
 

@@ -82,7 +82,7 @@ std::string stripped(const std::string & string, const std::set<char> & blacklis
     return result;
 }
 
-std::vector<std::string> parseArray(const std::string & string, size_t size)
+std::vector<std::string> parseArray(const std::string & string, size_t)
 {
     std::vector<std::string> result;
 
@@ -99,14 +99,21 @@ std::vector<std::string> parseArray(const std::string & string, size_t size)
     pos++;
 
     // Parse elements
-    for (size_t i=0; i<size; i++)
+    bool atEnd = false;
+    while (!atEnd)
     {
         // Abort if we read beyond the end of the string
         if (pos >= string.size())
             break;
 
         // Get position of next ',' or ')' for the last element
-        auto rpos = ((i == size - 1) ? string.find(")", pos) : string.find(",", pos));
+        auto rpos = string.find(",", pos);
+
+        if (rpos == std::string::npos) {
+            rpos = string.find(")", pos);
+            atEnd = true;
+        }
+
         if (rpos == std::string::npos)
             break;
 
