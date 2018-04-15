@@ -47,7 +47,7 @@ set(META_PROJECT_DESCRIPTION "C++ sanctuary for small but powerful and frequentl
 set(META_AUTHOR_ORGANIZATION "CG Internals GmbH")
 set(META_AUTHOR_DOMAIN       "https://github.com/cginternals/cppassist/")
 set(META_AUTHOR_MAINTAINER   "opensource@cginternals.com")
-set(META_VERSION_MAJOR       "0")
+set(META_VERSION_MAJOR       "1")
 set(META_VERSION_MINOR       "0")
 set(META_VERSION_PATCH       "0")
 set(META_VERSION_REVISION    "${GIT_REV}")

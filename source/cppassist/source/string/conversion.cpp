@@ -30,7 +30,7 @@ namespace
 void encodeUTF8(const std::string & input, std::u32string & output)
 {
 #if CPPASSIST_CODECVT_AVAILABLE
-    #if defined(_MSC_VER) && (_MSC_VER >= 1900 && _MSC_VER <= 1911)
+    #if defined(_MSC_VER) && (_MSC_VER >= 1900)
         // MSVC 2015 and 2017 were compiled using uint32_t instead of char32_t, see https://social.msdn.microsoft.com/Forums/expression/en-US/8f40dcd8-c67f-4eba-9134-a19b9178e481/vs-2015-rc-linker-stdcodecvt-error?forum=vcgeneral
         static std::wstring_convert<std::codecvt_utf8<uint32_t>, uint32_t> conversion;
 
