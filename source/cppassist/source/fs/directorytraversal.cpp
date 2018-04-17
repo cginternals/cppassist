@@ -4,7 +4,7 @@
 #include <cassert>
 #include <iostream>
 
-#ifdef _MSC_VER
+#ifdef SYSTEM_WINDOWS
     #include <windows.h>
     #include "dirent_msvc.h"
 #else
