@@ -48,6 +48,9 @@ matrix:
           packages:
           - cmake
           - g++-5
+          - libboost-regex-dev
+          - cppcheck
+          - clang-tidy-3.8
 
 before_install:
   - if [ $TRAVIS_OS_NAME == linux ]; then export CMAKE_OPTIONS="$CMAKE_OPTIONS -DOPTION_BUILD_WITH_STD_REGEX=Off"; fi
