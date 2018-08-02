@@ -18,10 +18,22 @@ matrix:
     - os: linux
       compiler: clang
       env: CMAKE_CONFIGURATION=release BUILD_DIR=build
+      addons:
+        apt:
+          packages:
+          - libboost-regex-dev
+          - cppcheck
+          - clang-tidy-3.8
 
     - os: linux
       compiler: clang
       env: CMAKE_CONFIGURATION=debug BUILD_DIR=build-debug
+      addons:
+        apt:
+          packages:
+          - libboost-regex-dev
+          - cppcheck
+          - clang-tidy-3.8
 
     - os: linux
       compiler: gcc
@@ -35,6 +47,9 @@ matrix:
           packages:
           - cmake
           - g++-5
+          - libboost-regex-dev
+          - cppcheck
+          - clang-tidy-3.8
 
     - os: linux
       compiler: gcc
