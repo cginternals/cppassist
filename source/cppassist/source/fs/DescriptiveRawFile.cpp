@@ -182,7 +182,7 @@ bool DescriptiveRawFile::readFile()
         std::cerr << "Reading from file \"" << m_filePath << "\" failed." << std::endl;
         return false;
     }
-    
+
     uint64_t offset = 0;
 
     if (read<uint16_t>(ifs) == s_signature)
@@ -198,7 +198,7 @@ bool DescriptiveRawFile::readFile()
     {
         ifs.seekg(0);
     }
-    
+
     readRawData(ifs, offset);
 
     ifs.close();
@@ -237,10 +237,10 @@ void DescriptiveRawFile::readProperties(std::ifstream & ifs, uint64_t offset)
 void DescriptiveRawFile::readRawData(std::ifstream & ifs, uint64_t rawDataOffset)
 {
     ifs.seekg(0, std::ios::end);
-    
+
     size_t endPosition = ifs.tellg();
     const size_t size = endPosition - rawDataOffset;
-    
+
     ifs.seekg(rawDataOffset, std::ios::beg);
 
     m_data.resize(size);

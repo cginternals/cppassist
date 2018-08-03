@@ -22,7 +22,7 @@
 #endif
 
 
-namespace 
+namespace
 {
 
 
