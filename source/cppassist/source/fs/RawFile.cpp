@@ -1,7 +1,6 @@
 
 #include <cppassist/fs/RawFile.h>
 
-#include <fstream>
 #include <iostream>
 
 #include <cppassist/fs/readfile.h>

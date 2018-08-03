@@ -1,8 +1,6 @@
 
 #include <cppassist/cmdline/CommandLineOption.h>
 
-#include <iostream>
-
 
 namespace cppassist
 {

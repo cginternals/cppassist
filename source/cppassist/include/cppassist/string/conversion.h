@@ -3,7 +3,6 @@
 
 
 #include <string>
-#include <functional>
 
 #include <cppassist/cppassist_api.h>
 

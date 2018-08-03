@@ -2,10 +2,7 @@
 #pragma once
 
 
-#include <cstdint>
 #include <string>
-#include <vector>
-#include <map>
 
 #include <cppassist/cppassist_api.h>
 

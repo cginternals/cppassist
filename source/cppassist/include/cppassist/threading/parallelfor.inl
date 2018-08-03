@@ -3,8 +3,6 @@
 
 
 #include <thread>
-#include <vector>
-#include <algorithm>
 
 
 namespace cppassist

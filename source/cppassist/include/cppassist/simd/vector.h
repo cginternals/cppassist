@@ -2,9 +2,7 @@
 #pragma once
 
 
-#include <cstddef>
 #include <vector>
-#include <functional>
 
 #include <cppassist/simd/simd.h>
 #include <cppassist/simd/allocator.h>
