@@ -128,7 +128,7 @@ std::vector<std::string> parseArray(const std::string & string, size_t)
     return result;
 }
 
-std::vector<std::string> split(const std::string & input, char delimiter)
+std::vector<std::string> split(const std::string & input, char delimiter, bool keepEmptyParts)
 {
     std::vector<std::string> result;
     std::string line;
@@ -136,7 +136,7 @@ std::vector<std::string> split(const std::string & input, char delimiter)
 
     while(std::getline(ss, line, delimiter))
     {
-        if (!line.empty())
+        if (keepEmptyParts || !line.empty())
         {
             result.push_back(line);
         }

@@ -112,11 +112,13 @@ CPPASSIST_API std::vector<std::string> parseArray(const std::string & string, si
 *    Input string
 *  @param[in] delimiter
 *    Character that marks the next element
+*  @param[in] keepEmptyParts
+*    Flag to signal if empty parts are part of the result or skipped
 *
 *  @return
 *    List of strings
 */
-CPPASSIST_API std::vector<std::string> split(const std::string & string, char delimiter);
+CPPASSIST_API std::vector<std::string> split(const std::string & string, char delimiter, bool keepEmptyParts = true);
 
 /**
 *  @brief

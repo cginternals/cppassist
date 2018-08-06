@@ -46,7 +46,7 @@ TEST_F(manipulation_test, parseArray)
 TEST_F(manipulation_test, split)
 {
     std::string inputString = "seperate this - by-minus-  sign.-?";
-    std::vector<std::string> vec = string::split(inputString, '-');
+    std::vector<std::string> vec = string::split(inputString, '-', true);
     std::vector<std::string> vecComp {"seperate this ", " by", "minus", "  sign.", "?"};
 
     ASSERT_EQ(vecComp, vec);
