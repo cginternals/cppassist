@@ -128,18 +128,27 @@ std::vector<std::string> parseArray(const std::string & string, size_t)
     return result;
 }
 
-std::vector<std::string> split(const std::string & input, char delimiter)
+std::vector<std::string> split(const std::string & input, char delimiter, bool keepEmptyParts)
 {
     std::vector<std::string> result;
-    std::string line;
-    std::stringstream ss(input);
 
-    while(std::getline(ss, line, delimiter))
+    auto last_pos = 0;
+
+    for (auto current_pos = input.find(delimiter, last_pos);
+         current_pos != std::string::npos;
+         current_pos = input.find(delimiter, last_pos))
     {
-        if (!line.empty())
+        if (keepEmptyParts || last_pos + 1 < current_pos)
         {
-            result.push_back(line);
+            result.push_back(input.substr(last_pos, current_pos - last_pos));
         }
+
+        last_pos = current_pos + 1;
+    }
+
+    if (keepEmptyParts || last_pos + 1 < input.size())
+    {
+        result.push_back(input.substr(last_pos));
     }
 
     return result;
