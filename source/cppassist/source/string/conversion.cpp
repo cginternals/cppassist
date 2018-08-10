@@ -177,28 +177,28 @@ std::u32string encode(const std::string & input, const Encoding encoding)
 std::string toLower(const std::string & input)
 {
     std::string result = input;
-    std::transform(result.begin(), result.end(), result.begin(), ::tolower);
+    std::transform(result.begin(), result.end(), result.begin(), [](char c){return static_cast<char>(::tolower(c));});
     return result;
 }
 
 std::string toLower(std::string && input)
 {
     std::string result = std::move(input);
-    std::transform(result.begin(), result.end(), result.begin(), ::tolower);
+    std::transform(result.begin(), result.end(), result.begin(), [](char c){return static_cast<char>(::tolower(c));});
     return result;
 }
 
 std::string toUpper(const std::string & input)
 {
     std::string result = input;
-    std::transform(result.begin(), result.end(), result.begin(), ::toupper);
+    std::transform(result.begin(), result.end(), result.begin(), [](char c){return static_cast<char>(::tolower(c));});
     return result;
 }
 
 std::string toUpper(std::string && input)
 {
     std::string result = std::move(input);
-    std::transform(result.begin(), result.end(), result.begin(), ::toupper);
+    std::transform(result.begin(), result.end(), result.begin(), [](char c){return static_cast<char>(::tolower(c));});
     return result;
 }
 
