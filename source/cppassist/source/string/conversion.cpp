@@ -191,14 +191,14 @@ std::string toLower(std::string && input)
 std::string toUpper(const std::string & input)
 {
     std::string result = input;
-    std::transform(result.begin(), result.end(), result.begin(), [](char c){return static_cast<char>(::tolower(c));});
+    std::transform(result.begin(), result.end(), result.begin(), [](char c){return static_cast<char>(::toupper(c));});
     return result;
 }
 
 std::string toUpper(std::string && input)
 {
     std::string result = std::move(input);
-    std::transform(result.begin(), result.end(), result.begin(), [](char c){return static_cast<char>(::tolower(c));});
+    std::transform(result.begin(), result.end(), result.begin(), [](char c){return static_cast<char>(::toupper(c));});
     return result;
 }
 
