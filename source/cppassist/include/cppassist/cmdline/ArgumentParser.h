@@ -119,9 +119,14 @@ public:
     *
     *  @param[in] option
     *    Name of option (e.g., "--v")
+    *  @param[in] defaultValue
+    *    Default value returned if option is not set
     *
     *  @return
     *    Value of the option
+    *
+    *  @remark
+    *    Uses string::fromString() to convert to specified type
     */
     template <typename T>
     T value(const std::string & option, const T & defaultValue = T()) const;

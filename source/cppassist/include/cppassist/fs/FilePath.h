@@ -78,7 +78,7 @@ public:
     *  @brief
     *    Constructor
     *
-    *  @param[in] string
+    *  @param[in] path
     *    File path
     */
     FilePath(const char * path);

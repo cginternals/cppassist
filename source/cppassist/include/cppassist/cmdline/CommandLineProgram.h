@@ -211,10 +211,8 @@ public:
     *    is expected to call the specified action and return its
     *    error code.
     *
-    *  @param[in] argc
-    *    Number of arguments
-    *  @param[in] argv
-    *    List of arguments
+    *  @param[in] action
+    *    Command line action to execute
     *
     *  @return
     *    Error code (0 on success)
