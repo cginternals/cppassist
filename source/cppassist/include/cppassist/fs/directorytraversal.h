@@ -20,7 +20,7 @@ namespace fs
 *    List all files in a directory
 *
 *  @param[in] directory
-*    Path to directory (exluding a trailing '/'!)
+*    Path to directory (exluding a trailing '`/`'!)
 *  @param[in] recursive
 *    Search recursively in sub-directories?
 *  @param[out] files
@@ -40,7 +40,7 @@ CPPASSIST_API void getFiles(const std::string & directory, bool recursive, std::
 *    List all files in a directory
 *
 *  @param[in] directory
-*    Path to directory (exluding a trailing '/'!)
+*    Path to directory (exluding a trailing '`/`'!)
 *  @param[in] recursive
 *    Search recursively in sub-directories?
 *
@@ -54,7 +54,7 @@ CPPASSIST_API std::vector<std::string> getFiles(const std::string & directory, b
 *    List all files in a directory
 *
 *  @param[in] directories
-*    Vector of paths to directories (exluding a trailing '/'!)
+*    Vector of paths to directories (exluding a trailing '`/`'!)
 *  @param[in] recursive
 *    Search recursively in sub-directories?
 *
@@ -70,7 +70,7 @@ CPPASSIST_API std::vector<std::string> getFiles(const std::vector<std::string> &
 *  @param[in] directory
 *    Path to directory
 *  @param[in] fileExtension
-*    File extension ("*" for all files)
+*    File extension ('`*`' for all files)
 *  @param[in] recursive
 *    Search recursively in sub-directories?
 *
@@ -86,7 +86,7 @@ CPPASSIST_API std::vector<std::string> scanDirectory(const std::string & directo
 *  @param[in] directory
 *    Path to directory
 *  @param[in] fileExtension
-*    File extension ("*" for all files)
+*    File extension ('`*`' for all files)
 *  @param[in] recursive
 *    Search recursively in sub-directories?
 *  @param[in] callback

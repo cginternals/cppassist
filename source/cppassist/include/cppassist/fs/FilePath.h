@@ -19,7 +19,7 @@ namespace cppassist
 *    operations like getting the file name or extension.
 *
 *    FilePath uses a unified format for storing paths, i.e., it uses only
-*    forward slashes '/' as delimiter. When a FilePath is constructed from
+*    forward slashes '`/`' as delimiter. When a FilePath is constructed from
 *    a string, the path is translated into the unified format and can then
 *    be used in a cross-platform way throughout an application. All operations
 *    on FilePath also return paths in the same unified format. To obtain the
@@ -108,7 +108,7 @@ public:
     *  @remarks
     *    The path is processed and modified in a way that it can be used
     *    consistently on every platform:
-    *    - Only forward slashes '/' are used as delimiter
+    *    - Only forward slashes '`/`' are used as delimiter
     *    - Trailing slashes are removed
     */
     const std::string & path() const;
@@ -130,8 +130,8 @@ public:
     *    Base name of the file the stored path points to, without extension
     *
     *  @remarks
-    *    This function returns "something" for both "/path/to/something.ex" and
-    *    "/path/to/something.ex/".
+    *    This function returns `"something"` for both `"/path/to/something.ex"` and
+    *    `"/path/to/something.ex/"`.
     */
     std::string baseName() const;
 
@@ -143,8 +143,8 @@ public:
     *    Name of the file the stored path points to, with extension
 
     *  @remarks
-    *    This function returns "something.ex" for both "/path/to/something.ex" and
-    *    "/path/to/something.ex/".
+    *    This function returns `"something.ex"` for both `"/path/to/something.ex"` and
+    *    `"/path/to/something.ex/"`.
     */
     std::string fileName() const;
 
@@ -167,10 +167,12 @@ public:
     *  @return
     *    Path to the directory, with trailing slashes
     *
-    *  @remarks
-    *    The returned path string is in unified form, so only forward slashes '/' are used.
-    *    This function returns "/path/to/" as directory path for both
-    *    "/path/to/directory" and "/path/to/directory/".
+    *  @remark
+    *    The returned path string is in unified form, so only forward slashes '`/`' are used.
+    *
+    *  @remark
+    *    This function returns `"/path/to/"` as directory path for both
+    *    `"/path/to/directory"` and `"/path/to/directory/"`.
     */
     std::string directoryPath() const;
 
@@ -216,7 +218,7 @@ public:
     *    The other file path for comparison
     *
     *  @return
-    *    'true' if both file paths are equal, else 'false'
+    *    `true` if both file paths are equal, else `false`
     *
     *  @remarks
     *    Two file paths are considered equal if the contents of the path are equal
@@ -231,7 +233,7 @@ public:
     *    The other file path for comparison
     *
     *  @return
-    *    'true' if both file paths differ, else 'false'
+    *    `true` if both file paths differ, else `false`
     *
     *  @remarks
     *    Two file paths are considered equal if the contents of the path are equal
@@ -248,14 +250,14 @@ protected:
     *    File path
     *
     *  @return
-    *    Unified form of input path (e.g., only forward slashed '/').
+    *    Unified form of input path (e.g., only forward slashed '`/`').
     */
     static std::string toPath(const std::string & path);
 
 
 protected:
     std::string m_originalPath; ///< Original unprocessed input string
-    std::string m_path;         ///< Path (using only forward slashes '/' as delimiter)
+    std::string m_path;         ///< Path (using only forward slashes '`/`' as delimiter)
 };
 
 

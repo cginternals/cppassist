@@ -46,7 +46,7 @@ public:
     *    Path to the file to load
     *
     *  @return
-    *    'true' if file contents could be loaded successfully, else 'false'
+    *    `true` if file contents could be loaded successfully, else `false`
     *
     *  @remarks
     *    Uses the passed file path and stores it for subsequent reloads.
@@ -58,7 +58,7 @@ public:
     *    Reload file contents
     *
     *  @return
-    *    'true' if file contents could be loaded successfully, else 'false'
+    *    `true` if file contents could be loaded successfully, else `false`
     *
     *  @remarks
     *    Uses the last passed file path to load.
@@ -70,7 +70,7 @@ public:
     *    Get plain C pointer to file contents
     *
     *  @return
-    *    Plain C pointer to file contents if successfully loaded, 'nullptr' else
+    *    Plain C pointer to file contents if successfully loaded, `nullptr` else
     */
     const char * data() const;
 
@@ -79,7 +79,7 @@ public:
     *    Get number of bytes in file
     *
     *  @return
-    *    Number of bytes in file if successfully loaded, '0' else
+    *    Number of bytes in file if successfully loaded, 0 else
     */
     size_t size() const;
 
@@ -88,7 +88,7 @@ public:
     *    Get validity of file contents
     *
     *  @return
-    *    'true' if file contents could be loaded successfully, else 'false'
+    *    `true` if file contents could be loaded successfully, else `false`
     */
     bool isValid() const;
 
@@ -108,7 +108,7 @@ protected:
     *    Load contents from file path
     *
     *  @return
-    *    'true' if file contents could be loaded successfully, else 'false'
+    *    `true` if file contents could be loaded successfully, else `false`
     */
     bool readFile();
 
