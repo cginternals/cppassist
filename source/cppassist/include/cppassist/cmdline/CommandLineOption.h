@@ -21,13 +21,15 @@ namespace cppassist
 *    the value must be specified on the command line.
 *
 *    Example:
-*      myapp [--config-file <filename>]
+*      `myapp [--config-file <filename>]`
 *
+*    @code
 *      CommandLineOption optionConfigFile(
 *        "--config-file", "-c",
 *        "filename",
 *        "Specify path to configuration file",
 *        CommandLineOption::Optional);
+*    @endcode
 */
 class CPPASSIST_API CommandLineOption
 {
@@ -86,7 +88,7 @@ public:
     *    Get names
     *
     *  @return
-    *    String containing both the short and long name (e.g., '-c, --config-file')
+    *    String containing both the short and long name (e.g., "-c, --config-file")
     */
     const std::string & names() const;
 
@@ -167,7 +169,7 @@ public:
     *    Check optional-flag
     *
     *  @return
-    *    'true' if optional, else 'false'
+    *    `true` if optional, else `false`
     */
     bool isOptional() const;
 
@@ -215,7 +217,7 @@ protected:
 protected:
     std::string   m_longName;    ///< Long name (e.g., "--config-file")
     std::string   m_shortName;   ///< Short name (e.g., "-c")
-    std::string   m_names;       ///< String containing both the short and long name (e.g., '-c, --config-file')
+    std::string   m_names;       ///< String containing both the short and long name (e.g., "-c, --config-file")
     std::string   m_valueName;   ///< Value name (e.g., "filename")
     std::string   m_description; ///< Description text
     OptionalState m_optional;    ///< Optional-state

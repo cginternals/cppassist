@@ -20,18 +20,18 @@ namespace cppassist
 *    Can be used to parse the arguments from the command line.
 *    The following command line syntax is assumed:
 *
-*      <executable> [--<option> <value>]* [-<option>]* [<param>]*
+*    `<executable> [--<option> <value>]* [-<option>]* [<param>]*`
 *
-*    <executable>:
+*    `<executable>`:
 *      The first argument is assumed to be the current executable name.
 *
-*    --<option>:
-*      Options with two slashes (--) must be followed by a value.
+*    `--<option>`:
+*      Options with two slashes (`--`) must be followed by a value.
 *
-*    -<option>:
-*      Options with a single slash (-) do not have a value. If present, their value is to 'true'.
+*    `-<option>`:
+*      Options with a single slash (`-`) do not have a value. If present, their value is set to `true`.
 *
-*    <param>
+*    `<param>`:
 *      All other arguments found in the command line are assumed to be additional parameters
 *      and are added to the parameter list.
 */
@@ -69,7 +69,7 @@ public:
     *    Options (key->value)
     *
     *  @remarks
-    *    Options without values (single -) have the value "true" if set.
+    *    Options without values (single "-") have the value `true` if set.
     */
     const std::map<std::string, std::string> & options() const;
 
@@ -78,10 +78,10 @@ public:
     *    Check if option is set
     *
     *  @param[in] option
-    *    Name of option (e.g., '-v')
+    *    Name of option (e.g., "-v")
     *
     *  @return
-    *    'true' if option is set, else 'false'
+    *    `true` if option is set, else `false`
     */
     bool isSet(const std::string & option) const;
 
@@ -90,7 +90,7 @@ public:
     *    Get option value
     *
     *  @param[in] option
-    *    Name of option (e.g., '--v')
+    *    Name of option (e.g., "--v")
     *  @param[in] defaultValue
     *    Default value returned if option is not set
     *
@@ -104,7 +104,7 @@ public:
     *    Get option value
     *
     *  @param[in] option
-    *    Name of option (e.g., '--v')
+    *    Name of option (e.g., "--v")
     *  @param[in] defaultValue
     *    Default value returned if option is not set
     *
@@ -118,7 +118,7 @@ public:
     *    Get option value converted to specific data type
     *
     *  @param[in] option
-    *    Name of option (e.g., '--v')
+    *    Name of option (e.g., "--v")
     *
     *  @return
     *    Value of the option

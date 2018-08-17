@@ -226,7 +226,7 @@ public:
     *    Check if there were any errors during parsing
     *
     *  @return
-    *    'true' if errors have been found, else 'false'
+    *    `true` if errors have been found, else `false`
     */
     bool hasErrors() const;
 

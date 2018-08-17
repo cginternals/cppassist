@@ -21,12 +21,14 @@ namespace cppassist
 *    on the command line, it is turned off by default.
 *
 *    Example:
-*      myapp [--debug]
+*      `myapp [--debug]`
 *
+*    @code
 *      CommandLineSwitch switchDebug(
 *          "--debug", "-d",
 *          "Enabled debug mode",
 *          CommandLineSwitch::Optional);
+*    @endcode
 */
 class CPPASSIST_API CommandLineSwitch
 {
@@ -82,7 +84,7 @@ public:
     *    Get names
     *
     *  @return
-    *    String containing both the short and long name (e.g., '-d, --debug')
+    *    String containing both the short and long name (e.g., "-d, --debug")
     */
     const std::string & names() const;
 
@@ -145,7 +147,7 @@ public:
     *    Check optional-flag
     *
     *  @return
-    *    'true' if optional, else 'false'
+    *    `true` if optional, else `false`
     */
     bool isOptional() const;
 
@@ -172,7 +174,7 @@ public:
     *    Check if switch has been activated
     *
     *  @return
-    *    'true' if activated, else 'false'
+    *    `true` if activated, else `false`
     */
     bool activated() const;
 
@@ -181,7 +183,7 @@ public:
     *    Set if switch has been activated
     *
     *  @param[in] activated
-    *    'true' if activated, else 'false'
+    *    `true` if activated, else `false`
     */
     void setActivated(bool activated);
 
@@ -211,10 +213,10 @@ protected:
 protected:
     std::string   m_longName;    ///< Long name (e.g., "--debug")
     std::string   m_shortName;   ///< Short name (e.g., "-d")
-    std::string   m_names;       ///< String containing both the short and long name (e.g., '-d, --debug')
+    std::string   m_names;       ///< String containing both the short and long name (e.g., "-d, --debug")
     std::string   m_description; ///< Description text
     OptionalState m_optional;    ///< Optional-state
-    bool          m_activated;   ///< 'true' if activated, else 'false'
+    bool          m_activated;   ///< `true` if activated, else `false`
     unsigned int  m_count;       ///< Activation count
 };
 
