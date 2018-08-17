@@ -46,7 +46,7 @@ CPPASSIST_API size_t getNumberOfThreads();
 *  @param[in] callback
 *    Function that is called on each iteration
 *  @param[in] parallelize
-*    'true' to parallelize the execution (if possible), else 'false'
+*    `true` to parallelize the execution (if possible), else `false`
 *
 *  @remark
 *    Both start and end must be enumerable typed that support the + operator.
