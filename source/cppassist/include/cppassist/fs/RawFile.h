@@ -48,7 +48,7 @@ public:
     *  @return
     *    `true` if file contents could be loaded successfully, else `false`
     *
-    *  @remarks
+    *  @remark
     *    Uses the passed file path and stores it for subsequent reloads.
     */
     bool load(const std::string & filePath);
@@ -60,7 +60,7 @@ public:
     *  @return
     *    `true` if file contents could be loaded successfully, else `false`
     *
-    *  @remarks
+    *  @remark
     *    Uses the last passed file path to load.
     */
     bool reload();

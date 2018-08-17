@@ -26,10 +26,14 @@ namespace fs
 *  @param[out] files
 *    List of files
 *
-*  @remarks
+*  @remark
 *    Lists all files in the directory, including all
 *    files in sub-directories if recursive is true.
+*
+*  @remark
 *    Only files are listed, directories are not included.
+*
+*  @remark
 *    The search path is included in the file name, e.g.,
 *    getFile("dir") may result in ["dir/file1.txt", "dir/file2.png", ...].
 */

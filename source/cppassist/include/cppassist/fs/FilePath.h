@@ -105,7 +105,7 @@ public:
     *  @return
     *    File path
     *
-    *  @remarks
+    *  @remark
     *    The path is processed and modified in a way that it can be used
     *    consistently on every platform:
     *    - Only forward slashes '`/`' are used as delimiter
@@ -129,7 +129,7 @@ public:
     *  @return
     *    Base name of the file the stored path points to, without extension
     *
-    *  @remarks
+    *  @remark
     *    This function returns `"something"` for both `"/path/to/something.ex"` and
     *    `"/path/to/something.ex/"`.
     */
@@ -142,7 +142,7 @@ public:
     *  @return
     *    Name of the file the stored path points to, with extension
 
-    *  @remarks
+    *  @remark
     *    This function returns `"something.ex"` for both `"/path/to/something.ex"` and
     *    `"/path/to/something.ex/"`.
     */
@@ -155,7 +155,7 @@ public:
     *  @return
     *    Extension of the file the stored path points to
 
-    *  @remarks
+    *  @remark
     *    If the path has no extension, an empty string is returned.
     */
     std::string extension() const;
@@ -220,7 +220,7 @@ public:
     *  @return
     *    `true` if both file paths are equal, else `false`
     *
-    *  @remarks
+    *  @remark
     *    Two file paths are considered equal if the contents of the path are equal
     */
     bool operator==(const FilePath & other) const;
@@ -235,7 +235,7 @@ public:
     *  @return
     *    `true` if both file paths differ, else `false`
     *
-    *  @remarks
+    *  @remark
     *    Two file paths are considered equal if the contents of the path are equal
     */
     bool operator!=(const FilePath & other) const;

@@ -39,7 +39,7 @@ CPPASSIST_API void setLoggingHandler(AbstractLogHandler * handler);
 *  @return
 *    Log level
 *
-*  @remarks
+*  @remark
 *    All log messages above the current verbosity level are omitted.
 */
 CPPASSIST_API int verbosityLevel();

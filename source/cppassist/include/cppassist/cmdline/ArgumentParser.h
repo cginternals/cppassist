@@ -68,7 +68,7 @@ public:
     *  @return
     *    Options (key->value)
     *
-    *  @remarks
+    *  @remark
     *    Options without values (single "-") have the value `true` if set.
     */
     const std::map<std::string, std::string> & options() const;

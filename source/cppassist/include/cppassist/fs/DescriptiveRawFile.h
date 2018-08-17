@@ -65,7 +65,7 @@ public:
     *  @return
     *    `true` if file contents could be loaded successfully, else `false`
     *
-    *  @remarks
+    *  @remark
     *    Uses the passed file path and stores it for subsequent reloads.
     */
     bool load(const std::string & filePath, bool parseProperties = true);
@@ -77,7 +77,7 @@ public:
     *  @return
     *    `true` if file contents could be loaded successfully, else `false`
     *
-    *  @remarks
+    *  @remark
     *    Uses the last passed file path to load.
     */
     bool reload();
@@ -237,7 +237,7 @@ protected:
     *  @param[in] offset
     *    The offset of the next section
     *
-    *  @remarks
+    *  @remark
     *    Reads from stream until position is the given offset.
     */
     void readProperties(std::ifstream & ifs, uint64_t offset);
