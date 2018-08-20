@@ -47,7 +47,11 @@ const std::string & SystemInfo::libExtension()
 
 std::string SystemInfo::homeDir()
 {
-    return std::string(getenv("HOME"));
+    #ifdef WIN32
+        return std::string(getenv("HOMEDRIVE")) + std::string(getenv("HOMEPATH"));
+    #else
+        return std::string(getenv("HOME"));
+    #endif
 }
 
 std::string SystemInfo::configDir(const std::string & application)
