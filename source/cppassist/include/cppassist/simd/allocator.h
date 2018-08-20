@@ -1,6 +1,9 @@
 
 #pragma once
 
+#pragma warning (push)
+#pragma warning (disable: 4100) // 'identifier': unreferenced formal parameter
+
 
 #include <cppassist/cppassist_api.h>
 
@@ -58,3 +61,5 @@ public:
 
 
 #include <cppassist/simd/allocator.inl>
+
+#pragma warning (pop)

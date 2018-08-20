@@ -93,6 +93,9 @@
 #ifndef DIRENT_H
 #define DIRENT_H
 
+#pragma warning (push)
+#pragma warning (disable: 4505) // 'identifier': unreferenced local function has been removed
+
 #if !defined(_68K_) && !defined(_MPPC_) && !defined(_X86_) && !defined(_IA64_) && !defined(_AMD64_) && defined(_M_IX86)
 #   define _X86_
 #endif
@@ -887,4 +890,7 @@ dirent_set_errno(
 #ifdef __cplusplus
 }
 #endif
+
+#pragma warning (pop)
+
 #endif /*DIRENT_H*/
