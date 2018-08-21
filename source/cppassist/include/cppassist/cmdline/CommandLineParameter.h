@@ -20,8 +20,9 @@ namespace cppassist
 *    command line can be required as a parameter.
 *
 *    Example:
-*      myapp <input> [<output>]
+*      `myapp <input> [<output>]`
 *
+*    @code
 *      CommandLineParameter paramInput(
 *          "input",
 *          CommandLineParameter::NonOptional);
@@ -29,6 +30,7 @@ namespace cppassist
 *      CommandLineParameter paramOutput(
 *          "output",
 *          CommandLineParameter::Optional);
+*    @endcode
 */
 class CPPASSIST_API CommandLineParameter
 {
@@ -85,7 +87,7 @@ public:
     *    Check optional-flag
     *
     *  @return
-    *    'true' if optional, else 'false'
+    *    `true` if optional, else `false`
     */
     bool isOptional() const;
 

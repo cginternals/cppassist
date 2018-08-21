@@ -29,18 +29,15 @@ class AbstractLogHandler;
 *    all streamed objects and sends it to the log handler.
 *
 *    Typical usage of the LogMessageBuilder:
-*    \code{.cpp}
+*    @code{.cpp}
 *      warning() << "This is warning number " << 3;
-*    \endcode
+*    @endcode
 *
 *  @see logging.h
 *  @see LogMessage
 *  @see setLoggingHandler
 *  @see setVerbosityLevel
-*  @see info
-*  @see debug
-*  @see warning
-*  @see critical
+*  @see log
 */
 class CPPASSIST_API LogMessageBuilder
 {

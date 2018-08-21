@@ -29,8 +29,9 @@ class CommandLineParameter;
 *    the action is invoked.
 *
 *    Example:
-*      myapp list <category> [<type>] [--show-details]
+*      `myapp list <category> [<type>] [--show-details]`
 *
+*    @code
 *      CommandLineAction actionList("list", "List objects");
 *
 *      CommandLineCommand cmdList("list")
@@ -51,6 +52,7 @@ class CommandLineParameter;
 *          CommandLineSwitch::Optional
 *      );
 *      actionList.add(&swHelp);
+*    @endcode
 */
 class CPPASSIST_API CommandLineAction
 {
@@ -245,7 +247,7 @@ public:
     *    Check if optional parameters are allowed by the action
     *
     *  @return
-    *    'true' if optional parameters are allowed, else 'false'
+    *    `true` if optional parameters are allowed, else `false`
     */
     bool optionalParametersAllowed() const;
 
@@ -254,7 +256,7 @@ public:
     *    Set if optional parameters are allowed by the action
     *
     *  @param[in] allowed
-    *    'true' if optional parameters are allowed, else 'false'
+    *    `true` if optional parameters are allowed, else `false`
     */
     void setOptionalParametersAllowed(bool allowed);
 
@@ -263,7 +265,7 @@ public:
     *    Get optional parameter name
     *
     *  @return
-    *    Parameter name (e.g., 'path')
+    *    Parameter name (e.g., "path")
     */
     const std::string & optionalParameterName() const;
 
@@ -272,7 +274,7 @@ public:
     *    Set optional parameter name
     *
     *  @param[in] name
-    *    Parameter name (e.g., 'path')
+    *    Parameter name (e.g., "path")
     */
     void setOptionalParameterName(const std::string & name);
 
@@ -307,7 +309,7 @@ public:
     *    Check if there were any errors during parsing
     *
     *  @return
-    *    'true' if errors have been found, else 'false'
+    *    `true` if errors have been found, else `false`
     */
     bool hasErrors() const;
 
@@ -325,7 +327,7 @@ public:
     *    Check if action has been activated
     *
     *  @return
-    *    'true' if activated, else 'false'
+    *    `true` if activated, else `false`
     */
     bool activated() const;
 
@@ -349,7 +351,22 @@ public:
 
 
 protected:
+    /**
+    *  @brief
+    *    Check if this action has been activated
+    *
+    *  @return
+    *    `true` if activated, else `false`
+    */
     bool checkActivated();
+
+    /**
+    *  @brief
+    *    Checks for errors and collects error messages
+    *
+    *  @see
+    *    errors
+    */
     void checkErrors();
 
 
@@ -360,9 +377,9 @@ protected:
     std::vector<CommandLineOption *>    m_options;                   ///< List of options
     std::vector<CommandLineSwitch *>    m_switches;                  ///< List of switches
     std::vector<CommandLineParameter *> m_parameters;                ///< List of parameters
-    bool                                m_optionalParametersAllowed; ///< 'true' if optional parameters are allowed, else 'false'
+    bool                                m_optionalParametersAllowed; ///< `true` if optional parameters are allowed, else `false`
     std::string                         m_optionalParameterName;     ///< Name for optional parameters
-    bool                                m_activated;                 ///< 'true' if activated, else 'false'
+    bool                                m_activated;                 ///< `true` if activated, else `false`
     std::vector<std::string>            m_optionalParameters;        ///< List of optional parameters
     std::vector<std::string>            m_errors;                    ///< List of parsing errors
 };

@@ -23,7 +23,7 @@ namespace fs
 *    String that receives the contents of the file
 *
 *  @return
-*    'true' if the file has been read successfully, else 'false'
+*    `true` if the file has been read successfully, else `false`
 */
 CPPASSIST_API bool readFile(const std::string & filePath, std::string & content);
 

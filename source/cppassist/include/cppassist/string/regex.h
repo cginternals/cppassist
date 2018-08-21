@@ -24,7 +24,7 @@ namespace string
 *    Regular expression
 *
 *  @return
-*    'true' if regex matches the string, else 'false'
+*    `true` if regex matches the string, else `false`
 */
 CPPASSIST_API bool matchesRegex(const std::string & string, const std::string & regex);
 
@@ -56,7 +56,7 @@ CPPASSIST_API std::vector<std::string> extract(const std::string & string, const
 *    The resulting match
 *
 *  @return
-*    The iterator to the character after the match or begin if regex does not match
+*    The iterator to the character after the match or `begin` if regex does not match
 */
 CPPASSIST_API std::string::const_iterator extractNext(std::string::const_iterator begin, std::string::const_iterator end, const std::string & regex, std::string & match);
 
@@ -74,7 +74,7 @@ CPPASSIST_API std::string::const_iterator extractNext(std::string::const_iterato
 *    The resulting match
 *
 *  @return
-*    The pointer to the character after the match or begin if regex does not match
+*    The pointer to the character after the match or `begin` if regex does not match
 */
 CPPASSIST_API const char * extractNext(const char * begin, const char * end, const std::string & regex, std::string & match);
 
