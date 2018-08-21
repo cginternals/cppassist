@@ -111,6 +111,16 @@ size_t DescriptiveRawFile::size() const
     return m_data.size();
 }
 
+const std::string & DescriptiveRawFile::filePath() const
+{
+    if (!m_valid)
+    {
+        return "";
+    }
+
+    return m_filePath;
+}
+
 const std::string & DescriptiveRawFile::stringProperty(const std::string & key) const
 {
     return m_stringProperties.at(key);
