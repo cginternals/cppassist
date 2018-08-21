@@ -6,7 +6,6 @@
 #include <sstream>
 #include <iostream>
 #include <iterator>
-#include <stdio.h>
 
 
 namespace
@@ -111,6 +110,17 @@ size_t DescriptiveRawFile::size() const
     return m_data.size();
 }
 
+const std::string & DescriptiveRawFile::filePath() const
+{
+    if (!m_valid)
+    {
+        const static std::string emptyPath;
+        return emptyPath;
+    }
+
+    return m_filePath;
+}
+
 const std::string & DescriptiveRawFile::stringProperty(const std::string & key) const
 {
     return m_stringProperties.at(key);
@@ -182,7 +192,7 @@ bool DescriptiveRawFile::readFile()
         std::cerr << "Reading from file \"" << m_filePath << "\" failed." << std::endl;
         return false;
     }
-    
+
     uint64_t offset = 0;
 
     if (read<uint16_t>(ifs) == s_signature)
@@ -198,7 +208,7 @@ bool DescriptiveRawFile::readFile()
     {
         ifs.seekg(0);
     }
-    
+
     readRawData(ifs, offset);
 
     ifs.close();
@@ -237,10 +247,10 @@ void DescriptiveRawFile::readProperties(std::ifstream & ifs, uint64_t offset)
 void DescriptiveRawFile::readRawData(std::ifstream & ifs, uint64_t rawDataOffset)
 {
     ifs.seekg(0, std::ios::end);
-    
+
     size_t endPosition = ifs.tellg();
     const size_t size = endPosition - rawDataOffset;
-    
+
     ifs.seekg(rawDataOffset, std::ios::beg);
 
     m_data.resize(size);

@@ -1,8 +1,6 @@
 
 #include <cppassist/cmdline/CommandLineAction.h>
 
-#include <string>
-
 #include <cppassist/string/manipulation.h>
 #include <cppassist/cmdline/CommandLineCommand.h>
 #include <cppassist/cmdline/CommandLineOption.h>

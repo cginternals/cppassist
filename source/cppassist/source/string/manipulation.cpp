@@ -132,7 +132,7 @@ std::vector<std::string> split(const std::string & input, char delimiter, bool k
 {
     std::vector<std::string> result;
 
-    auto last_pos = 0;
+    size_t last_pos = 0;
 
     for (auto current_pos = input.find(delimiter, last_pos);
          current_pos != std::string::npos;

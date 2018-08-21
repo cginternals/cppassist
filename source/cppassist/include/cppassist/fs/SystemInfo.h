@@ -23,7 +23,7 @@ public:
     *    Get platform specific path seperator
     *
     *  @return
-    *    Path seperator (e.g., '/' or '\')
+    *    Path seperator (e.g., '`/`' or '`\`')
     */
     static const std::string & pathSeperator();
 
@@ -41,7 +41,7 @@ public:
     *    Get platform specific shared library extension
     *
     *  @return
-    *    Library prefix (e.g., 'dll', or '.so')
+    *    Library prefix (e.g., 'dll', or 'so')
     */
     static const std::string & libExtension();
 

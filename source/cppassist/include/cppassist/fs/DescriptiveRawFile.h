@@ -63,9 +63,9 @@ public:
     *    Flag whether to parse or omit header information
     *
     *  @return
-    *    'true' if file contents could be loaded successfully, else 'false'
+    *    `true` if file contents could be loaded successfully, else `false`
     *
-    *  @remarks
+    *  @remark
     *    Uses the passed file path and stores it for subsequent reloads.
     */
     bool load(const std::string & filePath, bool parseProperties = true);
@@ -75,9 +75,9 @@ public:
     *    Reload file contents
     *
     *  @return
-    *    'true' if file contents could be loaded successfully, else 'false'
+    *    `true` if file contents could be loaded successfully, else `false`
     *
-    *  @remarks
+    *  @remark
     *    Uses the last passed file path to load.
     */
     bool reload();
@@ -87,7 +87,7 @@ public:
     *    Get plain C pointer to file contents
     *
     *  @return
-    *    Plain C pointer to file contents if successfully loaded, 'nullptr' else
+    *    Plain C pointer to file contents if successfully loaded, `nullptr` else
     */
     const char * data() const;
 
@@ -96,7 +96,7 @@ public:
     *    Get number of bytes in file
     *
     *  @return
-    *    Number of bytes in file if successfully loaded, '0' else
+    *    Number of bytes in file if successfully loaded, 0 else
     */
     size_t size() const;
 
@@ -105,7 +105,7 @@ public:
     *    Get validity of file contents
     *
     *  @return
-    *    'true' if file contents could be loaded successfully, else 'false'
+    *    `true` if file contents could be loaded successfully, else `false`
     */
     bool isValid() const;
 
@@ -117,7 +117,7 @@ public:
     *    File path
     */
     const std::string & filePath() const;
-    
+
     /**
     *  @brief
     *    Get string property
@@ -153,7 +153,7 @@ public:
     *    The floating-point property
     */
     double doubleProperty(const std::string & key) const;
-    
+
     /**
     *  @brief
     *    Get availability of string property
@@ -162,7 +162,7 @@ public:
     *    The key to identify the property
     *
     *  @return
-    *    'true' if string property with given name exists, 'false' else
+    *    `true` if string property with given name exists, `false` else
     */
     bool hasStringProperty(const std::string & key) const;
 
@@ -174,7 +174,7 @@ public:
     *    The key to identify the property
     *
     *  @return
-    *    'true' if integer property with given name exists, 'false' else
+    *    `true` if integer property with given name exists, `false` else
     */
     bool hasIntProperty(const std::string & key) const;
 
@@ -186,7 +186,7 @@ public:
     *    The key to identify the property
     *
     *  @return
-    *    'true' if floating-point property with given name exists, 'false' else
+    *    `true` if floating-point property with given name exists, `false` else
     */
     bool hasDoubleProperty(const std::string & key) const;
 
@@ -224,10 +224,10 @@ protected:
     *    Load contents from file path
     *
     *  @return
-    *    'true' if file contents could be loaded successfully, else 'false'
+    *    `true` if file contents could be loaded successfully, else `false`
     */
     bool readFile();
-    
+
     /**
     *  @brief
     *    Read properties from stream.
@@ -237,11 +237,11 @@ protected:
     *  @param[in] offset
     *    The offset of the next section
     *
-    *  @remarks
+    *  @remark
     *    Reads from stream until position is the given offset.
     */
     void readProperties(std::ifstream & ifs, uint64_t offset);
-    
+
     /**
     *  @brief
     *    Read raw data from stream

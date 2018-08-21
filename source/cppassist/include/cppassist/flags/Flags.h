@@ -51,7 +51,7 @@ public:
     *    Conversion to bool for explicit contexts
     *
     *  @return
-    *    'true' if at least one bit is set, else 'false'
+    *    `true` if at least one bit is set, else `false`
     */
     explicit operator bool() const;
 

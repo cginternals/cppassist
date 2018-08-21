@@ -7,7 +7,7 @@
 #include <cppassist/cppassist_api.h>
 
 
-namespace cppassist 
+namespace cppassist
 {
 namespace fs
 {
