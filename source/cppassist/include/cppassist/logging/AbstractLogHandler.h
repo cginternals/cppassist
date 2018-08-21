@@ -2,9 +2,9 @@
 #pragma once
 
 
-#include <cppassist/cppassist_api.h>
-
 #include <string>
+
+#include <cppassist/cppassist_api.h>
 
 
 namespace cppassist

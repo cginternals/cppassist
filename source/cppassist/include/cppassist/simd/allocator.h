@@ -2,6 +2,8 @@
 #pragma once
 
 
+#include <cstddef>
+
 #include <cppassist/cppassist_api.h>
 
 

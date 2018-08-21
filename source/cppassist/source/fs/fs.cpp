@@ -2,8 +2,6 @@
 #include <cppassist/fs/fs.h>
 
 #ifdef WIN32
-    #include <stdlib.h>
-    #include <stdio.h>
     #include <direct.h>
 #else
     #include <sys/stat.h>

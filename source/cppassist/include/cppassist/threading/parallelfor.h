@@ -4,7 +4,6 @@
 
 #include <functional>
 #include <vector>
-#include <cstdint>
 
 #include <cppassist/cppassist_api.h>
 

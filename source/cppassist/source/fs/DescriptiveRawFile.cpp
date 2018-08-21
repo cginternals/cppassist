@@ -6,7 +6,6 @@
 #include <sstream>
 #include <iostream>
 #include <iterator>
-#include <stdio.h>
 
 
 namespace
