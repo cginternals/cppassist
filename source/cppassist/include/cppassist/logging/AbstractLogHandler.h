@@ -52,7 +52,28 @@ public:
 
 
 protected:
+    /**
+    *  @brief
+    *    Construct prefix from message context
+    *
+    *  @param[in] message
+    *    Log message
+    *
+    *  @return
+    *    Prefix
+    */
     static std::string messagePrefix(const LogMessage & message);
+
+    /**
+    *  @brief
+    *    Construct string denoting log level
+    *
+    *  @param[in] level
+    *    Log level
+    *
+    *  @return
+    *    String denoting log level
+    */
     static std::string levelString(int level);
 };
 

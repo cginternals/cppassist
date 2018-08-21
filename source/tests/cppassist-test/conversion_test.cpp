@@ -18,7 +18,7 @@ public:
 
 TEST_F(conversion_test, fromString_char)
 {
-    const std::string str = "char";
+    std::string str = "char";
 
     auto val = string::fromString<char>(str);
 
@@ -27,18 +27,34 @@ TEST_F(conversion_test, fromString_char)
     auto test = static_cast<char>(0);
 
     ASSERT_EQ(test, val);
+
+    str = "65";
+
+    val = string::fromString<char>(str);
+
+    test = 'A';
+
+    ASSERT_EQ(test, val);
 }
 
 TEST_F(conversion_test, fromString_uchar)
 {
 
-    const std::string str = "uchar";
+    std::string str = "uchar";
 
     auto val = string::fromString<unsigned char>(str);
 
     ASSERT_EQ(typeid(unsigned char), typeid(val));
 
     auto test = static_cast<unsigned char>(0);
+
+    ASSERT_EQ(test, val);
+
+    str = "66";
+
+    val = string::fromString<char>(str);
+
+    test = static_cast<unsigned char>('B');
 
     ASSERT_EQ(test, val);
 }
@@ -149,24 +165,34 @@ TEST_F(conversion_test, fromString_bool)
     ASSERT_TRUE(val);
 }
 
-TEST_F(conversion_test, toString_char)
+TEST_F(conversion_test, toString_charPtr)
 {
-    const char * val = "character";
+    const char * val = "char *";
 
     auto str = string::toString(val);
 
     ASSERT_EQ(typeid(std::string), typeid(str));
-    ASSERT_EQ("character", str);
+    ASSERT_EQ("char *", str);
+}
+
+TEST_F(conversion_test, toString_char)
+{
+    const char val = 'A';
+
+    auto str = string::toString(val);
+
+    ASSERT_EQ(typeid(std::string), typeid(str));
+    ASSERT_EQ("65", str);
 }
 
 TEST_F(conversion_test, toString_uchar)
 {
-    const unsigned char * val = (unsigned char *) "unsigned character";
+    const unsigned char val = 'B';
 
     auto str = string::toString(val);
 
     ASSERT_EQ(typeid(std::string), typeid(str));
-    ASSERT_EQ("unsigned character", str);
+    ASSERT_EQ("66", str);
 }
 
 TEST_F(conversion_test, toString_int)

@@ -35,7 +35,7 @@ public:
     *  @param[in] description
     *    Description text
     *
-    *  @remarks
+    *  @remark
     *    If no name is set, the name will be set internally
     *    to the value of argv[0] when calling parse().
     */
@@ -141,7 +141,7 @@ public:
     *  @return
     *    Help text
     *
-    *  @remarks
+    *  @remark
     *    By default, the help text contains the short description, the full
     *    program description, and the usage and options for each action.
     *    If help for a specific action is requested, only the usage and
@@ -157,7 +157,7 @@ public:
     *  @param[in] msg
     *    Message
     *
-    *  @remarks
+    *  @remark
     *    By default, the message is output to cppassist::info().
     *    The method can be overridden to change that.
     */
@@ -211,10 +211,8 @@ public:
     *    is expected to call the specified action and return its
     *    error code.
     *
-    *  @param[in] argc
-    *    Number of arguments
-    *  @param[in] argv
-    *    List of arguments
+    *  @param[in] action
+    *    Command line action to execute
     *
     *  @return
     *    Error code (0 on success)
@@ -226,7 +224,7 @@ public:
     *    Check if there were any errors during parsing
     *
     *  @return
-    *    'true' if errors have been found, else 'false'
+    *    `true` if errors have been found, else `false`
     */
     bool hasErrors() const;
 
