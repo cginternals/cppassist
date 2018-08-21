@@ -351,7 +351,22 @@ public:
 
 
 protected:
+    /**
+    *  @brief
+    *    Check if this action has been activated
+    *
+    *  @return
+    *    `true` if activated, else `false`
+    */
     bool checkActivated();
+
+    /**
+    *  @brief
+    *    Checks for errors and collects error messages
+    *
+    *  @see
+    *    errors
+    */
     void checkErrors();
 
 

@@ -207,6 +207,10 @@ public:
 
 
 protected:
+    /**
+    *  @brief
+    *    Update #m_names
+    */
     void updateNames();
 
 
