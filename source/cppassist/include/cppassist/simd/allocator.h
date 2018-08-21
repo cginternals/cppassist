@@ -1,6 +1,11 @@
 
 #pragma once
 
+#ifdef _MSC_VER
+    #pragma warning (push)
+    #pragma warning (disable: 4100) // 'identifier': unreferenced formal parameter
+#endif
+
 
 #include <cstddef>
 
@@ -60,3 +65,7 @@ public:
 
 
 #include <cppassist/simd/allocator.inl>
+
+#ifdef _MSC_VER
+    #pragma warning (pop)
+#endif

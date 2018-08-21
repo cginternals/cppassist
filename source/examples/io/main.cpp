@@ -8,10 +8,8 @@ using namespace cppassist;
 
 int main(int, char * [])
 {
-    SystemInfo si;
-
-    info() << "homeDir:   '" << si.homeDir() << "'";
-    info() << "configDir: '" << si.configDir("DemoApp") << "'";
+    info() << "homeDir:   '" << SystemInfo::homeDir() << "'";
+    info() << "configDir: '" << SystemInfo::configDir("DemoApp") << "'";
 
     return 0;
 }
