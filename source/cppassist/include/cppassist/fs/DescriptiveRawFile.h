@@ -117,7 +117,7 @@ public:
     *    File path
     */
     const std::string & filePath() const;
-    
+
     /**
     *  @brief
     *    Get string property
@@ -153,7 +153,7 @@ public:
     *    The floating-point property
     */
     double doubleProperty(const std::string & key) const;
-    
+
     /**
     *  @brief
     *    Get availability of string property
@@ -227,7 +227,7 @@ protected:
     *    'true' if file contents could be loaded successfully, else 'false'
     */
     bool readFile();
-    
+
     /**
     *  @brief
     *    Read properties from stream.
@@ -241,7 +241,7 @@ protected:
     *    Reads from stream until position is the given offset.
     */
     void readProperties(std::ifstream & ifs, uint64_t offset);
-    
+
     /**
     *  @brief
     *    Read raw data from stream

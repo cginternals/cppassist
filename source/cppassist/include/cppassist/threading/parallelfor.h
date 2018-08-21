@@ -16,7 +16,7 @@ namespace cppassist
 /**
 *  @brief
 *    Helper class to deduce function types with lambdas
-*       
+*
 *  @see
 *    http://stackoverflow.com/questions/13358672/how-to-convert-a-lambda-to-an-stdfunction-using-templates
 */
@@ -29,7 +29,7 @@ struct identity
 /**
 *  @brief
 *    Get optimal number of threads for parallelization
-*       
+*
 *  @return
 *    Number of threads
 */

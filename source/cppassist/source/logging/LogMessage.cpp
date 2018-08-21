@@ -15,7 +15,7 @@ LogMessage::LogMessage(int level, const std::string & message, const std::string
 
 int LogMessage::level() const
 {
-	return m_level;
+    return m_level;
 }
 
 const std::string & LogMessage::message() const
