@@ -115,7 +115,8 @@ const std::string & DescriptiveRawFile::filePath() const
 {
     if (!m_valid)
     {
-        return "";
+        const static std::string emptyPath;
+        return emptyPath;
     }
 
     return m_filePath;
