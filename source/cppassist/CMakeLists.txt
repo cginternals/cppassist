@@ -1,16 +1,16 @@
 
-# 
+#
 # External dependencies
-# 
+#
 
 set(ADDITIONAL_LIBRARIES)
 set(ADDITIONAL_INCLUDES)
 if(NOT OPTION_BUILD_WITH_STD_REGEX)
     find_package(Boost COMPONENTS regex REQUIRED)
-    
+
     if (Boost_FOUND)
         message(STATUS "Use Boost for regex.")
-        
+
         set(ADDITIONAL_LIBRARIES ${ADDITIONAL_LIBRARIES} ${Boost_LIBRARIES})
         set(ADDITIONAL_INCLUDES ${ADDITIONAL_INCLUDES} ${Boost_INCLUDE_DIRS})
     else()
@@ -20,9 +20,9 @@ if(NOT OPTION_BUILD_WITH_STD_REGEX)
 endif()
 
 
-# 
+#
 # Library name and options
-# 
+#
 
 # Target name
 set(target cppassist)
@@ -39,9 +39,9 @@ set(template_export_file "include/${target}/${target}_api.h")
 set(export_macro         "${target_id}_API")
 
 
-# 
+#
 # Sources
-# 
+#
 
 set(include_path "${CMAKE_CURRENT_SOURCE_DIR}/include/${target}")
 set(source_path  "${CMAKE_CURRENT_SOURCE_DIR}/source")
@@ -54,7 +54,7 @@ set(headers
     ${include_path}/fs/FilePath.h
     ${include_path}/fs/RawFile.h
     ${include_path}/fs/SystemInfo.h
-    
+
     ${include_path}/flags/Flags.h
     ${include_path}/flags/Flags.inl
 
@@ -65,7 +65,7 @@ set(headers
     ${include_path}/logging/LogMessageBuilder.h
     ${include_path}/logging/LogMessageBuilder.inl
     ${include_path}/logging/logging.h
-    
+
     ${include_path}/simd/simd.h
     ${include_path}/simd/algorithm.h
     ${include_path}/simd/algorithm.inl
@@ -94,9 +94,11 @@ set(headers
     ${include_path}/string/manipulation.h
     ${include_path}/string/manipulation.inl
 
+    ${include_path}/tokenizer/Tokenizer.h
+
     ${include_path}/threading/parallelfor.h
     ${include_path}/threading/parallelfor.inl
-    
+
     ${include_path}/typelist/TypeList.h
     ${include_path}/typelist/TypeList.inl
 
@@ -130,6 +132,8 @@ set(sources
     ${source_path}/string/regex.cpp
     ${source_path}/string/manipulation.cpp
 
+    ${source_path}/tokenizer/Tokenizer.cpp
+
     ${source_path}/threading/parallelfor.cpp
 
     ${source_path}/cmdline/ArgumentParser.cpp
@@ -144,15 +148,15 @@ set(sources
 # Group source files
 set(header_group "Header Files (API)")
 set(source_group "Source Files")
-source_group_by_path(${include_path} "\\\\.h$|\\\\.inl$" 
+source_group_by_path(${include_path} "\\\\.h$|\\\\.inl$"
     ${header_group} ${headers})
-source_group_by_path(${source_path}  "\\\\.cpp$|\\\\.c$|\\\\.h$|\\\\.inl$" 
+source_group_by_path(${source_path}  "\\\\.cpp$|\\\\.c$|\\\\.h$|\\\\.inl$"
     ${source_group} ${sources})
 
 
-# 
+#
 # Create library
-# 
+#
 
 # Build library
 add_library(${target}
@@ -178,9 +182,9 @@ generate_template_export_header(${target}
 )
 
 
-# 
+#
 # Project options
-# 
+#
 
 set_target_properties(${target}
     PROPERTIES
@@ -191,9 +195,9 @@ set_target_properties(${target}
 )
 
 
-# 
+#
 # Include directories
-# 
+#
 
 target_include_directories(${target}
     PRIVATE
@@ -212,9 +216,9 @@ target_include_directories(${target}
 )
 
 
-# 
+#
 # Libraries
-# 
+#
 
 target_link_libraries(${target}
     PRIVATE
@@ -227,9 +231,9 @@ target_link_libraries(${target}
 )
 
 
-# 
+#
 # Compile definitions
-# 
+#
 
 target_compile_definitions(${target}
     PRIVATE
@@ -243,9 +247,9 @@ target_compile_definitions(${target}
 )
 
 
-# 
+#
 # Compile options
-# 
+#
 
 target_compile_options(${target}
     PRIVATE
@@ -257,9 +261,9 @@ target_compile_options(${target}
 )
 
 
-# 
+#
 # Linker options
-# 
+#
 
 target_link_libraries(${target}
     PRIVATE
@@ -282,9 +286,9 @@ perform_health_checks(
 )
 
 
-# 
+#
 # Deployment
-# 
+#
 
 # Library
 install(TARGETS ${target}
