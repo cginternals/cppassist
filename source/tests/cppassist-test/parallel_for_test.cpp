@@ -1,4 +1,5 @@
 
+#include <cstdint>
 #include <thread>
 
 #include <gmock/gmock.h>
