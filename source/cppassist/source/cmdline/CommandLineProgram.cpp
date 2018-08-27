@@ -1,16 +1,13 @@
 
 #include <cppassist/cmdline/CommandLineProgram.h>
 
-#include <string>
 #include <set>
 
 #include <cppassist/logging/logging.h>
 #include <cppassist/string/manipulation.h>
 #include <cppassist/cmdline/CommandLineAction.h>
-#include <cppassist/cmdline/CommandLineCommand.h>
 #include <cppassist/cmdline/CommandLineOption.h>
 #include <cppassist/cmdline/CommandLineSwitch.h>
-#include <cppassist/cmdline/CommandLineParameter.h>
 
 
 namespace cppassist

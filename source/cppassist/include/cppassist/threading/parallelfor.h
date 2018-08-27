@@ -4,7 +4,6 @@
 
 #include <functional>
 #include <vector>
-#include <cstdint>
 
 #include <cppassist/cppassist_api.h>
 
@@ -16,7 +15,7 @@ namespace cppassist
 /**
 *  @brief
 *    Helper class to deduce function types with lambdas
-*       
+*
 *  @see
 *    http://stackoverflow.com/questions/13358672/how-to-convert-a-lambda-to-an-stdfunction-using-templates
 */
@@ -29,7 +28,7 @@ struct identity
 /**
 *  @brief
 *    Get optimal number of threads for parallelization
-*       
+*
 *  @return
 *    Number of threads
 */
@@ -46,9 +45,9 @@ CPPASSIST_API size_t getNumberOfThreads();
 *  @param[in] callback
 *    Function that is called on each iteration
 *  @param[in] parallelize
-*    'true' to parallelize the execution (if possible), else 'false'
+*    `true` to parallelize the execution (if possible), else `false`
 *
-*  @remarks
+*  @remark
 *    Both start and end must be enumerable typed that support the + operator.
 */
 template<typename T>
@@ -65,7 +64,7 @@ void forEach(T start, T end, typename identity<std::function<void(T)>>::type cal
 *  @param[in] callback
 *    Function that is called on each iteration
 *
-*  @remarks
+*  @remark
 *    Both start and end must be enumerable typed that support the + operator.
 */
 template<typename T>
@@ -106,7 +105,7 @@ void parallelFor(std::vector<T> & elements, typename identity<std::function<void
 *  @param[in] callback
 *    Function that is called on each iteration
 *
-*  @remarks
+*  @remark
 *    Both start and end must be enumerable typed that support the + operator.
 */
 template<typename T>

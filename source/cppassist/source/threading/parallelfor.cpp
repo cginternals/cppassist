@@ -1,6 +1,7 @@
 
 #include <cppassist/threading/parallelfor.h>
 
+#include <algorithm>
 
 namespace cppassist
 {

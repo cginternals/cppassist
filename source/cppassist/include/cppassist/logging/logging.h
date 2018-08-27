@@ -39,7 +39,7 @@ CPPASSIST_API void setLoggingHandler(AbstractLogHandler * handler);
 *  @return
 *    Log level
 *
-*  @remarks
+*  @remark
 *    All log messages above the current verbosity level are omitted.
 */
 CPPASSIST_API int verbosityLevel();
@@ -62,9 +62,9 @@ CPPASSIST_API void setVerbosityLevel(int verbosity);
 *
 *    Use the stream interface to create log messages.
 *    Example:
-*      \code{.cpp}
+*    @code{.cpp}
 *      log(LogMessage::Info) << "Message: " << 3.14;
-*      \endcode
+*    @endcode
 *
 *  @param[in] level
 *    Log level

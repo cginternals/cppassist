@@ -1,8 +1,6 @@
 
 #include <cppassist/logging/logging.h>
 
-#include <cassert>
-
 #include <cppassist/logging/AbstractLogHandler.h>
 #include <cppassist/logging/LogMessageBuilder.h>
 #include <cppassist/logging/ConsoleLogHandler.h>

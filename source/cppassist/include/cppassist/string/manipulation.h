@@ -25,7 +25,7 @@ namespace string
 *    String separator
 *
 *  @return
-*    String
+*    Joined string
 */
 template <class Iterable>
 std::string join(const Iterable & iterable, const std::string & separator);
@@ -37,10 +37,10 @@ std::string join(const Iterable & iterable, const std::string & separator);
 *  @param[in] string
 *    String
 *  @param[in] removeAllWhitespace
-*    'true': remove whitespace everywhere in the string, 'false': remove whitespace at the beginning and the end of the string
+*    `true`: remove whitespace everywhere in the string, `false`: remove whitespace at the beginning and the end of the string
 *
 *  @return
-*    String
+*    Trimmed string
 */
 CPPASSIST_API std::string trim(const std::string & string, bool removeAllWhitespace = false);
 
@@ -56,7 +56,7 @@ CPPASSIST_API std::string trim(const std::string & string, bool removeAllWhitesp
 *    Character that is used to pad the string
 *
 *  @return
-*    String
+*    Padded string
 */
 CPPASSIST_API std::string padLeft(const std::string & string, size_t length, char c = ' ');
 
@@ -72,7 +72,7 @@ CPPASSIST_API std::string padLeft(const std::string & string, size_t length, cha
 *    Character that is used to pad the string
 *
 *  @return
-*    String
+*    Padded string
 */
 CPPASSIST_API std::string padRight(const std::string & string, size_t length, char c = ' ');
 
@@ -130,7 +130,7 @@ CPPASSIST_API std::vector<std::string> split(const std::string & string, char de
 *    String that is checked if contained in first param string
 *
 *  @return
-*    true if string contains containsstring, false otherwise
+*    `true` if string contains `containsstring`, `false` otherwise
 */
 CPPASSIST_API bool contains(const std::string & string, const std::string & containsstring);
 
@@ -144,7 +144,7 @@ CPPASSIST_API bool contains(const std::string & string, const std::string & cont
 *    Prefix to be checked
 *
 *  @return
-*    true if string starts with prefix, false otherwise
+*    `true` if string starts with `prefix`, `false` otherwise
 */
 CPPASSIST_API bool hasPrefix(const std::string & string, const std::string & prefix);
 
@@ -158,7 +158,7 @@ CPPASSIST_API bool hasPrefix(const std::string & string, const std::string & pre
 *    Suffix to be checked
 *
 *  @return
-*    true if string ends with suffix, false otherwise
+*    `true` if string ends with `suffix`, `false` otherwise
 */
 CPPASSIST_API bool hasSuffix(const std::string & string, const std::string & suffix);
 

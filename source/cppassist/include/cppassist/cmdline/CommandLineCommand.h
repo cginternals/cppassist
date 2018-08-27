@@ -19,9 +19,11 @@ namespace cppassist
 *    by specifying the command name on the command line.
 *
 *    Example:
-*      myapp list
+*      `myapp list`
 *
+*    @code
 *      CommandLineCommand commandList("list");
+*    @endcode
 */
 class CPPASSIST_API CommandLineCommand
 {
@@ -64,7 +66,7 @@ public:
     *    Check if command has been activated
     *
     *  @return
-    *    'true' if activated, else 'false'
+    *    `true` if activated, else `false`
     */
     bool activated() const;
 
@@ -73,14 +75,14 @@ public:
     *    Set if command has been activated
     *
     *  @param[in] activated
-    *    'true' if activated, else 'false'
+    *    `true` if activated, else `false`
     */
     void setActivated(bool activated);
 
 
 protected:
     std::string m_name;      ///< Command name (e.g., "list")
-    bool        m_activated; ///< 'true' if activated, else 'false'
+    bool        m_activated; ///< `true` if activated, else `false`
 };
 
 
