@@ -15,6 +15,7 @@ The current modules in cppassist are:
  * [simd](#simd)
  * [string](#string)
  * [threading](#threading)
+ * [tokenizer](#tokenizer)
  * [typelist](#typelist)
 
 
@@ -73,6 +74,12 @@ threading
 -------------
 
 threading provides a `parallel_for` function that uses either OpenMP or the `std::thread` classes to execute a for loop concurrently.
+
+
+tokenizer
+-------------
+
+low-level tokenizer as base for more elaborate text parsers
 
 
 typelist
