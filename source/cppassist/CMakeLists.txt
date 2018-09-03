@@ -50,7 +50,6 @@ set(headers
     ${include_path}/fs/readfile.h
     ${include_path}/fs/DescriptiveRawFile.h
     ${include_path}/fs/directorytraversal.h
-    ${include_path}/fs/FilePath.h
     ${include_path}/fs/RawFile.h
     ${include_path}/fs/SystemInfo.h
 
@@ -115,7 +114,6 @@ set(sources
     ${source_path}/fs/readfile.cpp
     ${source_path}/fs/DescriptiveRawFile.cpp
     ${source_path}/fs/directorytraversal.cpp
-    ${source_path}/fs/FilePath.cpp
     ${source_path}/fs/RawFile.cpp
     ${source_path}/fs/SystemInfo.cpp
 
