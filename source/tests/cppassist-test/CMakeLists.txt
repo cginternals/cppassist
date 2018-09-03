@@ -27,7 +27,6 @@ set(sources
 
     # strings
     SystemInfo_test.cpp
-    FilePath_test.cpp
 
     # io
     manipulation_test.cpp
