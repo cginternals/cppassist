@@ -47,7 +47,6 @@ set(include_path "${CMAKE_CURRENT_SOURCE_DIR}/include/${target}")
 set(source_path  "${CMAKE_CURRENT_SOURCE_DIR}/source")
 
 set(headers
-    ${include_path}/fs/fs.h
     ${include_path}/fs/readfile.h
     ${include_path}/fs/DescriptiveRawFile.h
     ${include_path}/fs/directorytraversal.h
@@ -113,7 +112,6 @@ set(headers
 )
 
 set(sources
-    ${source_path}/fs/fs.cpp
     ${source_path}/fs/readfile.cpp
     ${source_path}/fs/DescriptiveRawFile.cpp
     ${source_path}/fs/directorytraversal.cpp
