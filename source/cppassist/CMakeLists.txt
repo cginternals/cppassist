@@ -50,7 +50,6 @@ set(headers
     ${include_path}/fs/readfile.h
     ${include_path}/fs/DescriptiveRawFile.h
     ${include_path}/fs/RawFile.h
-    ${include_path}/fs/SystemInfo.h
 
     ${include_path}/flags/Flags.h
     ${include_path}/flags/Flags.inl
@@ -113,7 +112,6 @@ set(sources
     ${source_path}/fs/readfile.cpp
     ${source_path}/fs/DescriptiveRawFile.cpp
     ${source_path}/fs/RawFile.cpp
-    ${source_path}/fs/SystemInfo.cpp
 
     ${source_path}/logging/AbstractLogHandler.cpp
     ${source_path}/logging/ConsoleLogHandler.cpp
