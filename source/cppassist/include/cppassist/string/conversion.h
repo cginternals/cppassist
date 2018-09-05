@@ -2,6 +2,7 @@
 #pragma once
 
 
+#include <functional>
 #include <string>
 
 #include <cppassist/cppassist_api.h>
