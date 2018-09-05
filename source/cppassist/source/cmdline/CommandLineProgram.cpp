@@ -5,8 +5,10 @@
 
 #include <cppassist/logging/logging.h>
 #include <cppassist/string/manipulation.h>
-#include <cppassist/cmdline/CommandLineAction.h>
+#include <cppassist/cmdline/CommandLineProgram.h>
+#include <cppassist/cmdline/CommandLineCommand.h>
 #include <cppassist/cmdline/CommandLineOption.h>
+#include <cppassist/cmdline/CommandLineParameter.h>
 #include <cppassist/cmdline/CommandLineSwitch.h>
 
 
@@ -19,6 +21,9 @@ CommandLineProgram::CommandLineProgram(const std::string & name, const std::stri
 , m_shortDesc(shortDesc)
 , m_description(description)
 , m_selectedAction(nullptr)
+, m_optionalParametersAllowed(false)
+, m_optionalParameterName("arg")
+, m_activated(false)
 {
 }
 
@@ -56,12 +61,12 @@ void CommandLineProgram::setDescription(const std::string & description)
     m_description = description;
 }
 
-const std::vector<CommandLineAction *> & CommandLineProgram::actions() const
+const std::vector<CommandLineProgram *> & CommandLineProgram::actions() const
 {
     return m_actions;
 }
 
-CommandLineAction * CommandLineProgram::getAction(const std::string & name) const
+CommandLineProgram * CommandLineProgram::getAction(const std::string & name) const
 {
     for (auto * action : m_actions)
     {
@@ -74,12 +79,178 @@ CommandLineAction * CommandLineProgram::getAction(const std::string & name) cons
     return nullptr;
 }
 
-void CommandLineProgram::add(CommandLineAction * action)
+void CommandLineProgram::add(CommandLineProgram * action)
 {
     m_actions.push_back(action);
 }
 
-std::string CommandLineProgram::help(CommandLineAction * forAction) const
+const std::vector<CommandLineCommand *> & CommandLineProgram::commands() const
+{
+    return m_commands;
+}
+
+CommandLineCommand * CommandLineProgram::getCommand(const std::string & name) const
+{
+    for (auto * command : m_commands)
+    {
+        if (command->name() == name)
+        {
+            return command;
+        }
+    }
+
+    return nullptr;
+}
+
+void CommandLineProgram::add(CommandLineCommand * command)
+{
+    m_commands.push_back(command);
+}
+
+const std::vector<CommandLineOption *> & CommandLineProgram::options() const
+{
+    return m_options;
+}
+
+CommandLineOption * CommandLineProgram::getOption(const std::string & name) const
+{
+    for (auto * option : m_options)
+    {
+        if (option->shortName() == name || option->longName() == name)
+        {
+            return option;
+        }
+    }
+
+    return nullptr;
+}
+
+void CommandLineProgram::add(CommandLineOption * option)
+{
+    m_options.push_back(option);
+}
+
+const std::vector<CommandLineSwitch *> & CommandLineProgram::switches() const
+{
+    return m_switches;
+}
+
+CommandLineSwitch * CommandLineProgram::getSwitch(const std::string & name) const
+{
+    for (auto * sw : m_switches)
+    {
+        if (sw->shortName() == name || sw->longName() == name)
+        {
+            return sw;
+        }
+    }
+
+    return nullptr;
+}
+
+void CommandLineProgram::add(CommandLineSwitch * sw)
+{
+    m_switches.push_back(sw);
+}
+
+const std::vector<CommandLineParameter *> & CommandLineProgram::parameters() const
+{
+    return m_parameters;
+}
+
+CommandLineParameter * CommandLineProgram::getParameter(const std::string & name) const
+{
+    for (auto * parameter : m_parameters)
+    {
+        if (parameter->name() == name)
+        {
+            return parameter;
+        }
+    }
+
+    return nullptr;
+}
+
+CommandLineParameter * CommandLineProgram::getParameter(size_t index) const
+{
+    if (index < m_parameters.size())
+    {
+        return m_parameters[index];
+    }
+
+    return nullptr;
+}
+
+bool CommandLineProgram::optionalParametersAllowed() const
+{
+    return m_optionalParametersAllowed;
+}
+
+void CommandLineProgram::setOptionalParametersAllowed(bool allowed)
+{
+    m_optionalParametersAllowed = allowed;
+}
+
+const std::string & CommandLineProgram::optionalParameterName() const
+{
+    return m_optionalParameterName;
+}
+
+void CommandLineProgram::setOptionalParameterName(const std::string & name)
+{
+    m_optionalParameterName = name;
+}
+
+void CommandLineProgram::add(CommandLineParameter * parameter)
+{
+    m_parameters.push_back(parameter);
+}
+
+std::string CommandLineProgram::usage() const
+{
+    std::string usage;
+
+    for (auto * command : m_commands)
+    {
+        if (usage.size() > 0) usage += " ";
+
+        usage += command->name();
+    }
+
+    for (auto * sw : m_switches)
+    {
+        if (usage.size() > 0) usage += " ";
+        if (sw->isOptional()) usage += "[";
+        usage += sw->name();
+        if (sw->isOptional()) usage += "]";
+    }
+
+    for (auto * option : m_options)
+    {
+        if (usage.size() > 0) usage += " ";
+        if (option->isOptional()) usage += "[";
+        usage += option->name() + " <" + option->valueName() + ">";
+        if (option->isOptional()) usage += "]";
+    }
+
+    for (auto * param : m_parameters)
+    {
+        if (usage.size() > 0) usage += " ";
+        if (param->isOptional()) usage += "[";
+        usage += "<" + param->name() + ">";
+        if (param->isOptional()) usage += "]";
+    }
+
+    if (m_optionalParametersAllowed)
+    {
+        if (usage.size() > 0) usage += " ";
+        usage += "[<" + m_optionalParameterName + ">]*";
+    }
+
+    return usage;
+}
+
+std::string CommandLineProgram::help(CommandLineProgram * forAction) const
 {
     std::string msg = "";
 
@@ -112,7 +283,7 @@ std::string CommandLineProgram::help(CommandLineAction * forAction) const
     }
 
     // Choose action(s) to display
-    std::vector<CommandLineAction *> actions;
+    std::vector<CommandLineProgram *> actions;
     if (forAction) actions.push_back(forAction);
     else           actions = m_actions;
 
@@ -181,6 +352,32 @@ void CommandLineProgram::reset()
     }
 
     m_selectedAction = nullptr;
+
+    m_activated = false;
+
+    m_unknownArgs.clear();
+    m_errors.clear();
+
+    for (auto * command : m_commands)
+    {
+        command->setActivated(false);
+    }
+
+    for (auto * sw : m_switches)
+    {
+        sw->setActivated(false);
+        sw->setCount(0);
+    }
+
+    for (auto * option : m_options)
+    {
+        option->setValue("");
+    }
+
+    for (auto * parameter : m_parameters)
+    {
+        parameter->setValue("");
+    }
 }
 
 int CommandLineProgram::execute(int argc, char * argv[])
@@ -189,20 +386,20 @@ int CommandLineProgram::execute(int argc, char * argv[])
     parse(argc, argv);
 
     // Check if a valid action has been selected
-    if (selectedAction() && !hasErrors())
+    if (!hasErrors())
     {
         // Execute action
-        return executeAction(selectedAction());
+        return execute();
     }
 
     // Print help
     print(help(selectedAction()));
 
     // Print errors
-    if (hasErrors() && selectedAction())
+    if (hasErrors())
     {
         // Print error message
-        std::string error = selectedAction()->errors()[0];
+        std::string error = errors()[0];
         print("Error: " + error);
 
         // Indicate error condition
@@ -213,7 +410,7 @@ int CommandLineProgram::execute(int argc, char * argv[])
     return 0;
 }
 
-int CommandLineProgram::executeAction(CommandLineAction * action)
+int CommandLineProgram::executeAction(CommandLineProgram * action)
 {
     if (action)
     {
@@ -230,30 +427,264 @@ void CommandLineProgram::parse(int argc, char * argv[])
         m_name = argv[0];
     }
 
-    // Reset status
-    reset();
+    // List arguments
+    std::vector<std::string> args;
 
-    // Find invoked action
-    for (auto * action : m_actions)
+    for (int i=1; i<argc; i++)
     {
-        // Parse command line
-        action->parse(argc, argv);
+        std::string arg = argv[i];
 
-        // Action found?
-        if (action->activated())
+        // Expand grouped options (e.g., "-abc" -> "-a -b -c")
+        if (!string::hasPrefix(arg, "--") && string::hasPrefix(arg, "-") && arg.size() > 2)
         {
-            m_selectedAction = action;
-            return;
+            for (size_t j=0; j<arg.size()-1; j++)
+            {
+                std::string opt = std::string("-") + arg[j+1];
+                args.push_back(opt);
+            }
+        }
+        else
+        {
+            args.push_back(arg);
         }
     }
+
+    // Parse command line
+    tryParse(args);
+
+    // Check if this action is activated
+    m_activated = checkActivated();
 }
 
 bool CommandLineProgram::hasErrors() const
 {
-    return (m_selectedAction && m_selectedAction->hasErrors());
+    if (m_selectedAction)
+    {
+        return m_selectedAction->hasErrors();
+    }
+
+    return m_errors.size() > 0;
 }
 
-CommandLineAction * CommandLineProgram::selectedAction() const
+const std::vector<std::string> & CommandLineProgram::errors() const
+{
+    if (m_selectedAction)
+    {
+        return m_selectedAction->errors();
+    }
+
+    return m_errors;
+}
+
+bool CommandLineProgram::activated() const
+{
+    return m_activated;
+}
+
+const std::vector<std::string> & CommandLineProgram::unknownArguments() const
+{
+    if (m_selectedAction)
+    {
+        return m_selectedAction->unknownArguments();
+    }
+
+    return m_unknownArgs;
+}
+
+int CommandLineProgram::execute()
+{
+    // To be implement in derived classes
+
+    if (m_selectedAction)
+    {
+        return m_selectedAction->execute();
+    }
+
+    return 0;
+}
+
+bool CommandLineProgram::tryParse(std::vector<std::string> & args)
+{
+    // Reset status
+    reset();
+
+    // Parse command line
+    size_t numParameters = 0;
+    for (size_t i=0; i<args.size(); i++)
+    {
+        // Get current and next argument
+        std::string arg  = args[i];
+        std::string next = (i+1 < args.size() ? args[i+1] : "");
+
+        // If item starts with "--" or "-", it may be an option or a switch
+        if (string::hasPrefix(arg, "-"))
+        {
+            CommandLineOption * option = getOption(arg);
+            CommandLineSwitch * sw     = getSwitch(arg);
+
+            // Option
+            if (option)
+            {
+                // Check that next item is a valid value (and not empty or an option)
+                if (!next.empty() && !string::hasPrefix(next, "-"))
+                {
+                    option->setValue(next);
+                    i++;
+                }
+                else
+                {
+                    // Error: Value expected
+                    m_errors.push_back("Expected value for '" + arg + "'");
+                }
+            }
+
+            // Switch
+            else if (sw)
+            {
+                sw->setActivated(true);
+                sw->setCount(sw->count() + 1);
+            }
+
+            // Error: Unknown option
+            else
+            {
+                m_unknownArgs.push_back(arg);
+            }
+        }
+
+        // Otherwise, it may be a command or a parameter
+        else
+        {
+            CommandLineCommand * command = getCommand(arg);
+
+            // Command
+            if (command)
+            {
+                command->setActivated(true);
+            }
+
+            // Parameter
+            else
+            {
+                auto * parameter = getParameter(numParameters);
+
+                // Parameter found
+                if (parameter)
+                {
+                    parameter->setValue(arg);
+                    numParameters++;
+                }
+
+                // Unknown parameter
+                else
+                {
+                    m_unknownArgs.push_back(arg);
+                }
+            }
+        }
+    }
+
+    for (auto action : m_actions)
+    {
+        if (action->tryParse(m_unknownArgs))
+        {
+            m_selectedAction = action;
+            break;
+        }
+    }
+
+    checkErrors();
+
+    m_activated = checkActivated();
+
+    return m_activated;
+}
+
+bool CommandLineProgram::checkActivated()
+{
+    // Check if this action has been activated
+    for (auto * command : m_commands)
+    {
+        if (!command->activated())
+        {
+            return false;
+        }
+    }
+
+    for (auto * sw : m_switches)
+    {
+        if (sw->optional() == CommandLineSwitch::NonOptional && !sw->activated())
+        {
+            return false;
+        }
+    }
+
+    for (auto * option : m_options)
+    {
+        if (option->optional() == CommandLineOption::NonOptional && option->value().empty())
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+void CommandLineProgram::checkErrors()
+{
+    // Look for options that miss a value
+    for (auto * option : m_options)
+    {
+        if (option->optional() == CommandLineOption::NonOptional && option->value().empty())
+        {
+            m_errors.push_back("Expected value for '" + option->name() + "'");
+        }
+    }
+
+    // Look for parameters that have not been specified
+    for (auto * parameter : m_parameters)
+    {
+        if (parameter->optional() == CommandLineParameter::NonOptional && parameter->value().empty())
+        {
+            m_errors.push_back("Expected <" + parameter->name() + ">");
+        }
+    }
+
+    // Look for commands that have not been activated
+    for (auto * command : m_commands)
+    {
+        if (!command->activated())
+        {
+            m_errors.push_back("Expected '" + command->name() + "'");
+        }
+    }
+
+    // Look for required switches that have not been activated
+    for (auto * cmdSwitch : m_switches)
+    {
+        if (cmdSwitch->optional() == CommandLineSwitch::NonOptional && !cmdSwitch->activated())
+        {
+            m_errors.push_back("Expected '" + cmdSwitch->name() + "'");
+        }
+    }
+
+    // Look for unrecognized parameters
+    if (!m_optionalParametersAllowed)
+    {
+        for (auto parameter : unknownArguments())
+        {
+            m_errors.push_back("Unknown argument '" + parameter + "'");
+        }
+    }
+
+    // Check if action was selected
+    if (!m_actions.empty() && !m_selectedAction)
+    {
+        m_errors.push_back("No action selected");
+    }
+}
+
+CommandLineProgram * CommandLineProgram::selectedAction() const
 {
     return m_selectedAction;
 }

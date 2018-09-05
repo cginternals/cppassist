@@ -36,10 +36,10 @@ public:
     *  @param[in] action
     *    Command line action
     */
-    void addDefaultOptionsTo(cppassist::CommandLineAction & action);
+    void addDefaultOptionsTo(cppassist::CommandLineProgram & action);
 
     // Virtual cppassist::CommandLineProgram functions
-    virtual int executeAction(cppassist::CommandLineAction * action) override;
+    virtual int executeAction(cppassist::CommandLineProgram * action) override;
 
 
 public:

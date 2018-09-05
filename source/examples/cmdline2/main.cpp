@@ -4,7 +4,6 @@
 #include <cppassist/logging/logging.h>
 #include <cppassist/cmdline/ArgumentParser.h>
 #include <cppassist/cmdline/CommandLineProgram.h>
-#include <cppassist/cmdline/CommandLineAction.h>
 #include <cppassist/cmdline/CommandLineCommand.h>
 #include <cppassist/cmdline/CommandLineOption.h>
 #include <cppassist/cmdline/CommandLineSwitch.h>
@@ -25,12 +24,11 @@ int main(int argc, char * argv[])
 
         // Common options
         CommandLineSwitch swVerbose("--verbose", "-v", "Make output more verbose");
+        program.add(&swVerbose);
 
     // Action: 'help'
-    CommandLineAction actionHelp("help", "Print help text");
+    CommandLineProgram actionHelp("help", "Print help text");
     program.add(&actionHelp);
-
-        actionHelp.add(&swVerbose);
 
         CommandLineSwitch swHelp("--help", "-h", "Print help text", CommandLineSwitch::NonOptional);
         actionHelp.add(&swHelp);
@@ -39,10 +37,8 @@ int main(int argc, char * argv[])
         actionHelp.add(&paramCommand);
 
     // Action: 'count'
-    CommandLineAction actionCount("count", "Count from one number to another");
+    CommandLineProgram actionCount("count", "Count from one number to another");
     program.add(&actionCount);
-
-        actionCount.add(&swVerbose);
 
         CommandLineCommand cmdCount("count");
         actionCount.add(&cmdCount);
@@ -57,10 +53,8 @@ int main(int argc, char * argv[])
         actionCount.add(&paramTo);
 
     // Action: 'cp'
-    CommandLineAction actionCopy("cp", "Copy files");
+    CommandLineProgram actionCopy("cp", "Copy files");
     program.add(&actionCopy);
-
-        actionCopy.add(&swVerbose);
 
         CommandLineCommand cmdCopy("cp");
         actionCopy.add(&cmdCopy);
@@ -83,7 +77,7 @@ int main(int argc, char * argv[])
         // Execute 'help'
         if (program.selectedAction() == &actionHelp)
         {
-            CommandLineAction * forAction = nullptr;
+            CommandLineProgram * forAction = nullptr;
 
             if (!paramCommand.value().empty())
             {
@@ -105,7 +99,7 @@ int main(int argc, char * argv[])
             info() << "Let me copy that for you ...";
             info() << "- " << actionCopy.getParameter("path")->value();
 
-            for (auto arg : actionCopy.optionalParameters())
+            for (auto arg : actionCopy.unknownArguments())
             {
                 info() << "- " << arg;
             }
@@ -119,10 +113,10 @@ int main(int argc, char * argv[])
     program.print(program.help(program.selectedAction()));
 
     // Print errors
-    if (program.hasErrors() && program.selectedAction())
+    if (program.hasErrors())
     {
         // Print error message
-        std::string error = program.selectedAction()->errors()[0];
+        std::string error = program.errors()[0];
         program.print("Error: " + error);
 
         return 1;

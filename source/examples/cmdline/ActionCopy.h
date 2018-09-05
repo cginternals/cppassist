@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include <cppassist/cmdline/CommandLineAction.h>
+#include <cppassist/cmdline/CommandLineProgram.h>
 #include <cppassist/cmdline/CommandLineCommand.h>
 #include <cppassist/cmdline/CommandLineParameter.h>
 
@@ -14,7 +14,7 @@ class Program;
 *  @brief
 *    Command 'cp'
 */
-class ActionCopy : public cppassist::CommandLineAction
+class ActionCopy : public cppassist::CommandLineProgram
 {
 public:
     /**
@@ -32,7 +32,7 @@ public:
     */
     ~ActionCopy();
 
-    // Virtual cppassist::CommandLineAction functions
+    // Virtual cppassist::CommandLineProgram functions
     virtual int execute() override;
 
 

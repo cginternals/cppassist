@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include <cppassist/cmdline/CommandLineAction.h>
+#include <cppassist/cmdline/CommandLineProgram.h>
 #include <cppassist/cmdline/CommandLineCommand.h>
 #include <cppassist/cmdline/CommandLineOption.h>
 #include <cppassist/cmdline/CommandLineParameter.h>
@@ -15,7 +15,7 @@ class Program;
 *  @brief
 *    Command 'count'
 */
-class ActionCount : public cppassist::CommandLineAction
+class ActionCount : public cppassist::CommandLineProgram
 {
 public:
     /**
@@ -33,7 +33,7 @@ public:
     */
     ~ActionCount();
 
-    // Virtual cppassist::CommandLineAction functions
+    // Virtual cppassist::CommandLineProgram functions
     virtual int execute() override;
 
 
