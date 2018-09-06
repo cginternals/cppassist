@@ -233,6 +233,9 @@ void decode(const std::u32string & input, std::string & output, const Encoding e
     case Encoding::UTF8:
         convertUTF32toUTF8(input, output);
         break;
+
+    default:
+        assert(false);
     }
 }
 
@@ -276,6 +279,9 @@ void decode(const std::u32string & input, std::u16string & output, const Encodin
     case Encoding::UTF16:
         convertUTF32toUTF16(input, output);
         break;
+
+    default:
+        assert(false);
     }
 }
 

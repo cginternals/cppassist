@@ -287,13 +287,13 @@ TEST_F(conversion_test, toUpper_uniRef)
 // UTF-32LE  1E D1 01 00   30 209   1   0
 
 // Big endian as we use a big endian converter
-const char     utf8Val [5] = {0xF0, 0x9D, 0x84, 0x9E, 0x0};
-const char16_t utf16Val[3] = {0xD834,     0xDD1E,     0x0};
-const char32_t utf32Val[2] = {0x0001D11E,             0x0};
+const unsigned char utf8Val[5] = {0xF0, 0x9D, 0x84, 0x9E, 0x0};
+const char16_t     utf16Val[3] = {0xD834,     0xDD1E,     0x0};
+const char32_t     utf32Val[2] = {0x0001D11E,             0x0};
 
 TEST_F(conversion_test, utf_encode_string)
 {
-    std::string input(utf8Val);
+    std::string input((char*)utf8Val);
     std::u32string expected(utf32Val);
 
     auto output = string::encode(input, Encoding::UTF8);
@@ -313,17 +313,19 @@ TEST_F(conversion_test, utf_encode_u16string)
 
 TEST_F(conversion_test, utf_encode_cstr)
 {
-    const char* input = utf8Val;
+    const char* input = (char*)utf8Val;
     const size_t inSize = 4;
     std::u32string expected(utf32Val);
 
     auto output = string::encode(input, inSize, Encoding::UTF8);
+
+    EXPECT_EQ(expected, output);
 }
 
 TEST_F(conversion_test, utf_decode_string)
 {
     std::u32string input(utf32Val);
-    std::string expected(utf8Val);
+    std::string expected((char*)utf8Val);
     std::string output;
 
     string::decode(input, output, Encoding::UTF8);
@@ -345,7 +347,7 @@ TEST_F(conversion_test, utf_decode_u16string)
 TEST_F(conversion_test, utf_decode_cstr)
 {
     std::u32string input(utf32Val);
-    const char* expected = utf8Val;
+    const char* expected = (char*)utf8Val;
     char* output = nullptr;
     size_t outSize = 0;
 
