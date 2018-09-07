@@ -53,6 +53,11 @@ void CommandLineProgram::setShortDesc(const std::string & shortDesc)
 
 const std::string & CommandLineProgram::description() const
 {
+    if (m_description.empty())
+    {
+        return shortDesc();
+    }
+
     return m_description;
 }
 
@@ -495,12 +500,7 @@ int CommandLineProgram::execute()
 {
     // To be implement in derived classes
 
-    if (m_selectedAction)
-    {
-        return m_selectedAction->execute();
-    }
-
-    return 0;
+    return executeAction(m_selectedAction);
 }
 
 bool CommandLineProgram::tryParse(std::vector<std::string> & args)
@@ -673,14 +673,8 @@ void CommandLineProgram::checkErrors()
     {
         for (auto parameter : unknownArguments())
         {
-            m_errors.push_back("Unknown argument '" + parameter + "'");
+            m_errors.push_back("Unknown parameter '" + parameter + "'");
         }
-    }
-
-    // Check if action was selected
-    if (!m_actions.empty() && !m_selectedAction)
-    {
-        m_errors.push_back("No action selected");
     }
 }
 

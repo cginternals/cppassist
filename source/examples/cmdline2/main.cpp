@@ -24,11 +24,12 @@ int main(int argc, char * argv[])
 
         // Common options
         CommandLineSwitch swVerbose("--verbose", "-v", "Make output more verbose");
-        program.add(&swVerbose);
 
     // Action: 'help'
     CommandLineProgram actionHelp("help", "Print help text");
     program.add(&actionHelp);
+
+        actionHelp.add(&swVerbose);
 
         CommandLineSwitch swHelp("--help", "-h", "Print help text", CommandLineSwitch::NonOptional);
         actionHelp.add(&swHelp);
@@ -39,6 +40,8 @@ int main(int argc, char * argv[])
     // Action: 'count'
     CommandLineProgram actionCount("count", "Count from one number to another");
     program.add(&actionCount);
+
+        actionCount.add(&swVerbose);
 
         CommandLineCommand cmdCount("count");
         actionCount.add(&cmdCount);
@@ -55,6 +58,8 @@ int main(int argc, char * argv[])
     // Action: 'cp'
     CommandLineProgram actionCopy("cp", "Copy files");
     program.add(&actionCopy);
+
+        actionCopy.add(&swVerbose);
 
         CommandLineCommand cmdCopy("cp");
         actionCopy.add(&cmdCopy);

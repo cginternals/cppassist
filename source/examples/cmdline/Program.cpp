@@ -54,5 +54,7 @@ int Program::executeAction(CommandLineProgram * action)
         return action->execute();
     }
 
+    print(help());
+
     return 0;
 }
