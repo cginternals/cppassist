@@ -25,10 +25,6 @@ set(sources
     # threading
     parallel_for_test.cpp
 
-    # strings
-    SystemInfo_test.cpp
-    FilePath_test.cpp
-
     # io
     manipulation_test.cpp
     conversion_test.cpp
