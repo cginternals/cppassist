@@ -1,8 +1,11 @@
-cppassist
-=======
+<br><a href="https://github.com/cginternals/cppassist/"><img src="https://raw.githubusercontent.com/cginternals/cppassist/master/cppassist-logo.svg?sanitize=true" width="50%"></a>
 
 cppassist is a collection of C++ functions, classes and libraries that are too small to be standalone.
 It acts like a storage point for useful and reusable code for everyone using C++.
+
+[![Travis](https://img.shields.io/travis/cginternals/cppassist/master.svg?style=flat&logo=travis)](https://travis-ci.org/cginternals/cppassist)
+[![Appveyor](https://img.shields.io/appveyor/ci/gruntjs/grunt/master.svg?style=flat&logo=appveyor)](https://ci.appveyor.com/project/scheibel/cppassist/branch/master)
+[![Tokei](https://tokei.rs/b1/github/cginternals/cppassist)](https://github.com/Aaronepower/tokei)
 
 cppassist is a cross-platform library licenced under the [MIT license](http://opensource.org/licenses/MIT).
 
