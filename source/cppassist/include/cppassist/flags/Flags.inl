@@ -48,6 +48,13 @@ Flags<EnumType>::operator underlying_type() const
 }
 
 
+template <typename EnumType>
+Flags<EnumType> makeFlags(EnumType value)
+{
+    return Flags<EnumType>(value);
+}
+
+
 } // namespace cppassist
 
 

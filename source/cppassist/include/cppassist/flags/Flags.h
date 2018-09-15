@@ -82,6 +82,10 @@ protected:
 };
 
 
+template <typename EnumType>
+Flags<EnumType> makeFlags(EnumType value);
+
+
 } // namespace cppassist
 
 
