@@ -1,46 +1,56 @@
 
-# 
+#
 # External dependencies
-# 
+#
 
 
-# 
-# Executable name and options
-# 
+#
+# Library name and options
+#
 
 # Target name
-set(target io-example)
+set(target linenoise-ng)
 
 # Exit here if required dependencies are not met
-message(STATUS "Example ${target}")
+message(STATUS "External ${target}")
 
 
-# 
+#
 # Sources
-# 
+#
+
+set(include_path "${CMAKE_CURRENT_SOURCE_DIR}/include/${target}")
+set(source_path  "${CMAKE_CURRENT_SOURCE_DIR}/source")
+
+set(headers
+    ${include_path}/linenoise.h
+    ${include_path}/ConvertUTF.h
+)
 
 set(sources
-    main.cpp
+    ${source_path}/linenoise.cpp
+    ${source_path}/ConvertUTF.cpp
+    ${source_path}/wcwidth.cpp
 )
 
 
-# 
-# Create executable
-# 
+#
+# Create library
+#
 
-# Build executable
-add_executable(${target}
-    MACOSX_BUNDLE
+# Build library
+add_library(${target} STATIC
     ${sources}
+    ${headers}
 )
 
 # Create namespaced alias
-add_executable(${META_PROJECT_NAME}::${target} ALIAS ${target})
+add_library(externals::${target} ALIAS ${target})
 
 
-# 
+#
 # Project options
-# 
+#
 
 set_target_properties(${target}
     PROPERTIES
@@ -49,56 +59,76 @@ set_target_properties(${target}
 )
 
 
-# 
+#
 # Include directories
-# 
+#
 
 target_include_directories(${target}
     PRIVATE
     ${DEFAULT_INCLUDE_DIRECTORIES}
-    ${CMAKE_CURRENT_SOURCE_DIR}
     ${PROJECT_BINARY_DIR}/source/include
+
+    PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+
+    INTERFACE
 )
 
 
-# 
+#
 # Libraries
-# 
+#
 
 target_link_libraries(${target}
     PRIVATE
+
+    PUBLIC
     ${DEFAULT_LIBRARIES}
-    ${META_PROJECT_NAME}::cppassist
+
+    INTERFACE
 )
 
 
-# 
+#
 # Compile definitions
-# 
+#
 
 target_compile_definitions(${target}
     PRIVATE
+
+    PUBLIC
+    ${target_upper}_STATIC_DEFINE
     ${DEFAULT_COMPILE_DEFINITIONS}
+
+    INTERFACE
 )
 
 
-# 
+#
 # Compile options
-# 
+#
 
 target_compile_options(${target}
     PRIVATE
-    ${DEFAULT_COMPILE_OPTIONS}
+
+    PUBLIC
+    # ${DEFAULT_COMPILE_OPTIONS}
+
+    INTERFACE
 )
 
 
-# 
+#
 # Linker options
-# 
+#
 
 target_link_libraries(${target}
     PRIVATE
+
+    PUBLIC
     ${DEFAULT_LINKER_OPTIONS}
+
+    INTERFACE
 )
 
 
@@ -109,15 +139,4 @@ target_link_libraries(${target}
 perform_health_checks(
     ${target}
     ${sources}
-)
-
-
-# 
-# Deployment
-# 
-
-# Executable
-install(TARGETS ${target}
-    RUNTIME DESTINATION ${INSTALL_BIN} COMPONENT examples
-    BUNDLE  DESTINATION ${INSTALL_BIN} COMPONENT examples
 )

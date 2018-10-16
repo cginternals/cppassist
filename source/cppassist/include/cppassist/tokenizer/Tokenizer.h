@@ -31,13 +31,13 @@ public:
     */
     enum Option
     {
-        OptionParseStrings       =   1 ///< Parse strings (use setQuotationMarks to set string characters)
+        OptionParseStrings       =   1 ///< Parse strings (use #setQuotationMarks to set string characters)
       , OptionParseNumber        =   2 ///< Parse numbers
       , OptionParseBoolean       =   4 ///< Parse boolean values
       , OptionParseNull          =   8 ///< Parse null value
-      , OptionCStyleComments     =  16 ///< Enable "/* */" for multi-line comments
-      , OptionCppStyleComments   =  32 ///< Enable "//" for one-line comments
-      , OptionShellStyleComments =  64 ///< Enable "#" for one-line comments
+      , OptionCStyleComments     =  16 ///< Enable '`/* */`' for multi-line comments
+      , OptionCppStyleComments   =  32 ///< Enable '`//`' for one-line comments
+      , OptionShellStyleComments =  64 ///< Enable '`#`' for one-line comments
       , OptionIncludeComments    = 128 ///< Include comments in the output of the tokenizer
     };
 
@@ -48,34 +48,34 @@ public:
     enum TokenType
     {
         TokenEndOfStream    ///< No token read, end of stream reached
-      , TokenWhitespace     ///< Token contains only whitespace
-      , TokenComment        ///< Token contains a comment
-      , TokenStandalone     ///< Token contains a standalone string
-      , TokenString         ///< Token contains a string
-      , TokenNumber         ///< Token contains number
-      , TokenBoolean        ///< Token contains a boolean value
-      , TokenNull           ///< Token contains a null value
-      , TokenSingleChar     ///< Token contains a single character
-      , TokenWord           ///< Token contains a regular word (any other than above)
+      , TokenWhitespace     ///< %Token contains only whitespace
+      , TokenComment        ///< %Token contains a comment
+      , TokenStandalone     ///< %Token contains a standalone string
+      , TokenString         ///< %Token contains a string
+      , TokenNumber         ///< %Token contains number
+      , TokenBoolean        ///< %Token contains a boolean value
+      , TokenNull           ///< %Token contains a null value
+      , TokenSingleChar     ///< %Token contains a single character
+      , TokenWord           ///< %Token contains a regular word (any other than above)
     };
 
     /**
     *  @brief
-    *    Token
+    *    %Token
     */
     struct Token
     {
-        TokenType    type;         ///< Type of token (see TokenType)
-        std::string  content;      ///< Token content (the actual string read)
-        int          intValue;     ///< Only valid if type == TokenNumber
-        double       numberValue;  ///< Only valid if type == TokenNumber
-        std::string  stringValue;  ///< Only valid if type == TokenString
-        bool         booleanValue; ///< Only valid if type == TokenBoolean
-        bool         isDouble;     ///< If type == TokenNumber and isDouble, use numberValue
+        TokenType    type;         ///< Type of token (see #TokenType)
+        std::string  content;      ///< %Token content (the actual string read)
+        int          intValue;     ///< Only valid if type == #TokenNumber
+        double       numberValue;  ///< Only valid if type == #TokenNumber
+        std::string  stringValue;  ///< Only valid if type == #TokenString
+        bool         booleanValue; ///< Only valid if type == #TokenBoolean
+        bool         isDouble;     ///< If type == #TokenNumber and isDouble, use #numberValue
         const char * begin;        ///< Pointer to the first character of the token
         const char * end;          ///< Pointer to the first character after the token
         unsigned int line;         ///< Line number where the token begins
-        unsigned int column;       ///< Columns number where the token begins
+        unsigned int column;       ///< Column number where the token begins
     };
 
     /**
@@ -84,8 +84,8 @@ public:
     */
     struct Lookahead
     {
-        TokenType   type; ///< Type of token (see TokenType)
-        std::string hint; ///< Hint about value or type (only valid for TokenComment or TokenStandalone)
+        TokenType   type; ///< Type of token (see #TokenType)
+        std::string hint; ///< Hint about value or type (only valid for #TokenComment or #TokenStandalone)
     };
 
 
@@ -125,7 +125,7 @@ public:
     *    Check if a specific parsing option is set
     *
     *  @return
-    *    'true' if option is set, else 'false'
+    *    `true` if option is set, else `false`
     */
     bool hasOption(Option option) const;
 
@@ -209,7 +209,7 @@ public:
     *    Filename of text document
     *
     *  @return
-    *    'true' if file could be loaded, else 'false'
+    *    `true` if file could be loaded, else `false`
     */
     bool loadDocument(const std::string & filename);
 
@@ -238,10 +238,10 @@ public:
     *    Parse and return the next token
     *
     *  @return
-    *    Token
+    *    %Token
     *
     *  @remarks
-    *    If there are no tokens left, token.type is set to TokenEndOfStream.
+    *    If there are no tokens left, Token::type is set to #TokenEndOfStream.
     */
     Token parseToken();
 
@@ -252,7 +252,7 @@ private:
     *    Read next token
     *
     *  @return
-    *    Token
+    *    %Token
     */
     Token readToken();
 
@@ -300,7 +300,7 @@ private:
     *    Read string
     *
     *  @param[in] endChar
-    *    Character that marks the end of the string (usually " or ')
+    *    Character that marks the end of the string (usually `"` or `'`)
     *
     *  @remarks
     *    Advances the position until the end of the string is reached
@@ -398,7 +398,7 @@ private:
     *    Check if a standalone string matches at the current position
     *
     *  @return
-    *    Standalone string that matches, "" if none does
+    *    Standalone string that matches, `""` if none does
     */
     const std::string & matchStandaloneStrings() const;
 
@@ -407,7 +407,7 @@ private:
     *    Check if there is a (floating point) number at the current position
     *
     *  @return
-    *    Number string, "" if no number was found
+    *    Number string, `""` if no number was found
     */
     std::string matchNumber() const;
 
@@ -434,7 +434,7 @@ private:
     *    Convert token value into a number
     *
     *  @param[in,out] token
-    *    Token
+    *    %Token
     */
     void decodeNumber(Token & token);
 
@@ -443,7 +443,7 @@ private:
     *    Convert token value into a double value
     *
     *  @param[in,out] token
-    *    Token
+    *    %Token
     */
     void decodeDouble(Token & token);
 
@@ -452,7 +452,7 @@ private:
     *    Convert token value into string
     *
     *  @param[in,out] token
-    *    Token
+    *    %Token
     */
     void decodeString(Token & token);
 
@@ -468,7 +468,7 @@ private:
     *    Unicode value
     *
     *  @return
-    *    'true' on success, 'false' on error
+    *    `true` on success, `false` on error
     */
     bool decodeUnicodeCodePoint(const char * & current, const char * end, unsigned int & unicode) const;
 
@@ -484,7 +484,7 @@ private:
     *    Unicode value
     *
     *  @return
-    *    'true' on success, 'false' on error
+    *    `true` on success, `false` on error
     */
     bool decodeUnicodeEscapeSequence(const char * & current, const char * end, unsigned int & unicode) const;
 
@@ -510,7 +510,7 @@ private:
     *    Character set
     *
     *  @return
-    *    'true' if c is on of the characters in chars, else 'false'
+    *    `true` if `c` is on of the characters in chars, else `false`
     */
     bool charIn(char c, const std::string & chars) const;
 
@@ -530,7 +530,7 @@ private:
     const char             * m_current;          ///< Current position in the document
     unsigned int             m_line;             ///< Current line number (starts with 1)
     unsigned int             m_column;           ///< Current column number (starts with 1)
-    bool                     m_lastCR;           ///< 'true' if the last character read was '\r', else 'false'
+    bool                     m_lastCR;           ///< `true` if the last character read was `\r`, else `false`
 };
 
 

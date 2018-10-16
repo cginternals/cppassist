@@ -47,13 +47,9 @@ set(include_path "${CMAKE_CURRENT_SOURCE_DIR}/include/${target}")
 set(source_path  "${CMAKE_CURRENT_SOURCE_DIR}/source")
 
 set(headers
-    ${include_path}/fs/fs.h
     ${include_path}/fs/readfile.h
     ${include_path}/fs/DescriptiveRawFile.h
-    ${include_path}/fs/directorytraversal.h
-    ${include_path}/fs/FilePath.h
     ${include_path}/fs/RawFile.h
-    ${include_path}/fs/SystemInfo.h
 
     ${include_path}/flags/Flags.h
     ${include_path}/flags/Flags.inl
@@ -112,13 +108,9 @@ set(headers
 )
 
 set(sources
-    ${source_path}/fs/fs.cpp
     ${source_path}/fs/readfile.cpp
     ${source_path}/fs/DescriptiveRawFile.cpp
-    ${source_path}/fs/directorytraversal.cpp
-    ${source_path}/fs/FilePath.cpp
     ${source_path}/fs/RawFile.cpp
-    ${source_path}/fs/SystemInfo.cpp
 
     ${source_path}/logging/AbstractLogHandler.cpp
     ${source_path}/logging/ConsoleLogHandler.cpp
@@ -221,6 +213,7 @@ target_include_directories(${target}
 target_link_libraries(${target}
     PRIVATE
     ${ADDITIONAL_LIBRARIES}
+    externals::linenoise-ng
 
     PUBLIC
     ${DEFAULT_LIBRARIES}
