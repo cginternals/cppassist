@@ -136,6 +136,12 @@ LogMessageBuilder & LogMessageBuilder::operator<<(std::ostream & (*manipulator)(
     return *this;
 }
 
+LogMessageBuilder & LogMessageBuilder::operator<<(std::ios_base & (*manipulator)(std::ios_base &))
+{
+    *m_stream << manipulator;
+    return *this;
+}
+
 LogMessageBuilder & LogMessageBuilder::operator<<(LogMessageBuilder::PrecisionManipulator manipulator)
 {
     *m_stream << manipulator;
