@@ -44,49 +44,49 @@ TEST_F(flags_test, MultipleFlags)
 
 TEST_F(flags_test, FlagsOr)
 {
-    auto f = MyEnum::Value1 | MyEnum::Value2;
+    auto f = cppassist::makeFlags(MyEnum::Value1) | MyEnum::Value2;
 
     ASSERT_TRUE(f);
 }
 
 TEST_F(flags_test, MultipleFlagsOr)
 {
-    auto f = MyEnum::Value1 | MyEnum::Value2 | MyEnum::Value3;
+    auto f = cppassist::makeFlags(MyEnum::Value1) | MyEnum::Value2 | MyEnum::Value3;
 
     ASSERT_TRUE(f);
 }
 
 TEST_F(flags_test, FlagsAnd)
 {
-    auto f = MyEnum::Value1 & MyEnum::Value2;
+    auto f = cppassist::makeFlags(MyEnum::Value1) & MyEnum::Value2;
 
     ASSERT_FALSE(f);
 }
 
 TEST_F(flags_test, MultipleFlagsAnd)
 {
-    auto f = MyEnum::Value1 & MyEnum::Value2 & MyEnum::Value3;
+    auto f = cppassist::makeFlags(MyEnum::Value1) & MyEnum::Value2 & MyEnum::Value3;
 
     ASSERT_FALSE(f);
 }
 
 TEST_F(flags_test, FlagsXor)
 {
-    auto f = MyEnum::Value1 ^ MyEnum::Value2;
+    auto f = cppassist::makeFlags(MyEnum::Value1) ^ MyEnum::Value2;
 
     ASSERT_TRUE(f);
 }
 
 TEST_F(flags_test, MultipleFlagsXor)
 {
-    auto f = MyEnum::Value1 ^ MyEnum::Value2 ^ MyEnum::Value3;
+    auto f = cppassist::makeFlags(MyEnum::Value1) ^ MyEnum::Value2 ^ MyEnum::Value3;
 
     ASSERT_TRUE(f);
 }
 
 TEST_F(flags_test, BooleanContext)
 {
-    auto f = MyEnum::Value1 | MyEnum::Value2;
+    auto f = cppassist::makeFlags(MyEnum::Value1) | MyEnum::Value2;
 
     if (f & MyEnum::Value1)
     {
