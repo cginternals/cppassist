@@ -23,10 +23,9 @@ void convertUTF8toUTF32(const std::string & input, std::u32string & output)
 
     uint32_t * outStartSaved = (uint32_t*) output.data();
 
-    // TODO: Error handling
     auto error = linenoise_ng::ConvertUTF8toUTF32(&inStart, inEnd, &outStart, outEnd, linenoise_ng::strictConversion);
 
-    const auto outSize = outStart - outStartSaved;
+    const auto outSize = error ? 0 : outStart - outStartSaved;
     output.resize(outSize);
 }
 
@@ -41,10 +40,9 @@ void convertUTF16toUTF32(const std::u16string & input, std::u32string & output)
 
     uint32_t * outStartSaved = (uint32_t*) output.data();
 
-    // TODO: Error handling
     auto error = linenoise_ng::ConvertUTF16toUTF32(&inStart, inEnd, &outStart, outEnd, linenoise_ng::strictConversion);
 
-    const auto outSize = outStart - outStartSaved;
+    const auto outSize = error ? 0 : outStart - outStartSaved;
     output.resize(outSize);
 }
 
@@ -59,10 +57,9 @@ void convertUTF32toUTF8(const std::u32string & input, std::string & output)
 
     uint8_t * outStartSaved = (uint8_t*) output.data();
 
-    // TODO: Error handling
     auto error = linenoise_ng::ConvertUTF32toUTF8(&inStart, inEnd, &outStart, outEnd, linenoise_ng::strictConversion);
 
-    const auto outSize = outStart - outStartSaved;
+    const auto outSize = error ? 0 : outStart - outStartSaved;
     output.resize(outSize);
 }
 
@@ -78,10 +75,9 @@ void convertUTF32toUTF16(const std::u32string & input, std::u16string & output)
 
     char16_t * outStartSaved = (char16_t*) output.data();
 
-    // TODO: Error handling
     auto error = linenoise_ng::ConvertUTF32toUTF16(&inStart, inEnd, &outStart, outEnd, linenoise_ng::strictConversion);
 
-    const auto outSize = outStart - outStartSaved;
+    const auto outSize = error ? 0 : outStart - outStartSaved;
     output.resize(outSize);
 }
 
@@ -248,6 +244,7 @@ void decode(const std::u32string & input, std::wstring & output, const Encoding 
         std::string temp;
         decode(input, temp, encoding);
         output = std::wstring(temp.begin(), temp.end());
+        break;
     }
 
     case 2:
@@ -255,13 +252,16 @@ void decode(const std::u32string & input, std::wstring & output, const Encoding 
         std::u16string temp;
         decode(input, temp, encoding);
         output = std::wstring(temp.begin(), temp.end());
+        break;
     }
 
     case 4:
         output = std::wstring(input.begin(), input.end());
+        break;
 
     default:
         assert(false);
+        break;
     }
 }
 

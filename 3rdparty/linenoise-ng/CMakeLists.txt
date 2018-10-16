@@ -97,7 +97,7 @@ target_compile_definitions(${target}
     PRIVATE
 
     PUBLIC
-    $<$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>:${target_upper}_STATIC_DEFINE>
+    ${target_upper}_STATIC_DEFINE
     ${DEFAULT_COMPILE_DEFINITIONS}
 
     INTERFACE
@@ -112,7 +112,7 @@ target_compile_options(${target}
     PRIVATE
 
     PUBLIC
-    ${DEFAULT_COMPILE_OPTIONS}
+    # ${DEFAULT_COMPILE_OPTIONS}
 
     INTERFACE
 )
