@@ -276,3 +276,84 @@ TEST_F(conversion_test, toUpper_uniRef)
 
     ASSERT_EQ("TOUPPER", output);
 }
+
+// from https://unicode-table.com/
+// U+1D11E - Musical Symbol G Clef
+// Encoding      Hex         Dec Bytes
+// UTF-8     F0 9D 84 9E  240 157 132 158
+// UTF-16BE  D8 34 DD 1E  216  52 221  30
+// UTF-16LE  34 D8 1E DD   52 216  30 221
+// UTF-32BE  00 01 D1 1E    0   1 209  30
+// UTF-32LE  1E D1 01 00   30 209   1   0
+
+// Big endian as we use a big endian converter
+const unsigned char utf8Val[5] = {0xF0, 0x9D, 0x84, 0x9E, 0x0};
+const char16_t     utf16Val[3] = {0xD834,     0xDD1E,     0x0};
+const char32_t     utf32Val[2] = {0x0001D11E,             0x0};
+
+TEST_F(conversion_test, utf_encode_string)
+{
+    std::string input((char*)utf8Val);
+    std::u32string expected(utf32Val);
+
+    auto output = string::encode(input, Encoding::UTF8);
+
+    EXPECT_EQ(expected, output);
+}
+
+TEST_F(conversion_test, utf_encode_u16string)
+{
+    std::u16string input(utf16Val);
+    std::u32string expected(utf32Val);
+
+    auto output = string::encode(input, Encoding::UTF16);
+
+    EXPECT_EQ(expected, output);
+}
+
+TEST_F(conversion_test, utf_encode_cstr)
+{
+    const char* input = (char*)utf8Val;
+    const size_t inSize = 4;
+    std::u32string expected(utf32Val);
+
+    auto output = string::encode(input, inSize, Encoding::UTF8);
+
+    EXPECT_EQ(expected, output);
+}
+
+TEST_F(conversion_test, utf_decode_string)
+{
+    std::u32string input(utf32Val);
+    std::string expected((char*)utf8Val);
+    std::string output;
+
+    string::decode(input, output, Encoding::UTF8);
+
+    EXPECT_EQ(expected, output);
+}
+
+TEST_F(conversion_test, utf_decode_u16string)
+{
+    std::u32string input(utf32Val);
+    std::u16string expected(utf16Val);
+    std::u16string output;
+
+    string::decode(input, output, Encoding::UTF16);
+
+    EXPECT_EQ(expected, output);
+}
+
+TEST_F(conversion_test, utf_decode_cstr)
+{
+    std::u32string input(utf32Val);
+    const char* expected = (char*)utf8Val;
+    char* output = nullptr;
+    size_t outSize = 0;
+
+    string::decode(input, output, outSize, Encoding::UTF8);
+
+    ASSERT_NE(nullptr, output);
+    EXPECT_EQ(4, outSize);
+    EXPECT_STREQ(expected, output);
+}

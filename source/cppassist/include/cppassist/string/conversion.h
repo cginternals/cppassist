@@ -25,6 +25,7 @@ enum class Encoding : unsigned int
     ANSI
 ,   ASCII = Encoding::ANSI // for both ANSI and ASCII 1 byte in a std::string or char is used to encode it
 ,   UTF8
+,   UTF16
 };
 //@}
 
@@ -99,14 +100,14 @@ CPPASSIST_API std::string toString<bool>(const bool & value);
 *
 */
 CPPASSIST_API std::u32string encode(const std::string & input, Encoding encoding);
-//CPPASSIST_API std::u32string encode(const std::wstring & input, Encoding encoding);
-//CPPASSIST_API std::u32string encode(const std::u16string & input, Encoding encoding);
-//CPPASSIST_API std::u32string encode(const char * input, size_t size, Encoding encoding);
+CPPASSIST_API std::u32string encode(const std::wstring & input, Encoding encoding);
+CPPASSIST_API std::u32string encode(const std::u16string & input, Encoding encoding);
+CPPASSIST_API std::u32string encode(const char * input, const size_t size, Encoding encoding);
 
-//CPPASSIST_API void decode(const std::u32string & input, std::string & output, Encoding encoding);
-//CPPASSIST_API void decode(const std::u32string & input, std::wstring & output, Encoding encoding);
-//CPPASSIST_API void decode(const std::u32string & input, std::u16string & output, Encoding encoding);
-//CPPASSIST_API void decode(const std::u32string & input, const char * & output, std::size_t size, Encoding encoding);
+CPPASSIST_API void decode(const std::u32string & input, std::string & output, Encoding encoding);
+CPPASSIST_API void decode(const std::u32string & input, std::wstring & output, Encoding encoding);
+CPPASSIST_API void decode(const std::u32string & input, std::u16string & output, Encoding encoding);
+CPPASSIST_API void decode(const std::u32string & input, char * & output, std::size_t & size, Encoding encoding);
 //@}
 
 
