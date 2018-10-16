@@ -1,6 +1,7 @@
 
 #pragma once
 
+
 #include <cppassist/logging/AbstractLogHandler.h>
 #include <cppassist/logging/LogMessage.h>
 
