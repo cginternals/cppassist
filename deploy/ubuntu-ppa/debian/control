@@ -7,28 +7,28 @@ Standards-Version: 3.8.0
 
 Package: libcppassist
 Architecture: any
-Homepage: https://github.org/cginternals/cppassist
+Homepage: https://cppassist.org/
 Description: C++ sanctuary for small but powerful and frequently required, stand alone features.
 
 Package: libcppassist-dev
 Architecture: any
 Depends: libcppassist
-Homepage: https://github.org/cginternals/cppassist
+Homepage: https://cppassist.org/
 Description: C++ sanctuary for small but powerful and frequently required, stand alone features.
 
 Package: libcppassist-docs
 Architecture: any
-Homepage: https://github.org/cginternals/cppassist
+Homepage: https://cppassist.org/
 Description: C++ sanctuary for small but powerful and frequently required, stand alone features.
 
 Package: libcppassist-dbg
 Architecture: any
 Depends: libcppassist, libcppassist-dev
-Homepage: https://github.org/cginternals/cppassist
+Homepage: https://cppassist.org/
 Description: C++ sanctuary for small but powerful and frequently required, stand alone features.
 
 Package: libcppassist-all
 Architecture: any
 Depends: libcppassist, libcppassist-dev, libcppassist-docs
-Homepage: https://github.org/cginternals/cppassist
+Homepage: https://cppassist.org/
 Description: C++ sanctuary for small but powerful and frequently required, stand alone features.
