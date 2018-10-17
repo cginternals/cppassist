@@ -186,6 +186,8 @@ std::u32string encode(const std::wstring & input, const Encoding encoding)
     default:
         assert(false);
     }
+
+	return std::u32string();
 }
 
 std::u32string encode(const std::u16string & input, const Encoding encoding)
