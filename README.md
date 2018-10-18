@@ -1,7 +1,7 @@
 
 <br><a href="https://github.com/cginternals/cppassist/"><img src="https://raw.githubusercontent.com/cginternals/cppassist/master/cppassist-logo.svg?sanitize=true" width="50%"></a>
 
-cppassist is a collection of cross-platform C++ functions, classes and libraries that are too small to be standalone.
+*cppassist* is a collection of cross-platform C++ functions, classes and libraries that are too small to be standalone.
 It acts like a storage point for useful and reusable code for everyone using C++.
 
 ![GitHub release](https://img.shields.io/github/release/cginternals/cppassist.svg)
