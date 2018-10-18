@@ -6,7 +6,7 @@ It acts like a storage point for useful and reusable code for everyone using C++
 
 ![GitHub release](https://img.shields.io/github/release/cginternals/cppassist.svg)
 [![Travis](https://img.shields.io/travis/cginternals/cppassist/master.svg?style=flat&logo=travis)](https://travis-ci.org/cginternals/cppassist)
-[![Appveyor](https://img.shields.io/appveyor/ci/gruntjs/grunt/master.svg?style=flat&logo=appveyor)](https://ci.appveyor.com/project/scheibel/cppassist/branch/master)
+[![Appveyor](https://img.shields.io/appveyor/ci/scheibel/cppassist/master.svg?style=flat&logo=appveyor)](https://ci.appveyor.com/project/scheibel/cppassist/branch/master)
 [![Tokei](https://tokei.rs/b1/github/cginternals/cppassist)](https://github.com/Aaronepower/tokei)
 
 cppassist is a cross-platform library licenced under the [MIT license](http://opensource.org/licenses/MIT).
