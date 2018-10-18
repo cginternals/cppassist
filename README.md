@@ -11,8 +11,6 @@ It acts like a storage point for useful and reusable code for everyone using C++
 
 # Resources
 
-* [Examples](https://github.com/cginternals/cppassist/wiki/examples)
-
 ##### Installation and Development
 
 * [Build form Source](#build-instructions)
