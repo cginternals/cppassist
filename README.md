@@ -195,7 +195,7 @@ enum class MyEnum : unsigned int {
 };
 
 const auto f = cppassist::makeFlags(MyEnum::Value1) | MyEnum::Value2 & MyEnum::Value3;
-``
+```
 
 
 ## fs
