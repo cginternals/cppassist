@@ -8,6 +8,8 @@ It acts like a storage point for useful and reusable code for everyone using C++
 [![Travis](https://img.shields.io/travis/cginternals/cppassist/master.svg?style=flat&logo=travis)](https://travis-ci.org/cginternals/cppassist)
 [![Appveyor](https://img.shields.io/appveyor/ci/scheibel/cppassist/master.svg?style=flat&logo=appveyor)](https://ci.appveyor.com/project/scheibel/cppassist/branch/master)
 [![Tokei](https://tokei.rs/b1/github/cginternals/cppassist)](https://github.com/Aaronepower/tokei)
+[![Tokei](https://tokei.rs/b1/github/cginternals/cppassist?category=comments)](https://github.com/Aaronepower/tokei)
+
 
 # Resources
 
