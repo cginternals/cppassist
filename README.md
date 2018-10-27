@@ -83,7 +83,7 @@ In order to compile the project, either use you favorite Editor/IDE with the cre
 > cmake --build .
 ```
 
-# cppassist Modules
+# Modules
 
 ## cmdline
 
