@@ -33,7 +33,7 @@ It acts like a storage point for useful and reusable code for everyone using C++
 
 # Build Instructions
 
-#### Prerequisites and Dependencies
+##### Prerequisites and Dependencies
 
 The only mandatory run-time dependencies of *cppassist* are the STL of the used compiler. Building *cppassist* from source has several mandatory and optional dependencies:
 
@@ -42,7 +42,7 @@ The only mandatory run-time dependencies of *cppassist* are the STL of the used 
 * [Doxygen](http://www.stack.nl/~dimitri/doxygen/) 1.8 or higher for generating the documentation on your system
   * [graphviz](http://www.graphviz.org/) for generating diagrams (optional)
 
-#### Compile Instructions
+##### Compile Instructions
 
 For compilation, a C++11 compliant compiler, e.g., GCC 4.8, Clang 3.3, MSVC 2013 **Update 3**, is required.
 First, download the source code [as archive](https://github.com/cginternals/cppassist/releases) or via git:
@@ -85,7 +85,7 @@ In order to compile the project, either use you favorite Editor/IDE with the cre
 
 # Modules
 
-## cmdline
+### cmdline
 
 command line arguments parser for console applications.
 
@@ -183,7 +183,7 @@ program.print(program.help(program.selectedAction()));
 ```
 
 
-## flags
+### flags
 
 Flags type to help using enums as flags.
 
@@ -200,7 +200,7 @@ const auto f = cppassist::makeFlags(MyEnum::Value1) | MyEnum::Value2 & MyEnum::V
 ```
 
 
-## fs
+### fs
 
 The fs module provides classes to access raw files and their key-value structured header information.
 
@@ -224,7 +224,7 @@ file.doubleProperty("scaleFactor");
 ```
 
 
-## logging
+### logging
 
 logging provides stream like logging functionality with customizable outputs (default output is to the console).
 
@@ -246,7 +246,7 @@ cppassist::critical("C") << "Critical message from context C";
 ```
 
 
-## memory
+### memory
 
 Low-level memory management helpers.
 
@@ -271,7 +271,7 @@ const auto offset = cppassist::offsetof(&Foo::b);
 ```
 
 
-## simd
+### simd
 
 simd provides structures and algorithms for SIMD-like data processing, as introduced by GPUs.
 This is achieved by compiler extensions as SSE, AVX2, and AVX512.
@@ -296,7 +296,7 @@ cppassist::traverse([](const cppassist::vector<float>::value_type & chunk1, cppa
 }, values1, values2);
 ```
 
-## string
+### string
 
 This module provides string utilities like conversion between string and numeric data types, convenience functions for string operations, and some advanced regex functionality (either implemented using Boost or the C++ standard library).
 
@@ -341,7 +341,7 @@ if (cppassist::matchesRegex(hexString, "([0-9A-Fa-f]{8}|[0-9A-Fa-f]{6})"))
 ```
 
 
-## threading
+### threading
 
 The module threading provides functions that uses either OpenMP `#pragma omp` or the `std::thread` classes to execute a for loop concurrently.
 
@@ -358,7 +358,7 @@ cppassist::forEach(0u, size, [this](std::uint32_t number)
 ```
 
 
-## tokenizer
+### tokenizer
 
 Low-level tokenizer as base for more elaborate text parsers.
 
@@ -382,7 +382,7 @@ tokenizer.setSingleCharacters("{}[],:");
 ```
 
 
-## typelist
+### typelist
 
 This module introduces a `TypeList` type that allows calling different instantiations of a templated method consecutively.
 
