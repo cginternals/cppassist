@@ -89,6 +89,7 @@ set(headers
     ${include_path}/string/regex.h
     ${include_path}/string/manipulation.h
     ${include_path}/string/manipulation.inl
+    ${include_path}/string/processing.h
 
     ${include_path}/tokenizer/Tokenizer.h
 
@@ -123,6 +124,7 @@ set(sources
     ${source_path}/string/conversion.cpp
     ${source_path}/string/regex.cpp
     ${source_path}/string/manipulation.cpp
+    ${source_path}/string/processing.cpp
 
     ${source_path}/tokenizer/Tokenizer.cpp
 
