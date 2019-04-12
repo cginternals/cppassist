@@ -57,13 +57,6 @@ void parseLine(const std::string & line, const std::string::size_type start_pos,
     callback(cppassist::string::trim(line.substr(last_pos)), i);
 }
 
-void parseLine(const std::string & line, const std::string::size_type start_pos, const char delimiter, const char escapeCharacter, std::function<void(std::string && value)> callback)
-{
-    parseLine(line, start_pos, delimiter, escapeCharacter, [callback](std::string && value, const int /*index*/) {
-        callback(std::move(value));
-    });
-}
-
 
 } // namespace string
 } // namespace cppassist

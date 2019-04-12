@@ -25,9 +25,10 @@ set(sources
     # threading
     parallel_for_test.cpp
 
-    # io
+    # string
     manipulation_test.cpp
     conversion_test.cpp
+    processing_test.cpp
     
     # flags
     flags_test.cpp

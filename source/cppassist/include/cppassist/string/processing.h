@@ -14,7 +14,6 @@ namespace string
 {
 
 
-//@{
 /**
 *  @brief
 *    Splits the line at delimiter (while regarding the symmetric escapeCharacter) and calls the callback for each part.
@@ -30,9 +29,7 @@ namespace string
 *  @param[in] callback
 *    The callback to invoke for each parsed line part
 */
-CPPASSIST_API void parseLine(const std::string & line, const std::string::size_type start_pos, const char delimiter, const char escapeCharacter, std::function<void(std::string && value)> callback);
 CPPASSIST_API void parseLine(const std::string & line, const std::string::size_type start_pos, const char delimiter, const char escapeCharacter, std::function<void(std::string && value, const int index)> callback);
-//@}
 
 
 } // namespace string
