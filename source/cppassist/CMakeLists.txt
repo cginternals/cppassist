@@ -107,6 +107,11 @@ set(headers
     ${include_path}/cmdline/CommandLineOption.h
     ${include_path}/cmdline/CommandLineSwitch.h
     ${include_path}/cmdline/CommandLineParameter.h
+
+    ${include_path}/error/Error.h
+    ${include_path}/error/Error.inl
+    ${include_path}/error/Result.h
+    ${include_path}/error/Result.inl
 )
 
 set(sources
@@ -137,6 +142,8 @@ set(sources
     ${source_path}/cmdline/CommandLineOption.cpp
     ${source_path}/cmdline/CommandLineSwitch.cpp
     ${source_path}/cmdline/CommandLineParameter.cpp
+
+    ${source_path}/error/Error.cpp
 )
 
 # Group source files
