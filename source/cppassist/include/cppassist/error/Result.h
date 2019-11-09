@@ -55,6 +55,29 @@ Result<T, E> error(const std::string & message, Ts... params);
 
 /**
  * @brief
+ *   Create an error result with a message
+ *
+ * @tparam T
+ *   Result type
+ * @tparam E
+ *   Error type
+ * @tparam Ts
+ *   Additional parameters needed for the constructor of type E
+ * @param[in] message
+ *   Error message
+ *
+ * @return
+ *   Result containing the error condition
+ *
+ * @remarks
+ *   This is a convenience function for using Result<T, E>::fromError
+ *   to avoid verbose code.
+ */
+template <typename T, typename E = Error, typename... Ts>
+Result<T, E> error(std::string && message, Ts... params);
+
+/**
+ * @brief
  *   Create an error result with a message and a reason
  *
  * @tparam T
@@ -101,7 +124,57 @@ Result<T, E> error(const std::string & message, R && reason, Ts... params);
  *   to avoid verbose code.
  */
 template <typename T, typename E = Error, typename R = Error, typename... Ts>
+Result<T, E> error(std::string && message, R && reason, Ts... params);
+
+/**
+ * @brief
+ *   Create an error result with a message and a reason
+ *
+ * @tparam T
+ *   Result type
+ * @tparam E
+ *   Error type
+ * @tparam Ts
+ *   Additional parameters needed for the constructor of type E
+ * @param[in] message
+ *   Error message
+ * @param[in] reason
+ *   Error that is the reason for this error
+ *
+ * @return
+ *   Result containing the error condition
+ *
+ * @remarks
+ *   This is a convenience function for using Result<T, E>::fromError
+ *   to avoid verbose code.
+ */
+template <typename T, typename E = Error, typename R = Error, typename... Ts>
 Result<T, E> error(const std::string & message, const R & reason, Ts... params);
+
+/**
+ * @brief
+ *   Create an error result with a message and a reason
+ *
+ * @tparam T
+ *   Result type
+ * @tparam E
+ *   Error type
+ * @tparam Ts
+ *   Additional parameters needed for the constructor of type E
+ * @param[in] message
+ *   Error message
+ * @param[in] reason
+ *   Error that is the reason for this error
+ *
+ * @return
+ *   Result containing the error condition
+ *
+ * @remarks
+ *   This is a convenience function for using Result<T, E>::fromError
+ *   to avoid verbose code.
+ */
+template <typename T, typename E = Error, typename R = Error, typename... Ts>
+Result<T, E> error(std::string && message, const R & reason, Ts... params);
 
 /**
  * @brief
@@ -209,6 +282,19 @@ public:
 
     /**
      * @brief
+     *   Get value
+     *
+     * @return
+     *   Reference to the contained value
+     *
+     * @remarks
+     *   You must call this ONLY if isValid() == true!
+     *   Otherwise, an exception (std::bad_cast) is thrown.
+     */
+    const T & value() const;
+
+    /**
+     * @brief
      *   Get error
      *
      * @return
@@ -219,6 +305,19 @@ public:
      *   Otherwise, an exception (std::bad_cast) is thrown.
      */
     E && error();
+
+    /**
+     * @brief
+     *   Get error
+     *
+     * @return
+     *   Reference to the contained error
+     *
+     * @remarks
+     *   You must call this ONLY if isValid() == false!
+     *   Otherwise, an exception (std::bad_cast) is thrown.
+     */
+    const E & error() const;
 
 protected:
     union {
@@ -243,6 +342,7 @@ public:
     ~Result();
     bool isValid() const;
     E && error();
+    const E & error() const;
 
 protected:
     E m_error; ///< Error value (only used if m_isValid == false)

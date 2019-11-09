@@ -41,6 +41,15 @@ public:
 
     /**
      * @brief
+     *   Constructor with an error message
+     *
+     * @param[in] message
+     *   Error message
+     */
+    Error(std::string && message);
+
+    /**
+     * @brief
      *   Constructor with an error message and a reason
      *
      * @tparam E
@@ -65,7 +74,35 @@ public:
      *   Previous error that caused this error
      */
     template<typename E>
+    Error(std::string && message, const E & reason);
+
+    /**
+     * @brief
+     *   Constructor with an error message and a reason
+     *
+     * @tparam E
+     *   Type of the reason error
+     * @param[in] message
+     *   Error message
+     * @param[in] reason
+     *   Previous error that caused this error
+     */
+    template<typename E>
     Error(const std::string & message, E && reason);
+
+    /**
+     * @brief
+     *   Constructor with an error message and a reason
+     *
+     * @tparam E
+     *   Type of the reason error
+     * @param[in] message
+     *   Error message
+     * @param[in] reason
+     *   Previous error that caused this error
+     */
+    template<typename E>
+    Error(std::string && message, E && reason);
 
     /**
      * @brief

@@ -1,7 +1,7 @@
 
-#include <iostream>
-
 #include <cppassist/error/Error.h>
+
+#include <iostream>
 
 
 namespace cppassist
@@ -10,6 +10,11 @@ namespace cppassist
 
 Error::Error(const std::string & message)
 : m_message(message)
+{
+}
+
+Error::Error(std::string && message)
+: m_message(std::move(message))
 {
 }
 

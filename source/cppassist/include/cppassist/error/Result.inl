@@ -5,7 +5,7 @@ namespace cppassist
 
 // General implementation
 
-template <typename E = Error>
+template <typename E>
 Result<void, E> ok() {
     return Result<void, E>();
 }
@@ -13,19 +13,37 @@ Result<void, E> ok() {
 template <typename T, typename E, typename... Ts>
 Result<T, E> error(const std::string & message, Ts... params) {
     // Create error and put it into the result object
-    return Result<T, E>::fromError(std::move(E(message, params...)));
+    return Result<T, E>::fromError(E(message, params...));
+}
+
+template <typename T, typename E, typename... Ts>
+Result<T, E> error(std::string && message, Ts... params) {
+    // Create error and put it into the result object
+    return Result<T, E>::fromError(E(std::move(message), params...));
 }
 
 template <typename T, typename E, typename R, typename... Ts>
 Result<T, E> error(const std::string & message, R && reason, Ts... params) {
     // Create error and put it into the result object. Move the reason into the error.
-    return Result<T, E>::fromError(std::move(E(message, std::move(reason), params...)));
+    return Result<T, E>::fromError(E(message, std::move(reason), params...));
+}
+
+template <typename T, typename E, typename R, typename... Ts>
+Result<T, E> error(std::string && message, R && reason, Ts... params) {
+    // Create error and put it into the result object. Move the reason into the error.
+    return Result<T, E>::fromError(E(std::move(message), std::move(reason), params...));
 }
 
 template <typename T, typename E, typename R, typename... Ts>
 Result<T, E> error(const std::string & message, const R & reason, Ts... params) {
     // Create error and put it into the result object. Copy the reason into the error.
-    return Result<T, E>::fromError(std::move(E(message, reason, params...)));
+    return Result<T, E>::fromError(E(message, reason, params...));
+}
+
+template <typename T, typename E, typename R, typename... Ts>
+Result<T, E> error(std::string && message, const R & reason, Ts... params) {
+    // Create error and put it into the result object. Copy the reason into the error.
+    return Result<T, E>::fromError(E(std::move(message), reason, params...));
 }
 
 template <typename T, typename E>
@@ -138,6 +156,19 @@ T && Result<T, E>::value()
 }
 
 template <typename T, typename E>
+const T & Result<T, E>::value() const
+{
+    // Check if result is valid
+    if (m_valid) {
+        // Return value
+        return m_value;
+    } else {
+        // Error, raise exception
+        throw std::bad_cast();
+    }
+}
+
+template <typename T, typename E>
 E && Result<T, E>::error()
 {
     // Check if result is valid
@@ -149,6 +180,20 @@ E && Result<T, E>::error()
         throw std::bad_cast();
     }
 }
+
+template <typename T, typename E>
+const E & Result<T, E>::error() const
+{
+    // Check if result is valid
+    if (!m_valid) {
+        // Return error
+        return m_error;
+    } else {
+        // Error, raise exception
+        throw std::bad_cast();
+    }
+}
+
 
 // Implementation for type void
 
@@ -184,6 +229,7 @@ Result<void, E>::Result()
 
 template <typename E>
 Result<void, E>::Result(const Result<void, E> & result)
+: m_valid(result.m_valid)
 {
     // Check other result
     if (m_valid) {
@@ -228,6 +274,19 @@ E && Result<void, E>::error()
     if (!m_valid) {
         // Return error
         return std::move(m_error);
+    } else {
+        // Error, raise exception
+        throw std::bad_cast();
+    }
+}
+
+template <typename E>
+const E & Result<void, E>::error() const
+{
+    // Check if result is valid
+    if (!m_valid) {
+        // Return error
+        return m_error;
     } else {
         // Error, raise exception
         throw std::bad_cast();

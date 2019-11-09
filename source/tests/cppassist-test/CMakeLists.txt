@@ -30,6 +30,9 @@ set(sources
     conversion_test.cpp
     processing_test.cpp
     
+    # error
+    error_test.cpp
+    
     # flags
     flags_test.cpp
     

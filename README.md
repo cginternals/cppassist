@@ -20,6 +20,7 @@ It acts like a storage point for useful and reusable code for everyone using C++
 
 ##### Module Introductions
  * [cmdline](#cmdline)
+ * [error](#error)
  * [flags](#flags)
  * [fs](#fs)
  * [logging](#logging)
@@ -179,6 +180,76 @@ if (program.selectedAction() && !program.hasErrors())
 
 // Print help
 program.print(program.help(program.selectedAction()));
+```
+
+
+# error
+
+The error module introduces a `Result` template (inspired from the `Result` template from Rust) and an explicit `Error` class.
+The Result class can be used as follows:
+
+```cpp
+#include <cppassist/error/Result.h>
+
+// void return value example
+
+cppassist::Result<void> processIfValid(bool check)
+{
+    if (!check)
+    {
+        return cppassist::error<void>("Invalid");
+    }
+
+    process();
+
+    return cppassist::ok();
+}
+
+const auto result_success = processIfValid(true);
+const auto result_failure = processIfValid(false);
+
+if (!result_failure.isValid())
+{
+    std::cout << result_failure.error().message() << '\n';
+}
+
+// return value example
+
+cppassist::Result<std::int64_t> faculty(int n)
+{
+    if (n < 0 || n > 20)
+    {
+        return cppassist::error<std::int64_t>("n out of range");
+    }
+
+    if (n < 2)
+    {
+        return n;
+    }
+
+    std::int64_t result = 1;
+    while (n > 1)
+    {
+        result *= n;
+        --n;
+    }
+
+    return result;
+}
+
+const auto result_success = faculty(4);
+const auto result_failure = faculty(30);
+
+if (result_success.isValid())
+{
+    std::cout << "Faculty of 4 is " << result_success.value() << '\n';
+}
+
+if (!result_failure.isValid())
+{
+    std::cout << result_failure.error().message() << '\n';
+}
+
 ```
 
 
