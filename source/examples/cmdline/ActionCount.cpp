@@ -10,7 +10,7 @@ using namespace cppassist;
 
 
 ActionCount::ActionCount(Program & program)
-: CommandLineAction("count", "Count from one number to another")
+: CommandLineProgram("count", "Count from one number to another")
 , m_program(program)
 , m_commandCount("count")
 , m_optionStep("--increment-by", "-i", "step", "Number that is added per iteration", CommandLineOption::Optional)

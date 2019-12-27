@@ -10,7 +10,7 @@ using namespace cppassist;
 
 
 ActionHelp::ActionHelp(Program & program)
-: CommandLineAction("help", "Print help text")
+: CommandLineProgram("help", "Print help text")
 , m_program(program)
 , m_switchHelp("--help", "-h", "Print help text", CommandLineSwitch::NonOptional)
 , m_paramCommand("command", CommandLineParameter::Optional)
@@ -27,7 +27,7 @@ ActionHelp::~ActionHelp()
 
 int ActionHelp::execute()
 {
-    CommandLineAction * forAction = nullptr;
+    CommandLineProgram * forAction = nullptr;
 
     if (!m_paramCommand.value().empty())
     {

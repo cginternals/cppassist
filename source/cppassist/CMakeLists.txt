@@ -102,7 +102,6 @@ set(headers
     ${include_path}/cmdline/ArgumentParser.h
     ${include_path}/cmdline/ArgumentParser.inl
     ${include_path}/cmdline/CommandLineProgram.h
-    ${include_path}/cmdline/CommandLineAction.h
     ${include_path}/cmdline/CommandLineCommand.h
     ${include_path}/cmdline/CommandLineOption.h
     ${include_path}/cmdline/CommandLineSwitch.h
@@ -137,7 +136,6 @@ set(sources
 
     ${source_path}/cmdline/ArgumentParser.cpp
     ${source_path}/cmdline/CommandLineProgram.cpp
-    ${source_path}/cmdline/CommandLineAction.cpp
     ${source_path}/cmdline/CommandLineCommand.cpp
     ${source_path}/cmdline/CommandLineOption.cpp
     ${source_path}/cmdline/CommandLineSwitch.cpp

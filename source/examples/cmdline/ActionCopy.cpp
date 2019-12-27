@@ -10,7 +10,7 @@ using namespace cppassist;
 
 
 ActionCopy::ActionCopy(Program & program)
-: CommandLineAction("cp", "Copy files")
+: CommandLineProgram("cp", "Copy files")
 , m_program(program)
 , m_commandCopy("cp")
 , m_paramSrc("path", CommandLineParameter::NonOptional)
@@ -34,7 +34,7 @@ int ActionCopy::execute()
     info() << "Let me copy that for you ...";
     info() << "- " << m_paramSrc.value();
 
-    for (auto arg : optionalParameters())
+    for (auto arg : unknownArguments())
     {
         info() << "- " << arg;
     }

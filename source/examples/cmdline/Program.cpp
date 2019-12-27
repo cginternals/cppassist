@@ -28,12 +28,12 @@ Program::~Program()
 {
 }
 
-void Program::addDefaultOptionsTo(CommandLineAction & action)
+void Program::addDefaultOptionsTo(CommandLineProgram & action)
 {
     action.add(&m_switchVerbose);
 }
 
-int Program::executeAction(CommandLineAction * action)
+int Program::executeAction(CommandLineProgram * action)
 {
     // Set log level
     int logLevel = LogMessage::Info;
@@ -53,6 +53,8 @@ int Program::executeAction(CommandLineAction * action)
     {
         return action->execute();
     }
+
+    print(help());
 
     return 0;
 }
