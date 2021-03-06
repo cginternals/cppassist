@@ -237,7 +237,7 @@ void CommandLineProgram::parse(int argc, char * argv[])
     for (auto * action : m_actions)
     {
         // Parse command line
-        action->parse(argc, argv);
+        action->parse(argc-1, argv+1);
 
         // Action found?
         if (action->activated())
