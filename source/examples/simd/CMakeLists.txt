@@ -1,12 +1,12 @@
 
-# 
+#
 # External dependencies
-# 
+#
 
 
-# 
+#
 # Executable name and options
-# 
+#
 
 # Target name
 set(target simd-example)
@@ -15,18 +15,18 @@ set(target simd-example)
 message(STATUS "Example ${target}")
 
 
-# 
+#
 # Sources
-# 
+#
 
 set(sources
     main.cpp
 )
 
 
-# 
+#
 # Create executable
-# 
+#
 
 # Build executable
 add_executable(${target}
@@ -37,9 +37,9 @@ add_executable(${target}
 add_executable(${META_PROJECT_NAME}::${target} ALIAS ${target})
 
 
-# 
+#
 # Project options
-# 
+#
 
 set_target_properties(${target}
     PROPERTIES
@@ -48,9 +48,9 @@ set_target_properties(${target}
 )
 
 
-# 
+#
 # Include directories
-# 
+#
 
 target_include_directories(${target}
     PRIVATE
@@ -60,9 +60,9 @@ target_include_directories(${target}
 )
 
 
-# 
+#
 # Libraries
-# 
+#
 
 target_link_libraries(${target}
     PRIVATE
@@ -71,30 +71,36 @@ target_link_libraries(${target}
 )
 
 
-# 
+#
 # Compile definitions
-# 
+#
 
 target_compile_definitions(${target}
     PRIVATE
     ${DEFAULT_COMPILE_DEFINITIONS}
     SSE_ENABLED
+    $<$<BOOL:${AVX_ENABLED}>:AVX_ENABLED>
+    $<$<BOOL:${AVX2_ENABLED}>:AVX2_ENABLED>
+    $<$<BOOL:${AVX512_ENABLED}>:AVX512_ENABLED>
 )
 
 
-# 
+#
 # Compile options
-# 
+#
 
 target_compile_options(${target}
     PRIVATE
     ${DEFAULT_COMPILE_OPTIONS}
+    ${AVX_FLAGS}
+    ${AVX2_FLAGS}
+    ${AVX512_FLAGS}
 )
 
 
-# 
+#
 # Linker options
-# 
+#
 
 target_link_libraries(${target}
     PRIVATE
@@ -112,9 +118,9 @@ perform_health_checks(
 )
 
 
-# 
+#
 # Deployment
-# 
+#
 
 # Executable
 install(TARGETS ${target}
