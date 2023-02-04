@@ -32,7 +32,7 @@ struct identity
 *  @return
 *    Number of threads
 */
-CPPASSIST_API size_t getNumberOfThreads();
+CPPASSIST_API std::size_t getNumberOfThreads();
 
 /**
 *  @brief
