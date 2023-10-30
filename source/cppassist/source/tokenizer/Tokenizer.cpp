@@ -18,7 +18,7 @@ namespace
 {
 
 
-const int          MIN_INT     = int( ~(unsigned(-1)/2) );
+// const int          MIN_INT     = int( ~(unsigned(-1)/2) );
 const int          MAX_INT     = int(  (unsigned(-1)/2) );
 const unsigned int MAX_UINT    = unsigned(-1);
 const std::string  emptyString = "";
