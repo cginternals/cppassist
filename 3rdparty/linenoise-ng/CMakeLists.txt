@@ -47,6 +47,9 @@ add_library(${target} STATIC
 # Create namespaced alias
 add_library(externals::${target} ALIAS ${target})
 
+# Export library for downstream projects
+export(TARGETS ${target} NAMESPACE externals:: FILE ${PROJECT_BINARY_DIR}/cmake/${target}/${target}-export.cmake)
+
 
 #
 # Project options
@@ -67,11 +70,14 @@ target_include_directories(${target}
     PRIVATE
     ${DEFAULT_INCLUDE_DIRECTORIES}
     ${PROJECT_BINARY_DIR}/source/include
-
-    PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 
+    PUBLIC
+
     INTERFACE
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>
+    $<INSTALL_INTERFACE:include>
 )
 
 
@@ -139,4 +145,22 @@ target_link_libraries(${target}
 perform_health_checks(
     ${target}
     ${sources}
+)
+
+
+#
+# Deployment
+#
+
+# Library
+install(TARGETS ${target}
+    EXPORT  "${target}-export"            COMPONENT dev
+    ARCHIVE DESTINATION ${INSTALL_LIB}    COMPONENT dev
+)
+
+# CMake config
+install(EXPORT ${target}-export
+    NAMESPACE   externals::
+    DESTINATION ${INSTALL_CMAKE}/${target}
+    COMPONENT   dev
 )
