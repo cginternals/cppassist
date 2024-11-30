@@ -3,6 +3,10 @@
 # External dependencies
 #
 
+    
+find_package(cppintrinsics REQUIRED)
+
+
 set(ADDITIONAL_LIBRARIES)
 set(ADDITIONAL_INCLUDES)
 if(NOT OPTION_BUILD_WITH_STD_REGEX)
@@ -231,6 +235,16 @@ target_link_libraries(${target}
 
     INTERFACE
 )
+
+foreach (intrinsic_target
+	cppintrinsics::SSE
+    cppintrinsics::AVX
+    cppintrinsics::AVX2
+    cppintrinsics::AVX512)
+    if (TARGET ${intrinsic_target})
+        target_link_libraries(${target} INTERFACE ${intrinsic_target})
+	endif()
+endforeach()
 
 
 #
